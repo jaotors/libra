@@ -1,0 +1,23 @@
+language: php
+php:
+- 5.6
+- 7.0
+matrix:
+  allow_failures:
+  - php: 7.0
+env:
+  global:
+  - APP_ENV=test
+  - LOG_SETTING=single
+  - secure: HdrFL2Vam8cOhzxRLmtwYc4lVDKMLtykmEVHPFoUFtjaaEbeuXfn3PFOIgcSpi8UBJfERsaLcYS13u3vRngQOggv45rr+LEvzSTccSvKQ0nqWOXHVbcDQPqcjA0PMhag0dBIlpyArLd0v9IjoMSo4WLlfaEu3lJQR6+q0BZKIbFbNRoRRD8Oic4ANdptkdcOQDbeNmIC1h06p+yQI89DQiffe1istsW9ND8vP5Bf/g7UQRY4MqT01jwWeAR0J+C+NGZBkpBxPw2yNOAy6Dg4FL2j4dMoXZwu1e9f1AosNn8NnnC6j9uND0mhSm0SsEbVCfGbCcHIE3gv2hNABYo0f14dbcEFlMlQrbuXZsg2IkPGDoyrwX+58DwwVQxmrO+8Km8nSnP+oYyT7IlnNJNHE7yUYWSA3mJZfgE7pMvPdopDnevmHopL4KEmpNlbckJq0QMkB5gB8MlFlA84wlh6XYHQo+61YJojQFt+ULl56hySjsVAjHiITay+4Ie2bULb3hXTG/RXki8wIS7EIldXVbFC2KnTleKmIXvYUdR3Tp2EgmXgZ6o02IWaNSZQ8XDIRYeRhmOHsohcS58vxvqIYzDYShUryOzaLRTyc6blMyeA2QVno2h+U0kw5b1wLbeumHhQr3ip2ll2Y4njTHP4ot3pKjxE0F9BOTA+t0EE/5g=
+services:
+- postgresql
+cache:
+  directories:
+  - vendor
+install:
+- if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN};
+  fi;
+- travis_retry composer self-update && travis_retry composer install --no-interaction
+script:
+- vendor/bin/phpunit --testsuite "Application Test Suite"
