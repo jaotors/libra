@@ -1,0 +1,28 @@
+language: php
+php:
+  - 5.6
+  - 7.0
+matrix:
+  allow_failures:
+    - php: 7.0
+env:
+  global:
+    - APP_ENV=test
+    - DB_CONNECTION=pgsql_test
+    - DB_TEST_DATABASE=travis_ci_test
+    - DB_USERNAME=postgres
+    - LOG_SETTING=single
+services:
+  - postgresql
+cache:
+  directories:
+  - vendor
+before_install:
+  - psql -c 'create database travis_ci_test;' -U postgres
+install:
+  - if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;
+  - travis_retry composer self-update && travis_retry composer install --no-interaction
+before_script:
+  - php artisan migrate:refresh
+script:
+  - vendor/bin/phpunit --testsuite "Application Test Suite"
