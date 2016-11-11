@@ -1,4 +1,5 @@
 ## Project Libra
+[![Build Status](https://travis-ci.org/jmramos02/libra.svg?branch=master)](https://travis-ci.org/jmramos02/libra)
 
 Libra is an open source library system. it includes basic functions like opac, basic returning and borrowing of books, computation for penalties, and many much more.
 
@@ -19,4 +20,4 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 
 ### Sysad
 - Maintenance of users
-- Add books
+- Maintenance of books
