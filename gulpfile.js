@@ -1,5 +1,7 @@
 const elixir = require('laravel-elixir');
 
+process.env.DISABLE_NOTIFIER = true;
+
 require('laravel-elixir-vue-2');
 
 /*
@@ -13,7 +15,13 @@ require('laravel-elixir-vue-2');
  |
  */
 
+gulp.task("fonts", function() {
+    gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/*')
+        .pipe(gulp.dest('public/fonts'));
+});
+
 elixir((mix) => {
+    mix.task('fonts');
     mix.sass('app.scss')
        .webpack('app.js');
 });
