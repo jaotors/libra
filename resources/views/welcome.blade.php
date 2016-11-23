@@ -17,9 +17,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="sidenav">
-                    <h1 class="logo"><a href="#"><img src="" alt="LCCT"></a></h1>
+                    <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
                     <ul class="nav">
-                        <li><a href="#"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>Dashboard</a></li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>Dashboard</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Penalty</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
@@ -27,7 +27,16 @@
                 </div>
                 <div class="main">
                     <div class="content">
+                        <div class="form-group">
+                            <label class="control-label" for="inputDefault">test input</label>
+                            <input type="text" class="form-control" id="inputDefault">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" for="inputError">test input</label>
+                            <input type="text" class="form-control" id="inputError">
+                        </div>
 
+                        <a href="#" class="btn btn-default">Default</a>
                     </div>
                 </div>
             </div>

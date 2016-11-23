@@ -20,8 +20,14 @@ gulp.task("fonts", function() {
         .pipe(gulp.dest('public/fonts'));
 });
 
+gulp.task("images", function() {
+    gulp.src('resources/assets/images/*')
+        .pipe(gulp.dest('public/images'));
+});
+
 elixir((mix) => {
     mix.task('fonts');
+    mix.task('images');
     mix.sass('app.scss')
        .webpack('app.js');
 });

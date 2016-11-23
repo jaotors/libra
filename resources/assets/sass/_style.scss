@@ -1,5 +1,13 @@
-* {
+%delay {
   transition: all 0.3s;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  background-color: #eaeaea;
 }
 
 .sidenav {
@@ -14,26 +22,42 @@
   padding-right: 0;
 
   .logo {
-      margin: 0 auto 20px;
+    margin: 20px auto 20px;
+
+    a {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+      width: 40%;
+    }
   }
 
   .nav {
 
-      li {
-        
-          a {
-              color: #fff;
-              font-weight: bold;
+    li {
 
-              &:hover {
-                  background-color: #8292A8
-              }
-          }
+      &.active {
 
-          span {
-              margin-right: 10px;
-          }
+        a {
+          background-color: #8292A8;
+        }
       }
+
+      a {
+        @extend %delay;
+        
+        color: #fff;
+        font-weight: bold;
+
+        &:hover {
+          background-color: #8292A8;
+        }
+      }
+
+      span {
+        margin-right: 10px;
+      }
+    }
   }
 }
 
@@ -41,7 +65,16 @@
   @extend .col-sm-9;
   @extend .col-sm-offset-3;
 
-  background-color: #eaeaea;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
-  .content {}
+  .content {
+    min-height: 600px;
+
+    background-color: #fbfdff;
+    padding: 20px;
+    width: 95%;
+    margin: 0 auto;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  }
 }

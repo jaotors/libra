@@ -10,3 +10,4 @@ Vagrantfile
 .env
 /public/css
 /public/js
+/public/images
