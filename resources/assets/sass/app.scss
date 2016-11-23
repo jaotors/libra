@@ -7,8 +7,9 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootswatch-scss/readable/variables";
+@import "node_modules/bootswatch-scss/readable/bootswatch";
 
 // Main
-@import "inputs";
-@import "buttons";
+@import "papertheme";
 @import "style";
