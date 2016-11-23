@@ -8,4 +8,5 @@ Homestead.json
 Homestead.yaml
 Vagrantfile
 .env
-/resources/assets
+/public/css
+/public/js
