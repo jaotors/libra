@@ -20,6 +20,7 @@ body {
   background-color: #476997;
   padding-left: 0;
   padding-right: 0;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
 
   .logo {
     margin: 20px auto 20px;
@@ -35,6 +36,11 @@ body {
   .nav {
 
     li {
+      border-bottom: 1px solid #EAEAEA;
+
+      &:first-child {
+        border-top: 1px solid #EAEAEA;
+      }
 
       &.active {
 
@@ -68,13 +74,70 @@ body {
   padding-top: 30px;
   padding-bottom: 30px;
 
-  .content {
-    min-height: 600px;
-
-    background-color: #fbfdff;
-    padding: 20px;
-    width: 95%;
-    margin: 0 auto;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  .flex-container {
+    display: flex;
+    flex-direction: column;
   }
+
+  .box-container {
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+    .box-content {
+      padding: 20px;
+    }
+
+    &.add-book-user {
+      width: 50%;
+    }
+
+    .table {
+      th:last-child {
+        text-align: center;
+      }
+
+      td:last-child {
+        width: 80px;
+        text-align: center;
+
+        a {
+          font-size: 18px;
+          margin-right: 5px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .delete {
+        color: #c68e8d;
+      }
+    }
+  }
+
+  h2.title {
+    margin: 0;
+    border-bottom: 4px solid #EAEAEA;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #476997;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .btn-container {
+    margin: 20px 0 10px;
+
+    a {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+      padding: 10px;
+      border-radius: 0;
+    }
+  }
+
 }
