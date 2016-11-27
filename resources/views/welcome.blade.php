@@ -5,89 +5,215 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Libra</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
+        <div class="container-fluid">
+            <div class="row">
+                <div class="sidenav">
+                    <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
+                    <ul class="nav">
+                        <li><a href="#"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>Dashboard</a></li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Penalty</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
+                    </ul>
                 </div>
-            @endif
+                <div class="main">
+                    <div class="flex-container">
+                        <div class="box-container user-list">
+                            <h2 class="title">User List</h2>
+                            <div class="box-content">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Role</th>
+                                            <th>Department</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Rachelle</td>
+                                            <td>Aton</td>
+                                            <td>Admin</td>
+                                            <td>CE</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Joshua</td>
+                                            <td>Turingan</td>
+                                            <td>Student</td>
+                                            <td>CCSS</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Joshua</td>
+                                            <td>Turingan</td>
+                                            <td>Student</td>
+                                            <td>CCSS</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Joshua</td>
+                                            <td>Turingan</td>
+                                            <td>Student</td>
+                                            <td>CCSS</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Joshua</td>
+                                            <td>Turingan</td>
+                                            <td>Student</td>
+                                            <td>CCSS</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Joshua</td>
+                                            <td>Turingan</td>
+                                            <td>Student</td>
+                                            <td>CCSS</td>
+                                            <td>
+                                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box-container add-user">
+                            <h2 class="title">Add User Information</h2>
+                            <div class="box-content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="student_no">Student Number</label>
+                                            <input type="text" class="form-control" id="student_no">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="first_name">First Name</label>
+                                            <input type="text" class="form-control" id="first_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="last_name">Last Name</label>
+                                            <input type="text" class="form-control" id="last_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="role">Role</label>
+                                            <select name="role" class="form-control" id="role">
+                                                <option value="1">Admin</option>
+                                                <option value="2">Secretary</option>
+                                                <option value="3">Student</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="email">Email</label>
+                                            <input type="text" class="form-control" id="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password">Password</label>
+                                            <input type="text" class="form-control" id="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="rep-password">Repeat Password</label>
+                                            <input type="text" class="form-control" id="rep-password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="department">Department</label>
+                                            <select name="department" class="form-control" id="department">
+                                                <option value="1">CCSS</option>
+                                                <option value="2">BA</option>
+                                                <option value="3">CAS</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="btn-container"><a class="btn btn-primary" href="">Submit</a></p>
+                            </div>
+                        </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                        <div class="box-container add-book">
+                            <h2 class="title">Add Book Information</h2>
+                            <div class="box-content">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label" for="title">Title</label>
+                                        <input type="text" class="form-control" id="title">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label" for="year">Year</label>
+                                        <input type="text" class="form-control" id="year">
+                                    </div>
+                                </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label" for="isbn">ISBN</label>
+                                        <input type="text" class="form-control" id="isbn">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label class="control-label" for="author">AUTHOR</label>
+                                        <input type="text" class="form-control" id="author">
+                                    </div>
+                                </div>
+                                <p class="btn-container"><a class="btn btn-primary" href="">Submit</a></p>
+                            </div>
+                        </div>
+
+                        <div class="box-container add-book-user">
+                            <h2 class="title">Add Book User</h2>
+                            <div class="box-content">
+                                <div class="form-group">
+                                    <label class="control-label" for="title">Book</label>
+                                    <input type="text" class="form-control" id="title">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="year">User</label>
+                                    <input type="text" class="form-control" id="year">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="return_date">Return Date</label>
+                                    <input type="date" class="form-control" id="return_date">
+                                </div>
+                                <p class="btn-container"><a class="btn btn-primary" href="">Submit</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
