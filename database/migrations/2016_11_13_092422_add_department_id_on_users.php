@@ -15,10 +15,6 @@ class AddDepartmentIdOnUsers extends Migration
     {
         Schema::table('users', function ($table) {
             $table->integer('department_id')->unsigned();
-            $table->foreign('department_id')
-                  ->references('id')
-                  ->on('departments')
-                  ->onDelete('cascade');
         });
     }
 

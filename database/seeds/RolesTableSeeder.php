@@ -12,6 +12,8 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+        Role::truncate();
+        
         $role = new Role();
         $role->name = "Student";
         $role->save();
