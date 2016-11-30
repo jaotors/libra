@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
+
 class HomeController extends Controller
 {
     /**
@@ -15,12 +18,17 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application dashboard depending on the user type
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('welcome');
+        $user = Auth::user();
+        $role_name = Role::find($user->role_id)->name;
+        
+        if ($role_name == "Librarian")  {
+           return redirect()->to('/admin/users');
+        }
     }
 }

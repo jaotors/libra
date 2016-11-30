@@ -15,4 +15,5 @@
     {!! Form::close() !!}
 
     @include('errors')
+    @include('info')
 @stop

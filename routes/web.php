@@ -14,3 +14,10 @@
 Route::get('/', 'HomeController@index');
 Route::get('login', 'Auth\LoginController@showLogin');
 Route::post('login', 'Auth\LoginController@authenticate');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
+    Route::get('users', 'UserController@index');
+    Route::post('users', 'UserController@store');
+});
+
+Route::get('logout', 'Auth\LoginController@logout');
