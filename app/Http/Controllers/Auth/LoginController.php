@@ -1,39 +1,61 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: jramos
+ * Date: 30/11/2016
+ * Time: 11:01 AM
+ */
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Shows the login page
      *
-     * @var string
+     * @return \Illuminate\Http\Response
      */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showLogin()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        return view('auth.login');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'user_id' => 'required',
+            'password' => 'required'
+        ]);
+
+        if(!$validator->fails()) {
+
+            $user_id = $request->get('user_id');
+            $password = $request->get('password');
+
+            if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
+                return redirect()->intended('welcome');
+            } else {
+                $validator->errors()->add('login', 'Invalid login credentials');
+                return redirect()
+                    ->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+        } else {
+            $validator->errors()->add('login', 'Invalid login credentials');
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 }
