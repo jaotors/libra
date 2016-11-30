@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate();
         $faker = Factory::create();
         // create admin user
         User::create([

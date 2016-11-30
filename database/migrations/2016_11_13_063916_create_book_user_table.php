@@ -18,19 +18,6 @@ class CreateBookUserTable extends Migration
             $table->integer('book_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->date('return_date');
-
-            $table->foreign('book_id')
-                  ->references('id')
-                  ->on('books')
-                  ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
-
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

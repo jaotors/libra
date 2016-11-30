@@ -12,6 +12,8 @@ class DepartmentsTableSeeder extends Seeder
      */
     public function run()
     {
+        Department::truncate();
+        
         $department = new Department();
         $department->name = "Accountancy";
         $department->save();
