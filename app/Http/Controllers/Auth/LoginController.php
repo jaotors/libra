@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -28,6 +29,15 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    /**
+     * Authenticates the user. user_id and password must be 
+     * provided. if no records match the database,
+     * it will return a response with validation errors.
+     *
+     * @param \Illuminate\Http\Request $request
+     * 
+     * @return \Illuminate\Http\Response $response
+     */
     public function authenticate(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -57,5 +67,17 @@ class LoginController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+    }
+    
+    /**
+     * Logs out the current user
+     * 
+     * @return \Illuminate\Http\Response $response 
+     */
+    public function logout()
+    {
+        Auth::logout();
+        Session::flash('info_message', 'Succesfuly logged out.');
+        return redirect('/login');
     }
 }
