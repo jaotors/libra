@@ -20,12 +20,21 @@ gulp.task("fonts", function() {
         .pipe(gulp.dest('public/fonts'));
 });
 
+gulp.task("js", function() {
+    gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
+        .pipe(gulp.dest('public/js'));
+
+    gulp.src('node_modules/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('public/js'));
+});
+
 gulp.task("images", function() {
     gulp.src('resources/assets/images/*')
         .pipe(gulp.dest('public/images'));
 });
 
 elixir((mix) => {
+    mix.task('js');
     mix.task('fonts');
     mix.task('images');
     mix.sass('app.scss')
