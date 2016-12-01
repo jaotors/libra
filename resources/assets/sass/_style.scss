@@ -68,6 +68,55 @@ body {
   }
 }
 
+.form-control {
+  background-color: transparent;
+}
+
+.alert {
+  border-radius: 0;
+  margin: 0 auto 20px;
+
+  ul {
+    list-style-position: inside;
+    padding-left: 0;
+  }
+}
+
+.login-container {
+  width: 60%;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #37648a;
+  color: #fff;
+
+  @include respond-to(handhelds) { width: 100%;}
+  @include respond-to(medium-screens) { width: 100%;}
+
+  .logo-container {
+    width: 300px;
+    margin: 0 auto;
+
+    @include respond-to(handhelds) { width: 100%;}
+  }
+
+  .form-control {
+    color: #fff;
+  }
+
+  .btn-container {
+    margin-bottom: 0;
+
+    .btn-login {
+      width: 150px;
+      margin-left: auto;
+      padding: 15px 12px;
+      display: block;
+      border-radius: 0;
+      @include respond-to(medium-screens) { width: 100%;}
+    }
+  }
+}
+
 .main {
   @extend .col-sm-9;
   @extend .col-sm-offset-3;
@@ -91,7 +140,7 @@ body {
     }
 
     &.add-book-user {
-      width: 50%;
+      width: 50%;;
     }
 
     .table {
