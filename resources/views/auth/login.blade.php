@@ -1,19 +1,30 @@
 @extends('auth.layout')
 
 @section('content')
-    <h1>Login</h1>
-    {!! Form::open(['url' => '/login'])!!}
+    <div class="login-container">
+        @include('errors')
+        @include('info')
+        
+        <div class="logo-container">
+            <img src="{!! asset('images/logo.png') !!}" alt="LCCT">
+        </div>
+        <h1>Login</h1>
+        {!! Form::open(['url' => '/login'])!!}
+            <div class="form-group">
+                {!! Form::label('user_id', 'Student Number / Employee Number', ['class'=> 'control-label']) !!}
+                {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
+            </div>
+            
+            <div class="form-group">
+                {!! Form::label('password', 'Password', ['class'=> 'control-label']) !!}
+                {!! Form::password('password', ['class' => 'form-control']) !!}
+            </div>
+            
+            <div class="btn-container">
+                {!! Form::submit('Login', ['class' => 'btn btn-primary btn-login']) !!}
+            </div>
 
-        {!! Form::label('user_id', 'Student Number / Employee Number') !!}
-        {!! Form::text('user_id') !!}
+        {!! Form::close() !!}
+    </div>
 
-        {!! Form::label('password', 'Password') !!}
-        {!! Form::password('password') !!}
-
-        {!! Form::submit('Login') !!}
-
-    {!! Form::close() !!}
-
-    @include('errors')
-    @include('info')
 @stop

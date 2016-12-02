@@ -6,10 +6,13 @@
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "node_modules/bootswatch-scss/readable/variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "node_modules/bootswatch-scss/readable/bootswatch";
 
 // Main
-@import "papertheme";
+@import "papertheme/variables";
+@import "papertheme/papertheme";
+@import "mixins";
 @import "style";

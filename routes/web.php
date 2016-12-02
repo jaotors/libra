@@ -21,3 +21,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
+
+/*   for test template    */
+Route::get('/test', function() {
+    return view('welcome');
+});
