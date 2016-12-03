@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jramos
- * Date: 30/11/2016
- * Time: 3:47 PM
- */
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -24,8 +17,8 @@ class UserController extends Controller
     }
     
     /**
-     * Displays the user's list
-     * 
+     * Displays the users list
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -38,9 +31,9 @@ class UserController extends Controller
     
     /**
      * Creates a new user
-     * 
+     *
      * @param \Illuminate\Http\Request $request
-     * 
+     *
      * @return \Illuminate\Http\Response $response
      */
     public function store(Request $request)
