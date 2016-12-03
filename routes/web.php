@@ -17,10 +17,15 @@ Route::post('login', 'Auth\LoginController@authenticate');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
-    Route::post('users', 'UserController@store');
     Route::get('departments', 'DepartmentController@index');
-    Route::post('departments', 'DepartmentController@store');
+    Route::get('categories', 'CategoryController@index');
+
     Route::get('department/{id}/delete', 'DepartmentController@delete');
+    Route::get('category/{id}/delete', 'CategoryController@delete');
+
+    Route::post('users', 'UserController@store');
+    Route::post('departments', 'DepartmentController@store');
+    Route::post('categories', 'CategoryController@store');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

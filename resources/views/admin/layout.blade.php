@@ -21,6 +21,7 @@
         <ul class="nav">
             <li><a href="/admin/users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Users</a></li>
             <li><a href="/admin/departments"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Courses</a></li>
+            <li><a href="/admin/categories"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>Categories</a></li>
             <li><a href="/admin/books"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
             <li><a href="/admin/penalties"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Penalty</a></li>
             <li><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
