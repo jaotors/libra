@@ -26,9 +26,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $role_name = Role::find($user->role_id)->name;
-        
-        if ($role_name == "Librarian")  {
-           return redirect()->to('/admin/users');
+
+        if ($role_name == "Librarian") {
+            return redirect()->to('/admin/users');
         }
     }
 }

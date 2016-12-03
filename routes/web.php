@@ -18,11 +18,14 @@ Route::post('login', 'Auth\LoginController@authenticate');
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
     Route::post('users', 'UserController@store');
+    Route::get('departments', 'DepartmentController@index');
+    Route::post('departments', 'DepartmentController@store');
+    Route::get('department/{id}/delete', 'DepartmentController@delete');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
 
 /*   for test template    */
-Route::get('/test', function() {
+Route::get('/test', function () {
     return view('welcome');
 });
