@@ -19,13 +19,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
     Route::get('departments', 'DepartmentController@index');
     Route::get('categories', 'CategoryController@index');
+    Route::get('books', 'BookController@index');
 
     Route::get('department/{id}/delete', 'DepartmentController@delete');
     Route::get('category/{id}/delete', 'CategoryController@delete');
+    Route::get('book/{id}/delete', 'BookController@delete');
 
     Route::post('users', 'UserController@store');
     Route::post('departments', 'DepartmentController@store');
     Route::post('categories', 'CategoryController@store');
+    Route::post('books', 'BookController@store');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
