@@ -8,13 +8,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-
 
 class LoginController extends Controller
 {
@@ -30,28 +28,27 @@ class LoginController extends Controller
     }
 
     /**
-     * Authenticates the user. user_id and password must be 
+     * Authenticates the user. user_id and password must be
      * provided. if no records match the database,
      * it will return a response with validation errors.
      *
      * @param \Illuminate\Http\Request $request
-     * 
+     *
      * @return \Illuminate\Http\Response $response
      */
     public function authenticate(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'password' => 'required'
         ]);
 
-        if(!$validator->fails()) {
-
+        if (!$validator->fails()) {
             $user_id = $request->get('user_id');
             $password = $request->get('password');
 
             if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
-                return redirect()->intended('welcome');
+                return redirect()->intended('/admin/users');
             } else {
                 $validator->errors()->add('login', 'Invalid login credentials');
                 return redirect()
@@ -59,7 +56,6 @@ class LoginController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-
         } else {
             $validator->errors()->add('login', 'Invalid login credentials');
             return redirect()
@@ -68,11 +64,11 @@ class LoginController extends Controller
                 ->withInput();
         }
     }
-    
+
     /**
      * Logs out the current user
-     * 
-     * @return \Illuminate\Http\Response $response 
+     *
+     * @return \Illuminate\Http\Response $response
      */
     public function logout()
     {
