@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -32,7 +33,6 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response $response
      */
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
