@@ -20,14 +20,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('departments', 'DepartmentController@index');
     Route::get('categories', 'CategoryController@index');
     Route::get('books', 'BookController@index');
+    Route::get('holidays', 'HolidayController@index');
 
     Route::get('department/{id}/delete', 'DepartmentController@delete');
     Route::get('category/{id}/delete', 'CategoryController@delete');
     Route::get('book/{id}/delete', 'BookController@delete');
+    Route::get('holiday/{id}/delete', 'HolidayController@delete');
 
     Route::post('users', 'UserController@store');
     Route::post('departments', 'DepartmentController@store');
     Route::post('categories', 'CategoryController@store');
+    Route::post('holidays', 'HolidayController@store');
     Route::post('books', 'BookController@store');
 });
 
