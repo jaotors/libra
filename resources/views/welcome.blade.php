@@ -14,23 +14,6 @@
         <!-- Styles -->
     </head>
     <body>
-        <div class="modal fade modal-test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
-              </div>
-              <div class="modal-body">
-                <p>One fine body… test test</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="sidenav">
@@ -43,9 +26,67 @@
                     </ul>
                 </div>
                 <div class="main">
+                    <div class="modal fade modal-test" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="box-container add-user">
+                                <h2 class="title">Add User Information</h2>
+                                <div class="box-content">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="student_no">Student Number</label>
+                                                <input type="text" class="form-control" id="student_no">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="first_name">First Name</label>
+                                                <input type="text" class="form-control" id="first_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="last_name">Last Name</label>
+                                                <input type="text" class="form-control" id="last_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="role">Role</label>
+                                                <select name="role" class="form-control" id="role">
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Secretary</option>
+                                                    <option value="3">Student</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="email">Email</label>
+                                                <input type="text" class="form-control" id="email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="password">Password</label>
+                                                <input type="text" class="form-control" id="password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="rep-password">Repeat Password</label>
+                                                <input type="text" class="form-control" id="rep-password">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label" for="department">Department</label>
+                                                <select name="department" class="form-control" id="department">
+                                                    <option value="1">CCSS</option>
+                                                    <option value="2">BA</option>
+                                                    <option value="3">CAS</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="btn-container"><a class="btn btn-primary" href="">Submit</a></p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="flex-container">
                         <div class="box-container user-list">
-                            <h2 class="title">User List</h2>
+                            <h2 class="title add">User List <a href="#"><span class="glyphicon glyphicon-plus"></span></a></h2>
                             <div class="box-content">
                                 <table class="table table-hover">
                                     <thead>

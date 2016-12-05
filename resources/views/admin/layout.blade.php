@@ -34,6 +34,8 @@
     </div>
 </div>
 <!-- Inclusion of scripts -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

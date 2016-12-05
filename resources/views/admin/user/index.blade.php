@@ -1,51 +1,57 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="flex-container">
-        <div class="box-container add-user">
-            <h2 class="title">Add User Information</h2>
-            {{Form::open(['url' => '/admin/users'])}}
-            <div class="box-content">
-                @include('errors')
-                @include('info')
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{Form::label('user_id','Student ID / Employee ID', ['class' => 'control-label'])}}
-                            {{Form::text('user_id', null, ['class' => 'form-control'])}}
+    <div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="box-container add-user">
+                    <h2 class="title">Add User Information</h2>
+                    {{Form::open(['url' => '/admin/users'])}}
+                    <div class="box-content">
+                        @include('errors')
+                        @include('info')
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{Form::label('user_id','Student ID / Employee ID', ['class' => 'control-label'])}}
+                                    {{Form::text('user_id', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('first_name', 'First Name', ['class' => 'control-label'])}}
+                                    {{Form::text('first_name', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('last_name', 'Last Name', ['class' => 'control-label'])}}
+                                    {{Form::text('last_name', null, ['class' => 'form-control'])}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{Form::label('role', 'Role', ['class' => 'control-label'])}}
+                                    {{Form::select('role', $roles, null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('email', 'Email', ['class' => 'control-label'])}}
+                                    {{Form::text('email', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('department', 'Course / Department', ['class' => 'control-label'])}}
+                                    {{Form::select('department', $departments, null, ['class' => 'form-control', 'id' => 'department'])}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{Form::label('first_name', 'First Name', ['class' => 'control-label'])}}
-                            {{Form::text('first_name', null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('last_name', 'Last Name', ['class' => 'control-label'])}}
-                            {{Form::text('last_name', null, ['class' => 'form-control'])}}
-                        </div>
+                        <p class="btn-container">
+                            {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
+                        </p>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{Form::label('role', 'Role', ['class' => 'control-label'])}}
-                            {{Form::select('role', $roles, null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('email', 'Email', ['class' => 'control-label'])}}
-                            {{Form::text('email', null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('department', 'Course / Department', ['class' => 'control-label'])}}
-                            {{Form::select('department', $departments, null, ['class' => 'form-control', 'id' => 'department'])}}
-                        </div>
-                    </div>
+                    {{Form::close()}}
                 </div>
-                <p class="btn-container">
-                    {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
-                </p>
             </div>
-            {{Form::close()}}
         </div>
+    </div>
+    <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title">User List</h2>
+            <h2 class="title add">User List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
                 <table class="table table-hover">
                     <thead>
