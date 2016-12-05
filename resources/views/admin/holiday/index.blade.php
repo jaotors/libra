@@ -43,7 +43,7 @@
                         @foreach($holidays as $holiday)
                             <tr>
                                 <td>{{$holiday->name}}</td>
-                                <td>{{$holiday->created_at}}</td>
+                                <td>{{$holiday->date}}</td>
                                 <td>
                                     <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a class="delete" href="/admin/holiday/{{$holiday->id}}/delete"><span class="glyphicon glyphicon-remove"></span></a>

@@ -37,7 +37,7 @@ class HolidayController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'date' => 'required'
+            'date' => 'required|date'
         ]);
 
         if ($validator->fails()) {
