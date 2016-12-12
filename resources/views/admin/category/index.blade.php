@@ -1,29 +1,35 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="flex-container">
-        <div class="box-container add-user">
-            <h2 class="title">Add Category Information</h2>
-            {{Form::open(['url' => '/admin/categories'])}}
-            <div class="box-content">
-                @include('errors')
-                @include('info')
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{Form::label('name','Category Name', ['class' => 'control-label'])}}
-                            {{Form::text('name', null, ['class' => 'form-control'])}}
+    <div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="box-container add-user">
+                    <h2 class="title">Add Category Information</h2>
+                    {{Form::open(['url' => '/admin/categories'])}}
+                    <div class="box-content">
+                        @include('errors')
+                        @include('info')
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{Form::label('name','Category Name', ['class' => 'control-label'])}}
+                                    {{Form::text('name', null, ['class' => 'form-control'])}}
+                                </div>
+                            </div>
                         </div>
+                        <p class="btn-container">
+                        {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
+                        </p>
                     </div>
+                    {{Form::close()}}
                 </div>
-                <p class="btn-container">
-                {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
-                </p>
             </div>
-            {{Form::close()}}
         </div>
+    </div>
+    <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title">Category List</h2>
+            <h2 class="title add">Category List  <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
                 <table class="table table-hover">
                     <thead>

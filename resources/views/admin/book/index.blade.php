@@ -1,51 +1,55 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="flex-container">
-        <div class="box-container add-user">
-            <h2 class="title">Add Book Information</h2>
-            {{Form::open(['url' => '/admin/books'])}}
-            <div class="box-content">
-                @include('errors')
-                @include('info')
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{Form::label('name','Book Name', ['class' => 'control-label'])}}
-                            {{Form::text('name', null, ['class' => 'form-control'])}}
+    <div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="box-container add-user">
+                    <h2 class="title">Add Book Information</h2>
+                    {{Form::open(['url' => '/admin/books'])}}
+                    <div class="box-content">
+                        @include('errors')
+                        @include('info')
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    {{Form::label('name','Book Name', ['class' => 'control-label'])}}
+                                    {{Form::text('name', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('year','Year', ['class' => 'control-label'])}}
+                                    {{Form::text('year', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('author','Author', ['class' => 'control-label'])}}
+                                    {{Form::text('author', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('isbn','ISBN', ['class' => 'control-label'])}}
+                                    {{Form::text('isbn', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('category','Category', ['class' => 'control-label'])}}
+                                    {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('summary','Summary', ['class' => 'control-label'])}}
+                                    {{Form::textarea('summary', null, ['class' => 'form-control', 'rows' => '4'])}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{Form::label('year','Year', ['class' => 'control-label'])}}
-                            {{Form::text('year', null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('author','Author', ['class' => 'control-label'])}}
-                            {{Form::text('author', null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('isbn','ISBN', ['class' => 'control-label'])}}
-                            {{Form::text('isbn', null, ['class' => 'form-control'])}}
-                        </div>
-                        <div class="form-group">
-                            {{Form::label('category','Category', ['class' => 'control-label'])}}
-                            {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
-                        </div>
+                        <p class="btn-container">
+                            {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
+                        </p>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            {{Form::label('summary','Summary', ['class' => 'control-label'])}}
-                            {{Form::textarea('summary', null, ['class' => 'form-control'])}}
-                        </div>
-                    </div>
+                    {{Form::close()}}
                 </div>
-                <p class="btn-container">
-                {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
-                </p>
             </div>
-            {{Form::close()}}
         </div>
+    </div>
+    <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title">Book List</h2>
+            <h2 class="title add">Book List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
                 <table class="table table-hover">
                     <thead>
