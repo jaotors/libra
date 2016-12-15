@@ -82,37 +82,47 @@ body {
   }
 }
 
-.login-container {
-  width: 60%;
-  margin: 20px auto 0;
-  padding: 20px;
-  background-color: #37648a;
-  color: #fff;
+.login {
+  position: relative;
+  min-height: 600px;
 
-  @include respond-to(handhelds) { width: 100%;}
-  @include respond-to(medium-screens) { width: 100%;}
+  .login-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    margin: 20px auto 0;
+    padding: 20px;
+    background-color: #fff;
+    color: #37648a;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
-  .logo-container {
-    width: 300px;
-    margin: 0 auto;
+    @include respond-to(handhelds) { width: 90%;}
+    @include respond-to(medium-screens) { width: 90%;}
 
-    @include respond-to(handhelds) { width: 100%;}
-  }
+    .logo-container {
+      width: 190px;
+      margin: 0 auto 25px;
 
-  .form-control {
-    color: #fff;
-  }
+      @include respond-to(handhelds) { width: 70%;}
+    }
 
-  .btn-container {
-    margin-bottom: 0;
+    .form-control {
+      color: #fff;
+    }
 
-    .btn-login {
-      width: 150px;
-      margin-left: auto;
-      padding: 15px 12px;
-      display: block;
-      border-radius: 0;
-      @include respond-to(medium-screens) { width: 100%;}
+    .btn-container {
+      margin-bottom: 0;
+      margin-top: 30px;
+
+      .btn-login {
+        width: 100%;
+        padding: 15px 12px;
+        display: block;
+        border-radius: 0;
+        @include respond-to(medium-screens) { width: 100%;}
+      }
     }
   }
 }
