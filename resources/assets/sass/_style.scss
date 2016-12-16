@@ -108,10 +108,6 @@ body {
       @include respond-to(handhelds) { width: 70%;}
     }
 
-    .form-control {
-      color: #fff;
-    }
-
     .btn-container {
       margin-bottom: 0;
       margin-top: 30px;
