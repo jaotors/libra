@@ -8,8 +8,7 @@
         <div class="logo-container">
             <img src="{!! asset('images/logo.png') !!}" alt="LCCT">
         </div>
-        <h1>Login</h1>
-        {!! Form::open(['url' => '/login'])!!}
+        {!! Form::open(['url' => '/login']) !!}
             <div class="form-group">
                 {!! Form::label('user_id', 'Student Number / Employee Number', ['class'=> 'control-label']) !!}
                 {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
