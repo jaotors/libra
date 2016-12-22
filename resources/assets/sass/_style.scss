@@ -82,6 +82,20 @@ body {
   }
 }
 
+.dataTables_filter {
+  @extend .form-group;
+  width: 40%;
+
+  label {
+    @extend .control-label;
+    width: 100%;
+  }
+
+  input {
+    @extend .form-control;
+  }
+}
+
 .login {
   position: relative;
   min-height: 600px;
@@ -172,6 +186,7 @@ body {
     }
 
     .table {
+      margin-bottom: 0;
       th:last-child {
         text-align: center;
       }

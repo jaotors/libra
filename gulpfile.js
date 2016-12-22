@@ -18,13 +18,18 @@ require('laravel-elixir-vue-2');
 gulp.task("fonts", function() {
     gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/*')
         .pipe(gulp.dest('public/fonts'));
+    gulp.src('node_modules/raleway-webfont/fonts/*')
+        .pipe(gulp.dest('public/fonts'));
 });
 
 gulp.task("js", function() {
     gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
         .pipe(gulp.dest('public/js'));
-
     gulp.src('node_modules/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('public/js'));
+    gulp.src('node_modules/datatables.net/js/jquery.dataTables.js')
+        .pipe(gulp.dest('public/js'));
+    gulp.src('resources/assets/js/scripts.js')
         .pipe(gulp.dest('public/js'));
 });
 
