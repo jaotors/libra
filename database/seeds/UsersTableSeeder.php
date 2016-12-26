@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => '3',
             'department_id' => '5',
             'email' => 'acruz@gmail.com',
-            'user_id' => '20100150990',
+            'user_id' => '20140174227',
             'password' => bcrypt('admin'),
         ]);
 
