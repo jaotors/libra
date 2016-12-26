@@ -40,6 +40,7 @@ gulp.task("images", function() {
 
 elixir((mix) => {
     mix.task('js');
+    mix.scripts('scripts.js', 'public/js/scripts.js', 'resources/assets/js');
     mix.task('fonts');
     mix.task('images');
     mix.sass('app.scss')
