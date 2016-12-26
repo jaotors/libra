@@ -32,6 +32,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::post('categories', 'CategoryController@store');
     Route::post('holidays', 'HolidayController@store');
     Route::post('books', 'BookController@store');
+
+    Route::get('/user/{id}', 'UserController@edit');
+
+    Route::put('users', 'UserController@update');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

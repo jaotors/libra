@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -63,6 +64,66 @@ class UserController extends Controller
             
             Session::flash('info_message', 'User Successfuly Created');
             return redirect()->back();
+        }
+    }
+
+    /**
+     * Displays the edit page of the user
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $roles = Role::pluck('name', 'id');
+        $departments = Department::pluck('name', 'id');
+        return view('admin.user.edit', compact('user', 'roles', 'departments'));
+    }
+
+    /**
+     * Updates user
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function update(Request $request)
+    {
+        $id = $request->get('id');
+        $user = User::find($id);
+
+        //return var_dump("required|unique:users,user_id," . $user->user_id);
+        $validator = Validator::make($request->all(), [
+            'user_id' => [
+                'required',
+                Rule::unique('users')->ignore($user->user_id, 'user_id'),
+            ],
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->email, 'email'),
+            ],
+            'first_name' => 'required',
+            'last_name' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $user->first_name = $request->get('first_name');
+            $user->last_name = $request->get('last_name');
+            $user->role_id = $request->get('role');
+            $user->department_id = $request->get('department');
+            $user->user_id = $request->get('user_id');
+            $user->email = $request->get('email');
+            $user->save();
+
+            Session::flash('info_message', 'User Successfuly Updated');
+            return redirect()->to('/admin/users');
         }
     }
 }
