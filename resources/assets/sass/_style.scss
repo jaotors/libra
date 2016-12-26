@@ -85,10 +85,27 @@ body {
 .dataTables_filter {
   @extend .form-group;
   width: 40%;
+  margin-left: auto;
 
   label {
     @extend .control-label;
+
+    position: relative;
     width: 100%;
+
+    &:before {
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: #ddd;
+      font-size: 15px;
+      font-family: 'Glyphicons Halflings';
+      content: '\e003';
+    }
   }
 
   input {
