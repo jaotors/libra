@@ -22,7 +22,11 @@ class HolidayController extends Controller
     public function index()
     {
         $holidays = Holiday::paginate(15);
-        return view('admin.holiday.index', compact('holidays'));
+        $types = [
+            'regular' => 'Regular',
+            'special_non_working' => 'Special non-working',
+        ];
+        return view('admin.holiday.index', compact('holidays', 'types'));
     }
 
     /**
@@ -37,7 +41,7 @@ class HolidayController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'date' => 'required|date'
+            'date' => 'required|date',
         ]);
 
         if ($validator->fails()) {
@@ -49,6 +53,7 @@ class HolidayController extends Controller
             Holiday::create([
                 'name' => $request->get('name'),
                 'date' => $request->get('date'),
+                'type' => $request->get('type'),
             ]);
 
             Session::flash('info_message', 'Holiday Successfuly Created');
