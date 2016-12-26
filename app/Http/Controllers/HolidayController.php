@@ -22,7 +22,11 @@ class HolidayController extends Controller
     public function index()
     {
         $holidays = Holiday::paginate(15);
-        return view('admin.holiday.index', compact('holidays'));
+        $types = [
+            'regular' => 'Regular',
+            'special_non_working' => 'Special non-working',
+        ];
+        return view('admin.holiday.index', compact('holidays', 'types'));
     }
 
     /**
@@ -37,7 +41,7 @@ class HolidayController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'date' => 'required|date'
+            'date' => 'required|date',
         ]);
 
         if ($validator->fails()) {
@@ -49,6 +53,7 @@ class HolidayController extends Controller
             Holiday::create([
                 'name' => $request->get('name'),
                 'date' => $request->get('date'),
+                'type' => $request->get('type'),
             ]);
 
             Session::flash('info_message', 'Holiday Successfuly Created');
@@ -70,5 +75,56 @@ class HolidayController extends Controller
 
         Session::flash('info_message', 'Holiday Sucessfuly Deleted');
         return redirect()->back();
+    }
+
+    /**
+     * Displays the edit page of the user
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function edit($id)
+    {
+        $holiday = Holiday::findOrFail($id);
+        $types = [
+            'regular' => 'Regular',
+            'special_non_working' => 'Special non-working',
+        ];
+
+        return view('admin.holiday.edit', compact('holiday', 'types'));
+    }
+
+    /**
+     * Updates holiday resources
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'date' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $id = $request->get('id');
+
+            $holiday = Holiday::find($id);
+            $holiday->name = $request->get('name');
+            $holiday->date = $request->get('date');
+            $holiday->type = $request->get('type');
+            $holiday->save();
+
+            Session::flash('info_message', 'User Successfuly Updated');
+            return redirect()->to('/admin/holidays');
+        }
     }
 }
