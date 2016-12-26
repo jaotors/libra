@@ -8,8 +8,6 @@
                     <h2 class="title">Add User Information</h2>
                     {{Form::open(['url' => '/admin/users'])}}
                     <div class="box-content">
-                        @include('errors')
-                        @include('info')
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -53,6 +51,8 @@
         <div class="box-container user-list">
             <h2 class="title add">User List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
+                @include('errors')
+                @include('info')
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -73,8 +73,7 @@
                             <td>{{$user->role()->first()->name}}</td>
                             <td>{{$user->department()->first()->name}}</td>
                             <td>
-                                <a class="delete" href="#"><span class="glyphicon glyphicon-remove"></span></a>
-                                <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a class="edit" href="/admin/user/{{$user->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                             </td>
                         </tr>
                     @endforeach
