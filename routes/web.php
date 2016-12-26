@@ -33,9 +33,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::post('holidays', 'HolidayController@store');
     Route::post('books', 'BookController@store');
 
-    Route::get('/user/{id}', 'UserController@edit');
+    Route::get('user/{id}', 'UserController@edit');
+    Route::get('holiday/{id}', 'HolidayController@edit');
 
     Route::put('users', 'UserController@update');
+    Route::put('holidays', 'HolidayController@update');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

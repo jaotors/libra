@@ -83,7 +83,7 @@ class UserController extends Controller
     }
 
     /**
-     * Updates user
+     * Updates user resource
      *
      * @param \Illuminate\Http\Request $request
      *
