@@ -3,6 +3,7 @@ $(document).ready(function() {
         "info": false,
         "language": {
                 "search": ""
-        }
+        },
+        "pagingType": "simple_numbers"
     });
 });

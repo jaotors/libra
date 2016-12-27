@@ -15,6 +15,7 @@
     "laravel-elixir-webpack-official": "^1.0.2",
     "lodash": "^4.16.2",
     "raleway-webfont": "^3.0.1",
+    "roboto-fontface": "^0.6.0",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3"
   }

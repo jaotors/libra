@@ -2,6 +2,22 @@
   transition: all 0.3s;
 }
 
+%clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+a {
+  outline: 0;
+}
+
 img {
   width: 100%;
 }
@@ -68,6 +84,7 @@ body {
   }
 }
 
+/* form controls custom */
 .form-control {
   background-color: transparent;
 }
@@ -82,37 +99,126 @@ body {
   }
 }
 
-.dataTables_filter {
-  @extend .form-group;
-  width: 40%;
-  margin-left: auto;
+/* datatables */
+.dataTables_wrapper {
+  @extend %clearfix;
 
-  label {
-    @extend .control-label;
+  .dataTable {
 
-    position: relative;
-    width: 100%;
+    thead {
+      background-color: #476997;
+      color: #fff;
 
-    &:before {
-      display: block;
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 15px;
-      height: 15px;
-      color: #ddd;
-      font-size: 15px;
-      font-family: 'Glyphicons Halflings';
-      content: '\e003';
+      th {
+        outline: 0;
+        cursor: pointer;
+        vertical-align: middle;
+
+        &:last-child {
+          cursor: default;
+        }
+      }
+    }
+
+    td {
+      vertical-align: middle;
+      font-family: 'Roboto';
     }
   }
 
-  input {
-    @extend .form-control;
+  .dataTables_paginate {
+    @extend .pagination;
+    margin: 5px 0 0;
+
+    a,
+    span > span {
+      text-decoration: none;
+      outline: 0;
+      position: relative;
+      float: left;
+      padding: 6px 16px;
+      line-height: 1.846;
+      text-decoration: none;
+      color: #476997;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      margin-left: -1px;
+    }
+
+    a {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+
+      &.disabled {
+        cursor: default;
+        background-color: #eee;
+      }
+
+      &.current {
+        z-index: 3;
+        color: #ffffff;
+        background-color: #476997;
+        border-color: #476997;
+        cursor: default;
+
+        &:hover {
+          background-color: #476997;
+          border-color: #476997;
+        }
+      }
+    }
+  }
+
+  .dataTables_length {
+    float: left;
+
+    label {
+      margin: 12px 0 0;
+
+      select {
+        padding: 0 5px;
+        width: 45px;
+        outline: 0;
+      }
+    }
+  }
+
+  .dataTables_filter {
+    @extend .form-group;
+    width: 40%;
+    margin-left: auto;
+
+    label {
+      @extend .control-label;
+
+      position: relative;
+      width: 100%;
+
+      &:before {
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        color: #ddd;
+        font-size: 15px;
+        font-family: 'Glyphicons Halflings';
+        content: '\e003';
+      }
+    }
+
+    input {
+      @extend .form-control;
+    }
   }
 }
 
+/* login */
 .login {
   position: relative;
   min-height: 600px;
@@ -190,7 +296,7 @@ body {
 
   .box-container {
     background-color: #fff;
-    width: 90%;
+    width: 95%;
     margin: 0 auto 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
