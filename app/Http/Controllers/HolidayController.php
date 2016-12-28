@@ -123,7 +123,7 @@ class HolidayController extends Controller
             $holiday->type = $request->get('type');
             $holiday->save();
 
-            Session::flash('info_message', 'User Successfuly Updated');
+            Session::flash('info_message', 'Holiday Successfuly Updated');
             return redirect()->to('/admin/holidays');
         }
     }

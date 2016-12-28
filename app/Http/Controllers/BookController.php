@@ -77,7 +77,65 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->delete();
 
-        Session::flash('info_message', 'book Sucessfuly Deleted');
+        Session::flash('info_message', 'Book Sucessfuly Deleted');
         return redirect()->back();
+    }
+
+    /**
+     * Displays the edit page of the book
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function edit($id)
+    {
+        $book = Book::find($id);
+        $categories = Category::pluck('name', 'id');
+        $status = [
+            'Available' => 'Available',
+            'Borrowed' => 'Borrowed',
+            'Reserved' => 'Reserved',
+        ];
+
+        return view('admin.book.edit', compact('book', 'categories', 'status'));
+
+    }
+
+    /**
+     * Updates holiday resources
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'year' => 'required|size:4',
+            'author' => 'required',
+            'isbn' => 'required|size:13'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $book = Book::find($request->get('id'));
+            $book->name = $request->get('name');
+            $book->year = $request->get('year');
+            $book->author = $request->get('author');
+            $book->isbn = $request->get('isbn');
+            $book->summary = $request->get('summary');
+            $book->category_id = $request->get('category');
+            $book->status = $request->get('status');
+            $book->save();
+
+            Session::flash('info_message', 'Book Sucessfuly Updated');
+            return redirect()->to('/admin/books');
+        }
     }
 }
