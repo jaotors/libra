@@ -20,6 +20,10 @@ gulp.task("fonts", function() {
         .pipe(gulp.dest('public/fonts'));
     gulp.src('node_modules/raleway-webfont/fonts/*')
         .pipe(gulp.dest('public/fonts'));
+    gulp.src('node_modules/roboto-fontface/fonts/Roboto/*')
+        .pipe(gulp.dest('public/fonts'));
+    gulp.src('node_modules/roboto-fontface/fonts/Roboto-Condensed/*')
+        .pipe(gulp.dest('public/fonts'));
 });
 
 gulp.task("js", function() {
