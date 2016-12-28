@@ -69,4 +69,47 @@ class CategoryController extends Controller
         Session::flash('info_message', 'Category Sucessfuly Deleted');
         return redirect()->back();
     }
+
+    /**
+     * Displays the edit page of the category
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit', compact('category'));
+    }
+
+    /**
+     * Updates category resource
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $id = $request->get('id');
+
+            $category = Category::find($id);
+            $category->name = $request->get('name');
+            $category->save();
+
+            Session::flash('info_message', 'Category Successfuly Updated');
+            return redirect()->to('/admin/categories');
+        }
+    }
 }

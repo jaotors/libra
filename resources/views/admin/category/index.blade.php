@@ -8,8 +8,6 @@
                     <h2 class="title">Add Category Information</h2>
                     {{Form::open(['url' => '/admin/categories'])}}
                     <div class="box-content">
-                        @include('errors')
-                        @include('info')
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -31,6 +29,8 @@
         <div class="box-container user-list">
             <h2 class="title add">Category List  <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
+                @include('errors')
+                @include('info')
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -45,7 +45,7 @@
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->created_at}}</td>
                                 <td>
-                                    <a class="edit" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a class="edit" href="/admin/category/{{$category->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a class="delete" href="/admin/category/{{$category->id}}/delete"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
