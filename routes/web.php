@@ -15,6 +15,9 @@ Route::get('/', 'HomeController@index');
 Route::get('login', 'Auth\LoginController@showLogin');
 Route::post('login', 'Auth\LoginController@authenticate');
 
+Route::get('opac', 'OpacController@index');
+Route::get('opac/search', 'OpacController@search');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
     Route::get('departments', 'DepartmentController@index');
@@ -51,4 +54,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 /*   for test template    */
 Route::get('/test', function () {
     return view('welcome');
+});
+
+Route::get('/topbar', function () {
+    return view('topbar');
 });
