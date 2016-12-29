@@ -37,11 +37,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('holiday/{id}', 'HolidayController@edit');
     Route::get('book/{id}', 'BookController@edit');
     Route::get('category/{id}', 'CategoryController@edit');
+    Route::get('department/{id}', 'DepartmentController@edit');
 
     Route::put('users', 'UserController@update');
     Route::put('holidays', 'HolidayController@update');
     Route::put('books', 'BookController@update');
     Route::put('categories', 'CategoryController@update');
+    Route::put('departments', 'DepartmentController@update');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
