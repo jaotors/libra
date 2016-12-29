@@ -69,4 +69,47 @@ class DepartmentController extends Controller
         Session::flash('info_message', 'Department Sucessfuly Deleted');
         return redirect()->back();
     }
+
+    /**
+     * Displays the edit page of the department
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function edit($id)
+    {
+        $department = Department::findOrFail($id);
+        return view('admin.department.edit', compact('department'));
+    }
+
+    /**
+     * Updates department resource
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $id = $request->get('id');
+
+            $department = Department::find($id);
+            $department->name = $request->get('name');
+            $department->save();
+
+            Session::flash('info_message', 'Courses Successfuly Updated');
+            return redirect()->to('/admin/departments');
+        }
+    }
 }
