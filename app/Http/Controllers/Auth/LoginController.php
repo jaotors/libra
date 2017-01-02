@@ -48,7 +48,12 @@ class LoginController extends Controller
             $password = $request->get('password');
 
             if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
-                return redirect()->intended('/admin/users');
+                if (Auth::user()->role()->first()->name == "Librarian") {
+                    #return var_dump(Auth::user()->role()->first()->name);
+                    return redirect()->intended('/admin/users');
+                } else if (Auth::user()->role()->first()->name == "Student") {
+                    return redirect()->intended('/opac');
+                }
             } else {
                 $validator->errors()->add('login', 'Invalid login credentials');
                 return redirect()
