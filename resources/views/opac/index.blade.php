@@ -53,7 +53,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$books->links()}}
+                @if (isset($searchQuery))
+                    {{$books->appends(['search_query' => $searchQuery, 'search_select' => $searchSelect])->links()}}
+                @else
+                    {{$books->links()}}
+                @endif
             </div>
         </div>
     </div>

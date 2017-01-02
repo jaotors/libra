@@ -37,19 +37,9 @@ class OpacController extends Controller
      */
     public function search(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'search_query' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $books = Book::where($request->get('search_select'), 'like', "%" . $request->get('search_query') . "%")
-                        ->paginate(15);
-            return view('opac.index', compact('books', 'categories'));
-        }
+        $searchQuery = $request->get('search_query');
+        $searchSelect = $request->get('search_select');
+        $books = Book::where($searchSelect, 'like', "%$searchQuery%")->paginate(15);
+        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect'));
     }
 }
