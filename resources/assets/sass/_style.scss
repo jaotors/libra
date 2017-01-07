@@ -363,7 +363,7 @@ body {
     }
   }
 
-  &.opac {
+  &.fullwidth {
     @extend .col-sm-12;
     @extend .col-sm-offset-0;
 
@@ -402,6 +402,21 @@ body {
           }
         }
 
+      }
+    }
+  }
+
+  &.borrow {
+    .box-container {
+      .table {
+        th:last-child {
+          width: 11%;
+          text-align: left;
+        }
+
+        td:last-child {
+          text-align: left;
+        }
       }
     }
   }

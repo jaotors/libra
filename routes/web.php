@@ -18,6 +18,9 @@ Route::post('login', 'Auth\LoginController@authenticate');
 Route::get('opac', 'OpacController@index');
 Route::get('opac/search', 'OpacController@search');
 
+Route::get('borrow', 'BorrowController@index');
+Route::get('borrow/search', 'BorrowController@search');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
     Route::get('departments', 'DepartmentController@index');
