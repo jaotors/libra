@@ -50,7 +50,7 @@
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
-                                <td><a href="/opac/book/{{$book->id}}/view"> View </a></td>
+                                <td><a href="/opac/book/{{$book->id}}/view"><span class="glyphicon glyphicon-eye-open"></a></td>
                             </tr>
                         @endforeach
                     </tbody>

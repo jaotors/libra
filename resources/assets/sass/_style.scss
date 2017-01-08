@@ -371,7 +371,7 @@ body {
     padding-top: 60px;
 
     .box-content {
-      min-height: 400px;
+      min-height: 370px;
 
       .search-input {
         display: flex;
@@ -402,6 +402,29 @@ body {
           }
         }
 
+      }
+    }
+  }
+
+  &.opac {
+    .box-container {
+      &.view {
+        width: 75%;
+
+        section {
+          h4 {
+            font-weight: normal;
+          }
+
+          p {
+            font-weight: 600;
+            font-size: 16px;
+          }
+        }
+        
+        .num {
+          font-family: Roboto;
+        }
       }
     }
   }

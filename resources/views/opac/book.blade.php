@@ -2,31 +2,53 @@
 
 @section('content')
     <div class="flex-container">
-        <div class="box-container">
+        <div class="box-container view">
             <h2 class="title">Book Information</h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')
-                <h3> Book Title </h3>
-                {{ $book->name }}
-                <h3> Description </h3>
-                {{ $book->summary }}
-                <h3> Author </h3>
-                {{ $book->author }}
-                <h3> ISBN </h3>
-                {{ $book->isbn }}
-                <h3> Accession Number </h3>
-                {{ str_pad($book->id, 5, '0', STR_PAD_LEFT) }}
-                <h3> Status </h3>
-                {{ $book->status }}
-                <h3> Category </h3>
-                {{$book->category()->first()->name}}
-                <br>
-                <br>
-                <a href="/opac" class="btn btn-danger"> Back </a>
-                @if($book->status == 'Available')
-                    <a href="/opac/book/{{ $book->id }}/reserve" class="btn btn-primary">Reserve</a>
-                @endif
+                <div class="row">
+                    <section class="book-title col-md-6">
+                        <h4>Book Title</h4>
+                        <p>{{ $book->name }}</p>
+                    </section>
+                    <section class="author col-md-6">
+                        <h4>Author</h4>
+                        <p>{{ $book->author }}</p>
+                    </section>
+                </div>
+                <section class="desc">
+                    <h4>Description</h4>
+                    <p>{{ $book->summary }}</p>
+                </section>
+                <div class="row">
+                    <div class="col-md-6">
+                        <section class="access-num">
+                            <h4>Accession Number</h4>
+                            <p class="num">{{ str_pad($book->id, 5, '0', STR_PAD_LEFT) }}</p>
+                        </section>
+                        <section class="isbn">
+                            <h4>ISBN</h4>
+                            <p class="num">{{ $book->isbn }}</p>
+                        <section>
+                    </div>
+                    <div class="col-md-6">
+                        <section class="category">
+                            <h4>Category</h4>
+                            <p>{{$book->category()->first()->name}}</p>
+                        </section>
+                        <section class="status">
+                            <h4>Status</h4>
+                            <p>{{ $book->status }}</p>
+                        </section>
+                    </div>
+                </div>
+                <div class="links">
+                    <a href="/opac" class="btn btn-danger"> Back </a>
+                    @if($book->status == 'Available')
+                        <a href="/opac/book/{{ $book->id }}/reserve" class="btn btn-primary">Reserve</a>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
