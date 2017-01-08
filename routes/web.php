@@ -15,8 +15,14 @@ Route::get('/', 'HomeController@index');
 Route::get('login', 'Auth\LoginController@showLogin');
 Route::post('login', 'Auth\LoginController@authenticate');
 
-Route::get('opac', 'OpacController@index');
-Route::get('opac/search', 'OpacController@search');
+
+Route::group(['prefix' => 'opac', 'as' => 'opac::'], function () {
+    Route::get('/', 'OpacController@index');
+    Route::get('search', 'OpacController@search');
+    Route::get('reservation', 'OpacController@reservation');
+    Route::get('book/{id}/view', 'OpacController@book');
+    Route::get('reserve/{id}', 'OpacController@book');
+});
 
 Route::get('borrow', 'BorrowController@index');
 Route::get('borrow/search', 'BorrowController@search');

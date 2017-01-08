@@ -8,13 +8,13 @@
                 @include('errors')
                 @include('info')
                 <div class="searchQuery">
-                    {{Form::open(['method' => 'get', 'url' => 'opac/search'])}}
+                    {{Form::open(['method' => 'get', 'url' => '/opac/search'])}}
                         <div class="search-input">
                             <div class="form-group search-q">
                                 {{Form::text('search_query', null, ['class' => 'form-control'])}}
                             </div>
                             <div class="form-group search-select">
-                                {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'keywords' => 'Keywords'], null, ['class' => 'form-control'])}}
+                                {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'isbn' => 'ISBN'], null, ['class' => 'form-control'])}}
                             </div>
                             <div class="btn-container">
                                 {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
@@ -32,6 +32,7 @@
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
+                            <th>More Info</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,7 @@
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
+                                <td><a href="/opac/book/{{$book->id}}/view"> View </a></td>
                             </tr>
                         @endforeach
                     </tbody>

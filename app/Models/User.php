@@ -50,4 +50,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
+
+    /**
+     * Return the collection containing all reserved books by the user
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function books()
+    {
+        return $this->belongsToMany(Book::class);
+    }
 }

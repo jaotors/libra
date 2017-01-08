@@ -18,10 +18,15 @@
             <div class="topnav">
                 <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
                 <ul class="nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Books</a></li>
-                    <li><a href="#">Resrvation</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="/opac">Home</a></li>
+                    <li><a href="/opac/reservation">My Reservations</a></li>
+                    <li>
+                        @if (Auth::check())
+                            <a href="/logout"> Logout </a>
+                        @else
+                            <a href="/login"> Login </a>
+                        @endif
+                    </li>
                 </ul>
             </div>
             <div class="main fullwidth opac">
