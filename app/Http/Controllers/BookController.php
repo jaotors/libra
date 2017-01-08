@@ -75,10 +75,15 @@ class BookController extends Controller
     public function delete($id)
     {
         $book = Book::find($id);
-        $book->delete();
-
-        Session::flash('info_message', 'Book Sucessfuly Deleted');
-        return redirect()->back();
+        if($book->status == 'Reserved' || $book->status == 'Borrowed') {
+            Session::flash('info_message', 'Book is currently Reserved or Borrowed');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->back();
+        } else {
+            $book->delete();
+            Session::flash('info_message', 'Book Sucessfuly Deleted');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -137,5 +142,20 @@ class BookController extends Controller
             Session::flash('info_message', 'Book Sucessfuly Updated');
             return redirect()->to('/admin/books');
         }
+    }
+
+    public function trashIndex()
+    {
+        $books = Book::onlyTrashed()->paginate(15);
+        $categories = Category::pluck('name', 'id');
+        return view('admin.weed.index', compact('books', 'categories'));
+    }
+
+    public function trashRestore($id)
+    {
+        $book = Book::onlyTrashed()->where('id', $id)->restore();
+
+        Session::flash('info_message', 'Book Sucessfuly Restored');
+        return redirect()->to('/admin/weeds');
     }
 }

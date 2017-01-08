@@ -47,7 +47,7 @@
     </div>
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title add">Book List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
+            <h2 class="title">Book List</h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')
@@ -75,8 +75,7 @@
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
                                 <td>
-                                    <a class="edit" href="/admin/book/{{$book->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="delete" href="/admin/book/{{$book->id}}/delete"><span class="glyphicon glyphicon-ban-circle"></span></a>
+                                    <a class="edit" href="/admin/weed/{{$book->id}}"><span class="glyphicon glyphicon-repeat"></span></a>
                                 </td>
                             </tr>
                         @endforeach
