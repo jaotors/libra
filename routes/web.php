@@ -50,6 +50,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::put('books', 'BookController@update');
     Route::put('categories', 'CategoryController@update');
     Route::put('departments', 'DepartmentController@update');
+
+    Route::get('weeds', 'BookController@trashIndex');
+    Route::get('weed/{id}', 'BookController@trashRestore');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
