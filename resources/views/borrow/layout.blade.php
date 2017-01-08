@@ -24,7 +24,7 @@
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>
-            <div class="main fullwidth opac">
+            <div class="main fullwidth borrow">
                 @yield('content')
             </div>
         </div>
