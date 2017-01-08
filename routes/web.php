@@ -21,7 +21,8 @@ Route::group(['prefix' => 'opac', 'as' => 'opac::'], function () {
     Route::get('search', 'OpacController@search');
     Route::get('reservation', 'OpacController@reservation');
     Route::get('book/{id}/view', 'OpacController@book');
-    Route::get('reserve/{id}', 'OpacController@book');
+    Route::get('book/{id}/reserve', 'OpacController@reserve');
+    Route::get('book/{id}/remove', 'OpacController@remove');
 });
 
 Route::get('borrow', 'BorrowController@index');

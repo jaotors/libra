@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Book;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -54,8 +55,9 @@ class OpacController extends Controller
             return redirect()->to('/login');
         } else {
             $user = Auth::user();
-            $books = $user->books();
-            return 'pogi ako';
+            $books = $user->reservations()->get();
+
+            return view('opac.reservation', compact('books'));
         }
     }
 
@@ -82,6 +84,60 @@ class OpacController extends Controller
      */
     public function reserve($id)
     {
+        $book = Book::findOrFail($id);
+        $userId = Auth::user()->id;
+        $count = Reservation::where('user_id', $userId)->count() + Auth::user()->books()->count();
+        $limit = Auth::user()->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+
+        if ($count < $limit) {
+            $reservation = new Reservation();
+
+            if ($book->status == 'Available') {
+                $book->status = 'Reserved';
+                $book->save();
+
+                $reservation->user_id = $userId;
+                $reservation->book_id = $id;
+                $reservation->save();
+
+
+                return redirect()->to('/opac/reservation');
+            } else {
+                Session::flash('info_message', 'Book has already been reserved');
+                Session::flash('alert-class', 'alert-danger');
+
+                return redirect()->back();
+            }
+        } else {
+            Session::flash('info_message', 'Maximum limit of borrowed book reached');
+            Session::flash('alert-class', 'alert-danger');
+
+            return redirect()->back();
+        }
+    }
+
+ 
+    /**
+     * Remove a book from a reservation
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     *
+     */
+    public function remove($id)
+    {
+        $book = Book::findOrFail($id);
+        $book->status = 'Available';
+        $book->save();
+
+        $user = Auth::user();
+        $reservation = Reservation::where('user_id', $user->id)->where('book_id', $book->id)->first();
+
+        $reservation->delete();
+
+        Session::flash('info_message', 'Book succesfuly removed from reservation');
+        return redirect()->back();
 
     }
 }

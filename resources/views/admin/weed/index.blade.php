@@ -47,7 +47,7 @@
     </div>
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title">Book List</h2>
+            <h2 class="title">Weed List</h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')

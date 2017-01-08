@@ -232,4 +232,10 @@ return [
 
     ],
 
+    /*Application Config*/
+    'student_number_of_books' => env('STUDENT_BOOKS', 3),
+    'employee_number_of_books' => env('EMPLOYEE_BOOKS', 20),
+    'student_borrow_period' => env('STUDENT_DURATION', 3),
+    'employee_borrow_period' => env('EMPLOYEE_DURATION', 7),
+
 ];

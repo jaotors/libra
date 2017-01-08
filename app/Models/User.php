@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Return the collection containing all reserved books by the user
+     * Return the collection containing all borrowed books by the user
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      *
@@ -60,5 +60,16 @@ class User extends Authenticatable
     public function books()
     {
         return $this->belongsToMany(Book::class);
+    }
+
+    /**
+     * Return the collection containing all reserved books by the user
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function reservations()
+    {
+        return $this->belongsToMany(Book::class, 'reservations');
     }
 }

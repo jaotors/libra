@@ -75,7 +75,7 @@ class BookController extends Controller
     public function delete($id)
     {
         $book = Book::find($id);
-        if($book->status == 'Reserved' || $book->status == 'Borrowed') {
+        if ($book->status == 'Reserved' || $book->status == 'Borrowed') {
             Session::flash('info_message', 'Book is currently Reserved or Borrowed');
             Session::flash('alert-class', 'alert-danger');
             return redirect()->back();

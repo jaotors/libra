@@ -8,26 +8,13 @@ use App\Models\Category;
 
 class Reservation extends Model
 {
-    /**
-     * Disabling timestamps.
-     *
-     * @var string
-     */
-    public $timestamps = false;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'book_user';
 
     /**
      * Attributes that are mass assignable
      *
      * @var array
      */
-    protected $fillable = ['book_id', 'user_id', 'return_date'];
+    protected $fillable = ['book_id', 'user_id'];
 
     /**
      * Returns the collection containing category objects

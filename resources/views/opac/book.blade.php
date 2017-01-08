@@ -25,7 +25,7 @@
                 <br>
                 <a href="/opac" class="btn btn-danger"> Back </a>
                 @if($book->status == 'Available')
-                    <a href="/opac/reserve/{{ $book->id }}" class="btn btn-primary">Reserve</a>
+                    <a href="/opac/book/{{ $book->id }}/reserve" class="btn btn-primary">Reserve</a>
                 @endif
             </div>
         </div>
