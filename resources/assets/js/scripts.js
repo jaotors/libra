@@ -4,6 +4,16 @@ $(document).ready(function() {
         "language": {
                 "search": ""
         },
-        "pagingType": "simple_numbers"
+        "pagingType": "simple_numbers",
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            { "width": "13%" }
+        ]
     });
 });

@@ -75,6 +75,7 @@
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
                                 <td>
+                                    <a class="borrow" href="/admin/book/{{$book->id}}/borrow"><span class="glyphicon glyphicon-retweet"></span></a>
                                     <a class="edit" href="/admin/book/{{$book->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a class="delete" href="/admin/book/{{$book->id}}/delete"><span class="glyphicon glyphicon-ban-circle"></span></a>
                                 </td>

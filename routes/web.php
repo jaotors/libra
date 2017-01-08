@@ -60,6 +60,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
 
     Route::get('weeds', 'BookController@trashIndex');
     Route::get('weed/{id}', 'BookController@trashRestore');
+
+    Route::get('book/{id}/borrow', 'BorrowController@borrow');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
