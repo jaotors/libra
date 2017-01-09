@@ -27,8 +27,8 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::paginate(15);
-        return view('borrow.index', compact('reservations'));
+        $books = [];
+        return view('admin.borrow.index', compact('books'));
     }
 
     /**
@@ -50,11 +50,11 @@ class BorrowController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            $searchQuery = $request->get('search_query');
-            $userid = User::where('user_id', $searchQuery)->first();
-            $reservations = Reservation::where('user_id', (int)$userid->id)->paginate(15);
+            $id = $request->get('search_query');
+            $user = User::findOrFail($id);
+            $books = $user->reservations()->get();
 
-            return view('borrow.index', compact('reservations', 'searchQuery'));
+            return view('borrow.index', compact('books'));
         }
     }
 

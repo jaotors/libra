@@ -25,9 +25,6 @@ Route::group(['prefix' => 'opac', 'as' => 'opac::'], function () {
     Route::get('book/{id}/remove', 'OpacController@remove');
 });
 
-Route::get('borrow', 'BorrowController@index');
-Route::get('borrow/search', 'BorrowController@search');
-
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('users', 'UserController@index');
     Route::get('departments', 'DepartmentController@index');
@@ -61,6 +58,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('weeds', 'BookController@trashIndex');
     Route::get('weed/{id}', 'BookController@trashRestore');
 
+    Route::get('borrow', 'BorrowController@index');
+    Route::get('borrow/search', 'BorrowController@search');
     Route::get('book/{id}/borrow', 'BorrowController@borrow');
 });
 

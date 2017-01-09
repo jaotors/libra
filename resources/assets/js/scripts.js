@@ -1,19 +1,9 @@
 $(document).ready(function() {
-    $('table').DataTable({
+    $('table.data-table').DataTable({
         "info": false,
         "language": {
                 "search": ""
         },
-        "pagingType": "simple_numbers",
-        "columns": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            { "width": "13%" }
-        ]
+        "pagingType": "simple_numbers"
     });
 });
