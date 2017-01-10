@@ -60,7 +60,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
 
     Route::get('borrow', 'BorrowController@index');
     Route::get('borrow/search', 'BorrowController@search');
-    Route::get('book/{id}/borrow', 'BorrowController@borrow');
+    Route::get('borrow/{id}/borrow', 'BorrowController@borrow');
+    Route::post('borrow/reserve', 'BorrowController@reserve');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
