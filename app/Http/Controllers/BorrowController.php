@@ -80,8 +80,8 @@ class BorrowController extends Controller
         $books = $user->reservations()->get();
 
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user()->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
-        $period = $user()->type == 1 ? config('app.student_borrow_period') : config('app.employee_borrow_period');
+        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $period = $user->type == 1 ? config('app.student_borrow_period') : config('app.employee_borrow_period');
 
         if ($count > $limit) {
             Session::flash('info_message', 'Maximum limit of borrowed book reached');
