@@ -1,27 +1,29 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content borrow">
-                <div class="box-container add-user">
-                    <h2 class="title">Reserve Book</h2>
-                    {{Form::open(['url' => 'admin/borrow/reserve'])}}
-                    <div class="box-content">
-                        <div class="form-group">
-                            {{Form::label('isbn','ISBN', ['class' => 'control-label'])}}
-                            {{Form::text('isbn', null, ['class' => 'form-control'])}}
-                            {{Form::hidden('user_id', "$user->id")}}
+    @if(!is_null($user))
+        <div class="modal fade modal-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content borrow">
+                    <div class="box-container add-user">
+                        <h2 class="title">Reserve Book</h2>
+                        {{Form::open(['url' => 'admin/borrow/reserve'])}}
+                        <div class="box-content">
+                            <div class="form-group">
+                                {{Form::label('isbn','ISBN', ['class' => 'control-label'])}}
+                                {{Form::text('isbn', null, ['class' => 'form-control'])}}
+                                {{Form::hidden('user_id', "$user->id")}}
+                            </div>
+                            <p class="btn-container">
+                                {{Form::submit('Reserve', ['class' => 'btn btn-primary'])}}
+                            </p>
                         </div>
-                        <p class="btn-container">
-                            {{Form::submit('Reserve', ['class' => 'btn btn-primary'])}}
-                        </p>
+                        {{Form::close()}}
                     </div>
-                    {{Form::close()}}
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <div class="flex-container">
         <div class="box-container">
             <h2 class="title">La Consolacion College – Tanauan Library</h2>
@@ -46,7 +48,12 @@
                         <li>Name: <span>{{$user->last_name}}, {{$user->first_name}}</span></li>
                     </ul>
                 @endif
-                <h3 class="title add"><span>Reserved Books</span> <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h3>
+                <h3 class="title add">
+                    <span>Reserved Books</span> 
+                    @if(!is_null($user))
+                        <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a>
+                    @endif
+                </h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
