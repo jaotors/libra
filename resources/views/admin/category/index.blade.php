@@ -31,7 +31,7 @@
             <div class="box-content">
                 @include('errors')
                 @include('info')
-                <table class="table table-hover">
+                <table class="table data-table table-hover">
                     <thead>
                         <tr>
                             <th>Name</th>

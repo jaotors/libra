@@ -10,7 +10,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Access Number </th>
+                            <th>Access Number</th>
                             <th>Name</th>
                             <th>Year</th>
                             <th>ISBN</th>
@@ -32,7 +32,7 @@
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
-                                <td><a href="/opac/book/{{$book->id}}/remove"> Remove </a></td>
+                                <td><a class="delete" href="/opac/book/{{$book->id}}/remove"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
                             </tr>
                         @endforeach
                     </tbody>

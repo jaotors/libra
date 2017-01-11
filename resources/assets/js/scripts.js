@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('table').DataTable({
+    $('table.data-table').DataTable({
         "info": false,
         "language": {
                 "search": ""
