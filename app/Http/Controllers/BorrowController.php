@@ -35,7 +35,7 @@ class BorrowController extends Controller
     /**
      * Searches the book resource
      *
-     * @param $id
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response $response
      */
@@ -110,7 +110,7 @@ class BorrowController extends Controller
     /**
      * Reserve the book
      *
-     * @param $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response $response
      *
@@ -125,7 +125,7 @@ class BorrowController extends Controller
         $isbn = $request->get('isbn');
         $book = Book::where('isbn', "$isbn")->first();
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = Auth::user()->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
 
         if ($count < $limit) {
             $reservation = new Reservation();

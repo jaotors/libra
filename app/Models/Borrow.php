@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Book;
-use App\Models\Category;
+use App\Models\User;
 
 class Borrow extends Model
 {
@@ -30,7 +30,7 @@ class Borrow extends Model
     protected $fillable = ['book_id', 'user_id', 'return_date'];
 
     /**
-     * Returns the collection containing category objects
+     * Returns the collection containing book objects
      * associated with the book_user
      */
     public function book()
@@ -38,6 +38,10 @@ class Borrow extends Model
         return $this->belongsTo(Book::class);
     }
 
+    /**
+     * Returns the collection containing user objects
+     * associated with the book_user
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
