@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex-container">
         <div class="box-container">
-            <h2 class="title">La Consolacion College – Tanauan Library</h2>
+            <h2 class="title">Book List</h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')

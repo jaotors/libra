@@ -26,8 +26,9 @@
                             {{ Form::select('type', $types, $holiday->type, ['class' => 'form-control']) }}
                         </div>
                     </div>
-                    <p class="btn-container">
-                    {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+                    <p class="btn-container two-buttons">
+                        {{Form::submit('Update', ['class' => 'btn btn-primary update'])}}
+                        <a href="/admin/holidays" class="btn btn-danger cancel">Cancel</a>
                     </p>
                 </div>
                 {{ Form::hidden('id', $holiday->id) }}
