@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -48,6 +49,7 @@ class LoginController extends Controller
             $password = $request->get('password');
 
             if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
+                $this->logs('login');
                 if (Auth::user()->role()->first()->name == "Librarian") {
                     #return var_dump(Auth::user()->role()->first()->name);
                     return redirect()->intended('/admin/users');
@@ -77,8 +79,23 @@ class LoginController extends Controller
      */
     public function logout()
     {
+        $this->logs('logout');
         Auth::logout();
         Session::flash('info_message', 'Succesfuly logged out.');
         return redirect('/login');
     }
+
+    /**
+     * Add logs of the user
+     *
+     * @param $action
+     */
+    private function logs($action) {
+        $logs = new Log();
+        $logs->user_id = Auth::user()->id;
+        $logs->role_id = Auth::user()->role_id;
+        $logs->action = $action;
+        $logs->save();
+    }
+
 }
