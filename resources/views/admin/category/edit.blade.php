@@ -16,8 +16,11 @@
                         </div>
                     </div>
                 </div>
+                <p class="btn-container two-buttons">
+                    {{Form::submit('Update', ['class' => 'btn btn-primary update'])}}
+                    <a href="/admin/categories" class="btn btn-danger cancel">Cancel</a>
+                </p>
             </div>
-            <p class="btn-container">{{Form::submit('Update', ['class' => 'btn btn-primary'])}}</p>
         </div>
         {{ Form::hidden('id', $category->id) }}
         {{ Form::close() }}

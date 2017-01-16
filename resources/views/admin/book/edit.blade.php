@@ -38,8 +38,11 @@
                         {{Form::textarea('summary', null, ['class' => 'form-control', 'rows' => '4'])}}
                     </div>
                 </div>
+                <p class="btn-container two-buttons">
+                    {{Form::submit('Update', ['class' => 'btn btn-primary update'])}}
+                    <a href="/admin/books" class="btn btn-danger cancel">Cancel</a>
+                </p>
             </div>
-            <p class="btn-container">{{Form::submit('Update', ['class' => 'btn btn-primary'])}}</p>
         </div>
         {{ Form::hidden('id', $book->id) }}
         {{ Form::close() }}

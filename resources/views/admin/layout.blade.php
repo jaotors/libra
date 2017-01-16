@@ -15,6 +15,13 @@
 <div class="container-fluid">
     <div class="sidenav">
         <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
+        <p class="school-name">La Consolacion College Tanauan</p>
+        <p class="address">Tanauan City, Batangas 4232</p>
+        <ul class="contact-list">
+            <li>Telephone: (043) 778-1020</li>
+            <li>Fax: (043) 778-8850</li>
+            <li>E-mail: <a href="mailto:OLFA_Community@yahoo.com">OLFA_Community@yahoo.com</a></li>
+        </ul>
         <ul class="nav">
             <li><a href="/admin/users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Users</a></li>
             <li><a href="/admin/departments"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Courses</a></li>
