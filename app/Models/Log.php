@@ -27,7 +27,7 @@ class Log extends Model
     }
 
     /**
-     * Returns the collection containing category objects
+     * Returns the collection containing objects
      * associated with the log
      */
     public function user()

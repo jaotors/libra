@@ -21,8 +21,8 @@
                             <tr>
                                 <td>{{$log->user()->first()->user_id}}</td>
                                 <td>{{$log->user()->first()->role()->first()->name}}</td>
-                                <td>{{$log->action}}</td>
-                                <td>{{$log->created_at}}</td>
+                                <td>{{strtoupper($log->action)}}</td>
+                                <td>{{$log->created_at->format('Y-m-d h:i:s A')}}</td>
                             </tr>
                         @endforeach
                     </tbody>
