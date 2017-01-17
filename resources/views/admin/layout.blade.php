@@ -32,6 +32,7 @@
             <li><a href="/admin/penalties"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Penalty</a></li>
             <li><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
             <li><a href="/admin/weeds"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Weeding</a></li>
+            <li><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
             <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Logout</a></li>
         </ul>
     </div>
