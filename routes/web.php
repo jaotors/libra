@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('categories', 'CategoryController@index');
     Route::get('books', 'BookController@index');
     Route::get('holidays', 'HolidayController@index');
+    Route::get('logs', 'LogController@index');
 
     Route::get('department/{id}/delete', 'DepartmentController@delete');
     Route::get('category/{id}/delete', 'CategoryController@delete');
