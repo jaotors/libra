@@ -27,7 +27,8 @@
             <li><a href="/admin/departments"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Courses</a></li>
             <li><a href="/admin/categories"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>Categories</a></li>
             <li><a href="/admin/books"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
-            <li><a href="/admin/borrow"><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>Borrow</a></li>
+            <li><a href="/admin/borrow"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>Borrow</a></li>
+            <li><a href="/admin/return"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>Return</a></li>
             <li><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
             <li><a href="/admin/penalties"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Penalty</a></li>
             <li><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>

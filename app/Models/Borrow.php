@@ -8,7 +8,7 @@ use App\Models\User;
 
 class Borrow extends Model
 {
-/**
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -20,7 +20,7 @@ class Borrow extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * Attributes that are mass assignable

@@ -63,6 +63,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('borrow/search', 'BorrowController@search');
     Route::get('borrow/{id}/borrow', 'BorrowController@borrow');
     Route::post('borrow/reserve', 'BorrowController@reserve');
+
+    Route::get('return', 'ReturnController@index');
+    Route::get('return/search', 'ReturnController@search');
+    Route::get('return/set/{id}', 'ReturnController@setForReturn');
+    Route::get('return/books', 'ReturnController@returnBooks');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

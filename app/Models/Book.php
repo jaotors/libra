@@ -32,4 +32,9 @@ class Book extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function borrower()
+    {
+        return $this->belongsToMany(User::class, 'book_user')->withPivot('return_date', 'created_at')->withTimestamps();
+    }
 }

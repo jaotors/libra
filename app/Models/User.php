@@ -72,4 +72,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Book::class, 'reservations');
     }
+
+    /**
+     * Return the collection containing all reserved books by the user
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function borrowed()
+    {
+        return $this->belongsToMany(Book::class, 'book_user')->withTimestamps()->withPivot('return_date');
+    }
 }

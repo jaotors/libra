@@ -54,7 +54,7 @@ class BorrowController extends Controller
             $id = $request->get('search_query');
             $user = User::where('user_id', $id)->first();
 
-            if(is_null($user)) {
+            if (is_null($user)) {
                 Session::flash('info_message', 'User not found');
                 Session::flash('alert-class', 'alert-danger');
                 return redirect()->back();
