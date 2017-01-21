@@ -17,4 +17,15 @@ $(document).ready(function() {
             "autoWidth": false
         });
     }
+
+    var dept = $('#department option:not(:last-child)');
+    $('#role').change(function() {
+        $('#role option:selected').each(function() {
+            if($(this).text() != 'Student') {
+                $('#department option:not(:last-child)').remove();
+            } else {
+                $('#department').prepend(dept);
+            }
+        });
+    }).trigger("change");
 });
