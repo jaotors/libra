@@ -35,6 +35,8 @@ gulp.task("js", function() {
         .pipe(gulp.dest('public/js'));
     gulp.src('resources/assets/js/scripts.js')
         .pipe(gulp.dest('public/js'));
+    gulp.src('resources/assets/js/login.js')
+        .pipe(gulp.dest('public/js'));
 });
 
 gulp.task("images", function() {
@@ -44,7 +46,7 @@ gulp.task("images", function() {
 
 elixir((mix) => {
     mix.task('js');
-    mix.scripts('scripts.js', 'public/js/scripts.js', 'resources/assets/js');
+    mix.scripts(['ajaxConfig.js', 'scripts.js', 'login.js'], 'public/js', 'resources/assets/js');
     mix.task('fonts');
     mix.task('images');
     mix.sass('app.scss')

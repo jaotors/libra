@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    /* data tables*/
     if ( $.fn.dataTable.isDataTable( '.logs-table' ) ) {
         $('table.data-table').DataTable({
             "info": false,
@@ -18,6 +19,7 @@ $(document).ready(function() {
         });
     }
 
+    /* roles select */
     var dept = $('#department option:not(:last-child)');
     $('#role').change(function() {
         $('#role option:selected').each(function() {
@@ -28,4 +30,6 @@ $(document).ready(function() {
             }
         });
     }).trigger("change");
+
+    
 });

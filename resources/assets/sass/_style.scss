@@ -15,7 +15,7 @@
 }
 
 a {
-  outline: 0;
+  outline: 0 !important;
 }
 
 img {
@@ -41,13 +41,13 @@ body {
   box-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
 
   .logo {
-    margin: 20px auto 10px;
+    margin: 10px auto;
 
     a {
       display: block;
       text-align: center;
       margin: 0 auto;
-      width: 40%;
+      width: 35%;
     }
   }
 
@@ -58,9 +58,10 @@ body {
     color: #fff;
     margin-bottom: 0;
     line-height: 1.35;
+    font-size: 12px;
 
     &.school-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
     }
   }
@@ -179,10 +180,11 @@ body {
 
 .alert {
   border-radius: 0;
-  margin: 0 auto 20px;
+  margin-bottom: 0;
 
   ul {
     list-style-position: inside;
+    list-style-type: none;
     padding-left: 0;
   }
 }
@@ -341,9 +343,10 @@ body {
   }
 
   .box-container {
-    background-color: #fff;
+    position: relative;
     width: 95%;
     margin: 0 auto 20px;
+    background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
     .logs-table {
@@ -353,8 +356,43 @@ body {
       
     }
 
+    &.books {
+      .dataTable {
+
+        thead {
+          background-color: #476997;
+          color: #fff;
+
+          th {
+            outline: 0;
+            cursor: pointer;
+            vertical-align: middle;
+            font-size: 11px;
+
+            &:last-child {
+              cursor: default;
+            }
+          }
+        }
+
+        td {
+          vertical-align: middle;
+          font-family: 'Roboto';
+          font-size: 11px;
+
+          &:last-child {
+
+            a {
+              font-size: 14px;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+
     .box-content {
-      padding: 20px;
+      padding: 80px 20px 20px;
 
       &.borrow {
 
@@ -404,7 +442,7 @@ body {
         .search-input {
           display: flex;
           justify-content: space-between;
-          align-items: baseline;
+          align-items: flex-end;
           width: 50%;
           margin: 0 auto;
 
@@ -468,7 +506,6 @@ body {
 
   h2.title {
     margin: 0;
-    border-bottom: 4px solid #EAEAEA;
     padding: 15px;
     background-color: #476997;
     color: #fff;
@@ -478,6 +515,24 @@ body {
       a {
         float: right;
         color: #fff;
+      }
+    }
+
+    &.fixed {
+      position: fixed;
+      width: 67.55%;
+      z-index: 10;
+
+      &:before {
+        display: block;
+        position: absolute;
+        top: -30px;
+        left: -1px;
+        right: -1px;
+        z-index: 11;
+        height: 30px;
+        background-color: #eaeaea;
+        content: '';
       }
     }
   }
@@ -560,6 +615,10 @@ body {
 
   &.opac {
     .box-container {
+      .box-content {
+        padding: 20px;
+      }
+
       &.view {
         width: 75%;
 
@@ -654,41 +713,53 @@ footer.fullwidth {
 
 /* login */
 .login {
+  overflow: hidden;
   position: relative;
-  min-height: 600px;
 
-  .login-container {
+  .background-img {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    margin: 20px auto 0;
-    padding: 20px;
-    background-color: #fff;
-    color: #37648a;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    filter: blur(2px);
+    opacity: 0.6;
 
-    @include respond-to(handhelds) { width: 90%;}
-    @include respond-to(medium-screens) { width: 90%;}
+  }
 
-    .logo-container {
-      width: 190px;
-      margin: 0 auto 25px;
+  .container-fluid {
+    position: relative;
+    min-height: 600px;
 
-      @include respond-to(handhelds) { width: 70%;}
-    }
+    .login-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      margin: 20px auto 0;
+      padding: 20px;
+      background-color: #fff;
+      color: #37648a;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
-    .btn-container {
-      margin-bottom: 0;
-      margin-top: 30px;
+      @include respond-to(handhelds) { width: 90%;}
+      @include respond-to(medium-screens) { width: 90%;}
 
-      .btn-login {
-        width: 100%;
-        padding: 15px 12px;
-        display: block;
-        border-radius: 0;
-        @include respond-to(medium-screens) { width: 100%;}
+      .logo-container {
+        width: 190px;
+        margin: 0 auto 25px;
+
+        @include respond-to(handhelds) { width: 70%;}
+      }
+
+      .btn-container {
+        margin-bottom: 0;
+        margin-top: 30px;
+
+        .btn-login {
+          width: 100%;
+          padding: 15px 12px;
+          display: block;
+          border-radius: 0;
+          @include respond-to(medium-screens) { width: 100%;}
+        }
       }
     }
   }
