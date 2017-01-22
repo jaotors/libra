@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Borrow;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Validator;
@@ -95,9 +96,13 @@ class ReturnController extends Controller
         foreach ($books as $book) {
             $book->status = "Available";
             $book->save();
+
+            $borrow = Borrow::where('book_id', $book->id);
+            $borrow->delete();
         }
 
-        Session::flash('info', 'Books have been return succesfuly');
+        Session::forget('books');
+        Session::flash('info_message', 'Books have been return succesfuly');
         return redirect()->back();
     }
 
