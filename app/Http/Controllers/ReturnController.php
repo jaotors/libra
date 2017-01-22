@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
+use PDF;
 
 class ReturnController extends Controller
 {
@@ -90,5 +91,30 @@ class ReturnController extends Controller
     public function returnBooks()
     {
         $books = Session::get('books');
+
+        foreach ($books as $book) {
+            $book->status = "Available";
+            $book->save();
+        }
+
+        Session::flash('info', 'Books have been return succesfuly');
+        return redirect()->back();
+    }
+
+    /**
+     * Prints the receipt needed after borrowing the book
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function printReceipt($id)
+    {
+        $books = Session::get('books');
+
+        $user = User::findOrFail($id);
+
+        $pdf = PDF::loadView('admin.return.receipt', compact('books', 'user'));
+        return $pdf->stream();
     }
 }

@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('return/search', 'ReturnController@search');
     Route::get('return/set/{id}', 'ReturnController@setForReturn');
     Route::get('return/books', 'ReturnController@returnBooks');
+    Route::get('return/print/{id}', 'ReturnController@printReceipt');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
