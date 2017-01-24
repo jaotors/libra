@@ -14,8 +14,7 @@
                             {{Form::text('search_query', null, ['class' => 'form-control', 'placeholder' => 'User Number'])}}
                         </div>
                         <div class="btn-container">
-                            {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
-                        </div>
+                            {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}} </div>
                     </div>
                     {{Form::close()}}
                 </div>
@@ -58,8 +57,7 @@
                         @endif
                     </tbody>
                 </table>
-                <br>
-                <br>
+                <br> <br>
                 <h3 class="title add">
                     <span>Books to be Returned</span> 
                 </h3>
@@ -92,7 +90,10 @@
                     </tbody>
                 </table>
                 @if(count(Session::get('books')) > 0)
-                    <p><a href="/admin/return/books" class="btn btn-success btn-borrow">Return</a></p>
+                    <p>
+                        <a href="/admin/return/books" class="btn btn-success btn-borrow"><i class="glyphicon glyphicon-resize-small"></i> Return</a>
+                        <a href="/admin/return/print/{{$user->id}}" class="btn btn-primary btn-borrow"><i class="glyphicon glyphicon-print"></i> Print</a>
+                    </p>
                 @endif
             </div>
         </div>
