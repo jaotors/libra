@@ -161,12 +161,34 @@ body {
     justify-content: flex-end;
 
     li {
+      position: relative;
+      ul {
+        display: none;
+        position: absolute;
+        top: 49px;
+        right: 0;
+        background-color: #476997;
+        padding: 0;
+        margin-bottom: 0;
+        width: 135px;
+        list-style-type: none;
+
+        a {
+          text-align: right;
+        }
+      }
+
       a {
+        display: block;
         color: #fff;
-        padding: 20px 15px;
+        padding: 15px;
+        font-size: 12px;
+        text-decoration: none;
+        outline: 0;
 
         &:hover {
-          color: #476997;
+          background-color: #476997;
+          box-shadow: inset 0 2px 0 #eaeaea;
         }
       }
     }
@@ -502,6 +524,41 @@ body {
         color: #33b77b;
       }
     }
+
+    .title-tab {
+      display: flex;
+      justify-content: flex-start;
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 0;
+      
+      li {
+        background-color: #fff;
+        
+        &.active {
+          a {
+            background-color: #476997;
+            color: #fff;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        padding: 15px;
+        border: 1px solid #476997;
+        border-bottom: none;
+        color: #476997;
+        text-decoration: none;
+        font-size: 30px;
+        font-weight: bold;
+
+        &:hover {
+          background-color: #476997;
+          color: #fff;
+        }
+      }
+    }
   }
 
   h2.title {
@@ -615,13 +672,17 @@ body {
 
   &.opac {
     .box-container {
+      background-color: transparent;
+      box-shadow: none;
+
       .box-content {
         padding: 20px;
+        background-color: #fff;
+        border-top: 1px solid #476997;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       }
 
       &.view {
-        width: 75%;
-
         section {
           h4 {
             font-weight: normal;
@@ -630,6 +691,26 @@ body {
           p {
             font-weight: 600;
             font-size: 16px;
+          }
+        }
+
+        .links {
+          @extend %clearfix;
+
+          padding: 0;
+          margin-bottom: 0;
+          list-style-type: none;
+
+          li {
+            float: left;
+
+            &:first-child {
+              margin-right: 10px;
+            }
+
+            a {
+              display: block;
+            }
           }
         }
         

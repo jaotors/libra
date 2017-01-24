@@ -18,8 +18,10 @@
     </div>
     
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/login.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     @yield('scripts')
 </body>
 
