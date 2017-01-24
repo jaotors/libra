@@ -46,7 +46,7 @@
                                         <td>{{$book->name}}</td>
                                         <td>{{$book->year}}</td>
                                         <td>{{date('Y-m-d', strtotime($book->pivot->return_date))}}</td>
-                                        <td><a class="btn btn-primary btn-xs" href="/admin/return/set/{{$book->id}}">Return</a></td>
+                                        <td><a class="btn btn-primary btn-xs" href="/admin/return/set/{{$book->id}}"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span></a></td>
                                     </tr>
                                 @endif
                             @endforeach
