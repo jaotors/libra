@@ -21,13 +21,20 @@
                     <p>La Consolacion College – Tanauan</p>
                     <ul class="nav">
                         <li><a href="/opac">Home</a></li>
-                        <li><a href="/opac/reservation">My Reservations</a></li>
-                        <li>
-                            @if (Auth::check())
-                                <a href="/logout"> Logout </a>
-                            @else
-                                <a href="/login"> Login </a>
-                            @endif
+                        <li><a href="/opac">Borrowed Books</a></li>
+                        <li class="drop">
+                            <a href="#">Account</a>
+                            <ul>
+                                <li><a href="#">Change Password</a></li>
+                                <li><a href="#">Help</a></li>
+                                <li>
+                                    @if (Auth::check())
+                                        <a href="/logout"> Logout </a>
+                                    @else
+                                        <a href="/login"> Login </a>
+                                    @endif
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -49,5 +56,8 @@
 </body>
 <!-- Inclusion of scripts -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/config.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
 </html>

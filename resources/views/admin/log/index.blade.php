@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex-container">
         <div class="box-container">
-            <h2 class="title">User Logs</h2>
+            <h2 class="title fixed">User Logs</h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')

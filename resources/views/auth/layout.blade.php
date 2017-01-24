@@ -11,11 +11,15 @@
     <!-- Inclusion of additional styles -->
     @yield('styles')
 </head>
-<body>
-    <div class="container-fluid login">
+<body class="login">
+    <img class="background-img" src="{{ asset('images/bg-login.jpg') }}" alt="">
+    <div class="container-fluid">
         @yield('content')
     </div>
     
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     @yield('scripts')

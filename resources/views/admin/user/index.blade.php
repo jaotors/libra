@@ -49,7 +49,7 @@
     </div>
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title add">User List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
+            <h2 class="title add fixed">User List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
                 @include('errors')
                 @include('info')
@@ -61,6 +61,7 @@
                         <th>Last Name</th>
                         <th>Role</th>
                         <th>Course / Department</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -72,6 +73,7 @@
                             <td>{{$user->last_name}}</td>
                             <td>{{$user->role()->first()->name}}</td>
                             <td>{{$user->department()->first()->name}}</td>
+                            <td>Active</td>
                             <td>
                                 <a class="edit" href="/admin/user/{{$user->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                             </td>

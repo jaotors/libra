@@ -26,12 +26,19 @@ gulp.task("fonts", function() {
         .pipe(gulp.dest('public/fonts'));
 });
 
-gulp.task("js", function() {
+gulp.task("js-components", function() {
     gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
         .pipe(gulp.dest('public/js'));
     gulp.src('node_modules/jquery/dist/jquery.min.js')
         .pipe(gulp.dest('public/js'));
     gulp.src('node_modules/datatables.net/js/jquery.dataTables.js')
+        .pipe(gulp.dest('public/js'));
+    gulp.src('resources/assets/js/config.js')
+        .pipe(gulp.dest('public/js'));
+});
+
+gulp.task("js", function() {
+    gulp.src('resources/assets/js/login.js')
         .pipe(gulp.dest('public/js'));
     gulp.src('resources/assets/js/scripts.js')
         .pipe(gulp.dest('public/js'));
@@ -43,7 +50,7 @@ gulp.task("images", function() {
 });
 
 elixir((mix) => {
-    mix.task('js');
+    mix.task('js-components');
     mix.scripts('scripts.js', 'public/js/scripts.js', 'resources/assets/js');
     mix.task('fonts');
     mix.task('images');

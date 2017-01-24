@@ -43,6 +43,7 @@
 </div>
 <!-- Inclusion of scripts -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/config.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>

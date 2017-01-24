@@ -27,7 +27,9 @@ class OpacController extends Controller
     {
         $books = Book::paginate(15);
         $categories = Category::pluck('name', 'id');
-        return view('opac.index', compact('books', 'categories'));
+        $user = Auth::user();
+        $reservations = $user->reservations()->get();
+        return view('opac.index', compact('books', 'categories', 'reservations'));
     }
 
     /**
@@ -71,7 +73,8 @@ class OpacController extends Controller
     public function book($id)
     {
         $book = Book::findOrFail($id);
-        return view('opac.book', compact('book'));
+        $book->category = $book->category()->first()->name;
+        return json_encode($book);
     }
 
     /**
@@ -101,7 +104,7 @@ class OpacController extends Controller
                 $reservation->save();
 
 
-                return redirect()->to('/opac/reservation');
+                return redirect()->to('/opac');
             } else {
                 Session::flash('info_message', 'Book has already been reserved');
                 Session::flash('alert-class', 'alert-danger');

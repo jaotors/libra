@@ -1,10 +1,9 @@
 @extends('auth.layout')
 
 @section('content')
+    @include('errors')
+    @include('info')
     <div class="login-container">
-        @include('errors')
-        @include('info')
-        
         <div class="logo-container">
             <img src="{!! asset('images/logo.png') !!}" alt="LCCT">
         </div>
