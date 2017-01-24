@@ -57,29 +57,30 @@ $(document).ready(function() {
     $('.view-book').on('click', function() {
         var link = $(this).data('link');
 
-        $('.modal-view').on('show.bs.modal', function (e) {
-            $.ajax({ 
-                type: 'GET', 
-                url: link, 
-                data: { get_param: 'value' }, 
-                dataType: 'json',
-                success: function (data) { 
-                    $('.book-title').text(data.name);
-                    $('.author').text(data.author);
-                    $('.desc').text(data.summary);
-                    $('.access-num').text(strpad(data.id));
-                    $('.isbn').text(data.isbn);
-                    $('.category').text(data.category);
-                    $('.status').text(data.status);
-                    if(data.status != 'Available') {
-                        $('.for-avail').hide();
-                    }
-                    if($('.for-avail').length > 0) {
-                        $('.for-avail').attr('href', "/opac/book/" + data.id + "/reserve")
-                    }
+        $.ajax({ 
+            type: 'GET', 
+            url: link, 
+            data: { get_param: 'value' }, 
+            dataType: 'json',
+            success: function (data) { 
+                $('.book-title').text(data.name);
+                $('.author').text(data.author);
+                $('.desc').text(data.summary);
+                $('.access-num').text(strpad(data.id));
+                $('.isbn').text(data.isbn);
+                $('.category').text(data.category);
+                $('.status').text(data.status);
+                console.log(data.status);
+                if(data.status != 'Available') {
+                    $('.for-avail').hide();
+                } else {
+                    $('.for-avail').show();
                 }
-            });
-        })
+                if($('.for-avail').length > 0) {
+                    $('.for-avail').attr('href', "/opac/book/" + data.id + "/reserve")
+                }
+            }
+        });
     });
 
     function strpad(id) {
