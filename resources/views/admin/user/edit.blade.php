@@ -1,13 +1,13 @@
 @extends('admin.layout')
 
 @section('content')
+    @include('errors')
+    @include('info')
     <div class="flex-container">
         <div class="box-container user-list">
             <h2 class="title add">Edit User</h2>
             {{ Form::model($user, ['url' => '/admin/users', 'method' => 'put']) }}
             <div class="box-content">
-                @include('errors')
-                @include('info')
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">

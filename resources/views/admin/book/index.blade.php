@@ -45,12 +45,12 @@
             </div>
         </div>
     </div>
+    @include('errors')
+    @include('info')
     <div class="flex-container">
         <div class="box-container books">
             <h2 class="title add fixed">Book List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
-                @include('errors')
-                @include('info')
                 <table class="table data-table table-hover">
                     <thead>
                         <tr>
