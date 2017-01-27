@@ -29,7 +29,7 @@
     @include('info')
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title add fixed">Department List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
+            <h2 class="title add">Department List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
                 <table class="table data-table table-hover">
                     <thead>

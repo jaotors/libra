@@ -24,6 +24,21 @@ img {
 
 body {
   background-color: #eaeaea;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: #476997;
+
+    &-track {
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+    }
+
+    &-thumb {
+      box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+      background-color: #476997;
+    }
+  }
 }
 
 /* sidenav */
@@ -348,6 +363,7 @@ body {
 
       .box-content {
         padding: 15px;
+        max-height: none;
 
         .btn-container {
           margin-bottom: 0;
@@ -361,13 +377,13 @@ body {
 
   .flex-container {
     display: flex;
+    margin: 0 20px;
     flex-direction: column;
   }
 
   .box-container {
     position: relative;
-    width: 95%;
-    margin: 0 auto 20px;
+    width: 100%;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
@@ -414,7 +430,24 @@ body {
     }
 
     .box-content {
-      padding: 80px 20px 20px;
+      padding: 20px;
+      max-height: 520px;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        background-color: #476997;
+
+        &-track {
+          box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+          background-color: #F5F5F5;
+        }
+
+        &-thumb {
+          box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+          background-color: #476997;
+        }
+      }
 
       &.borrow {
 
@@ -636,6 +669,8 @@ body {
 
     .box-content {
       min-height: 370px;
+      overflow: visible;
+      max-height: none;
 
       .search-input {
         display: flex;
@@ -677,6 +712,8 @@ body {
 
       .box-content {
         padding: 20px;
+        max-height: none;
+        overflow: visible;
         background-color: #fff;
         border-top: 1px solid #476997;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
