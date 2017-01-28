@@ -21,8 +21,9 @@ class ReturnController extends Controller
     }
 
     /**
-     * Display's the return page
-     * * @return \Illuminate\Http\Response $response
+     * Displays the return page
+     *
+     * @return \Illuminate\Http\Response $response
      */
     public function index()
     {
@@ -72,11 +73,16 @@ class ReturnController extends Controller
     public function returnBooks(Request $request)
     {
         $books = $request->get('books');
-
         $return = new ReturnModel();
-
         $penalties = 0;
-        
+        $userId = $request->get('user_id');
+
+        if (is_null($books)) {
+            Session::flash('info_message', 'No selected books for return');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->back();
+        }
+
         foreach ($books as $id) {
             $book = Book::findOrFail($id);
             $book->status = "Available";
@@ -92,6 +98,7 @@ class ReturnController extends Controller
             $return->has_penalty = true;
         }
 
+        $return->user_id = $userId;
         $return->save();
 
         foreach ($books as $id) {

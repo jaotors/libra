@@ -61,7 +61,12 @@
                     </tbody>
                 </table>
                 <p>
+                @if(!is_null($user))
+                    <ul class="userList">
+                        {{ Form::hidden('user_id', $user->id) }}
+                    </ul>
                     {{ Form::submit('Return', ['class' => 'btn btn-success btn-borrow']) }}
+                @endif
                 </p>
                 {{ Form::close() }}
             </div>
