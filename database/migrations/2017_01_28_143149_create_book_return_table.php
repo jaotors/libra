@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPenaltyBooksTable extends Migration
+class CreateBookReturnTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class AddPenaltyBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('book_penalty', function ($table) {
+        Schema::create('book_return', function ($table) {
             $table->increments('id');
-            $table->integer('penalty_id')->unsigned();
+            $table->integer('return_id')->unsigned();
             $table->integer('book_id')->unsigned();
+            $table->decimal('penalty', 8, 2);
         });
     }
 
@@ -27,6 +28,6 @@ class AddPenaltyBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_penalty');
+        Schema::dropIfExists('book_return');
     }
 }

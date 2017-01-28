@@ -66,8 +66,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
 
     Route::get('return', 'ReturnController@index');
     Route::get('return/search', 'ReturnController@search');
-    Route::get('return/set/{id}', 'ReturnController@setForReturn');
-    Route::get('return/books', 'ReturnController@returnBooks');
+    Route::post('return/books', 'ReturnController@returnBooks');
     Route::get('return/print/{id}', 'ReturnController@printReceipt');
 });
 

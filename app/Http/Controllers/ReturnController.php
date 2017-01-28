@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Borrow;
+use App\Models\ReturnModel;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Validator;
@@ -64,44 +65,42 @@ class ReturnController extends Controller
     }
 
     /**
-     * Sets a book for return.
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function setForReturn($id)
-    {
-        $book = Book::findOrFail($id);
-        $books = [];
-        if (Session::has('books')) {
-            $books = Session::get('books');
-        }
-
-        array_push($books, $book);
-
-        Session::put('books', $books);
-        return redirect()->back();
-    }
-
-    /**
      * Return books set for return
      *
      * @return \Illuminate\Http\Response
      */
-    public function returnBooks()
+    public function returnBooks(Request $request)
     {
-        $books = Session::get('books');
+        $books = $request->get('books');
 
-        foreach ($books as $book) {
+        $return = new ReturnModel();
+
+        $penalties = 0;
+        
+        foreach ($books as $id) {
+            $book = Book::findOrFail($id);
             $book->status = "Available";
             $book->save();
+            $penalties += computeForPenalty($book);
+        }
 
+        if ($penalties != 0) {
+            $return->has_penalty = true;
+            $return->is_paid = false;
+        } else {
+            $return->is_paid = true;
+            $return->has_penalty = true;
+        }
+
+        $return->save();
+
+        foreach ($books as $id) {
+            $book = Book::findOrFail($id);
+            $return->books()->attach($book->id, ['penalty' => computeForPenalty($book)]);
             $borrow = Borrow::where('book_id', $book->id);
             $borrow->delete();
         }
 
-        Session::forget('books');
         Session::flash('info_message', 'Books have been return succesfuly');
         return redirect()->back();
     }

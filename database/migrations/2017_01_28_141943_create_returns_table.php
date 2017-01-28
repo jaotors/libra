@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePenaltiesTable extends Migration
+class CreateReturnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePenaltiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('penalties', function ($table) {
+        Schema::create('returns', function ($table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('value');
+            $table->boolean('has_penalty')->default(false);
+            $table->boolean('is_paid')->default(false);
+            $table->string('remarks')->default('');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreatePenaltiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penalties');
+        Schema::dropIfExists('returns');
     }
 }

@@ -27,14 +27,16 @@
                 <h3 class="title add">
                     <span>Borrowed Books</span> 
                 </h3>
+                {{ Form::open(['url' => '/admin/return/books', 'method' => 'POST']) }}
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>ISBN</th>
                             <th>Name</th>
                             <th>Year</th>
+                            <th>Penalty</th>
                             <th>Return Date </th>
-                            <th>Return</th>
+                            <th>Set for Return</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +47,9 @@
                                         <td>{{$book->isbn}}</td>
                                         <td>{{$book->name}}</td>
                                         <td>{{$book->year}}</td>
+                                        <td>{{number_format(computeForPenalty($book), 2)}}</td>
                                         <td>{{date('Y-m-d', strtotime($book->pivot->return_date))}}</td>
-                                        <td><a href="/admin/return/set/{{$book->id}}"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span></a></td>
+                                        <td>{{ Form::checkbox('books[]', $book->id) }}</td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -57,44 +60,10 @@
                         @endif
                     </tbody>
                 </table>
-                <br> <br>
-                <h3 class="title add">
-                    <span>Books to be Returned</span> 
-                </h3>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ISBN</th>
-                            <th>Name</th>
-                            <th>Return Date</th>
-                            <th>Penalty</th>
-                            <th>Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(Session::has('books'))
-                            @foreach(Session::get('books') as $book)
-                                <tr>
-                                    <td>{{$book->isbn}}</td>
-                                    <td>{{$book->name}}</td>
-                                    <td>{{$book->borrower()->first()->pivot->return_date}}</td>
-                                    <td>{{number_format(computeForPenalty($book), 2)}}</td>
-                                    <td>{{$book->year}}</td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="8">No found results.</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-                @if(count(Session::get('books')) > 0)
-                    <p>
-                        <a href="/admin/return/books" class="btn btn-success btn-borrow"><i class="glyphicon glyphicon-resize-small"></i> Return</a>
-                        <a href="/admin/return/print/{{$user->id}}" class="btn btn-primary btn-borrow"><i class="glyphicon glyphicon-print"></i> Print</a>
-                    </p>
-                @endif
+                <p>
+                    {{ Form::submit('Return', ['class' => 'btn btn-success btn-borrow']) }}
+                </p>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

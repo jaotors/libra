@@ -17,14 +17,20 @@ class Reservation extends Model
     protected $fillable = ['book_id', 'user_id'];
 
     /**
-     * Returns the collection containing category objects
-     * associated with the book_user
+     * Returns the collection containing category objects associated with the book_user
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function book()
     {
         return $this->belongsTo(Book::class);
     }
 
+    /**
+     * Returns the collection containing category objects associated with the book_user
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
