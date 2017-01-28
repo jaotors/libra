@@ -50,8 +50,10 @@ class LoginController extends Controller
 
             if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
                 $this->logs('login');
+                $user = Auth::user();
                 if (Auth::user()->role()->first()->name == "Librarian") {
                     #return var_dump(Auth::user()->role()->first()->name);
+                    Session::flash('info_message', "Welcome " . $user->last_name . "," . $user->first_name);
                     return redirect()->intended('/admin/users');
                 } else if (Auth::user()->role()->first()->name == "Student") {
                     return redirect()->intended('/opac');

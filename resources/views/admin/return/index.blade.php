@@ -1,12 +1,12 @@
 @extends('admin.layout')
 
 @section('content')
+    @include('errors')
+    @include('info')
     <div class="flex-container">
         <div class="box-container">
-            <h2 class="title fixed">La Consolacion College – Tanauan Library</h2>
+            <h2 class="title">La Consolacion College – Tanauan Library</h2>
             <div class="box-content borrow">
-                @include('errors')
-                @include('info')
                 <div class="searchQuery">
                     {{Form::open(['method' => 'get', 'url' => 'admin/return/search'])}}
                     <div class="search-input">

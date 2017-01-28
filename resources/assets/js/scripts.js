@@ -22,9 +22,11 @@ $(document).ready(function() {
     $('body.login').css('height', $(window).height());
 
     /* pop up messages*/
-    if($('body.login').length > 0) {
-        if($('.alert').length > 0) {
+    if($('.alert').length > 0) {
+        if ($('.message-error').length > 0) {
             $('.message-error').modal();
+        }
+        if ($('.message-info').length > 0) {
             $('.message-info').modal();
         }
     }

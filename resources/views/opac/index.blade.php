@@ -86,6 +86,8 @@
             </div>
         </div>
     </div>
+    @include('errors')
+    @include('info')
     <div class="flex-container">
         <div class="box-container">
             <ul class="title-tab">
@@ -94,8 +96,6 @@
             </ul>
             <div class="tab-content">
                 <div class="box-content tab-pane fade active in" id="book" aria-labelledby="book-tab">
-                    @include('errors')
-                    @include('info')
                     <div class="searchQuery">
                         {{Form::open(['method' => 'get', 'url' => '/opac/search'])}}
                             <div class="search-input">

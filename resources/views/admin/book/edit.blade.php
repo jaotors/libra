@@ -1,13 +1,13 @@
 @extends('admin.layout')
 
 @section('content')
+    @include('errors')
+    @include('info')
     <div class="flex-container">
         <div class="box-container user-list">
             <h2 class="title add">Edit Book</h2>
             {{ Form::model($book, ['url' => '/admin/books', 'method' => 'put']) }}
             <div class="box-content">
-                @include('errors')
-                @include('info')
                 <div class="col-sm-12">
                     <div class="form-group">
                         {{Form::label('name','Book Name', ['class' => 'control-label'])}}
