@@ -44,9 +44,12 @@ class OpacController extends Controller
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
         $books = Book::where($searchSelect, 'like', "%$searchQuery%")->paginate(15);
-        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect'));
+        $user = Auth::user();
+        $reservations = $user->reservations()->get();
+        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations'));
     }
-/**
+
+    /**
      * Lists all books reserved by the user
      *
      * @return \Illuminate\Http\Response

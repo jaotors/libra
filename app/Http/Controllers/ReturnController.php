@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Borrow;
-use App\Models\ReturnModel;
+use App\Models\ReturnHistory;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Validator;
@@ -73,7 +73,7 @@ class ReturnController extends Controller
     public function returnBooks(Request $request)
     {
         $books = $request->get('books');
-        $return = new ReturnModel();
+        $return = new ReturnHistory();
         $penalties = 0;
         $userId = $request->get('user_id');
 
@@ -91,11 +91,9 @@ class ReturnController extends Controller
         }
 
         if ($penalties != 0) {
-            $return->has_penalty = true;
             $return->is_paid = false;
         } else {
             $return->is_paid = true;
-            $return->has_penalty = true;
         }
 
         $return->user_id = $userId;
@@ -112,20 +110,4 @@ class ReturnController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Prints the receipt needed after borrowing the book
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function printReceipt($id)
-    {
-        $books = Session::get('books');
-
-        $user = User::findOrFail($id);
-
-        $pdf = PDF::loadView('admin.return.receipt', compact('books', 'user'));
-        return $pdf->stream();
-    }
 }

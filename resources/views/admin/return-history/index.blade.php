@@ -13,8 +13,8 @@
                             <th>Return ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Return Date</th>
-                            <th>Has Penalties</th>
+                            <th>Returned Date</th>
+                            <th>Penalties</th>
                             <th>View Books</th>
                         </tr>
                     </thead>
@@ -25,9 +25,9 @@
                                 <td>{{$return->user()->first()->first_name}}</td>
                                 <td>{{$return->user()->first()->last_name}}</td>
                                 <td>{{$return->created_at->format('Y-m-d')}}</td>
-                                <td>{{$return->has_penalties ? "Yes" : "None"}}</td>
+                                <td>{{number_format($return->books()->sum('penalty'), 2)}}</td>
                                 <td>
-                                    <a class="edit" href="/admin/weed/{{$return->id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                    <a class="edit" href="/admin/return-history/{{$return->id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 </td>
                             </tr>
                         @endforeach

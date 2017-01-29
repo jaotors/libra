@@ -13,9 +13,8 @@ class CreateReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('returns', function ($table) {
+        Schema::create('return_history', function ($table) {
             $table->increments('id');
-            $table->boolean('has_penalty')->default(false);
             $table->boolean('is_paid')->default(false);
             $table->string('remarks')->default('');
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreateReturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('returns');
+        Schema::dropIfExists('return_history');
     }
 }

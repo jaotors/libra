@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Abigail',
             'last_name' => 'Cruz',
             'role_id' => '3',
-            'department_id' => '5',
+            'department_id' => '6',
             'email' => 'acruz@gmail.com',
             'user_id' => '20140174227',
             'password' => bcrypt('admin'),

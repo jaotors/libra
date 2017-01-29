@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('return/print/{id}', 'ReturnController@printReceipt');
 
     Route::get('return-history', 'ReturnHistoryController@index');
+    Route::get('return-history/{id}', 'ReturnHistoryController@show');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

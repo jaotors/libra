@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Book;
 use App\Models\User;
 
-class ReturnModel extends Model //cannot use return because it is a keyword
+class ReturnHistory extends Model
 {
     /**
      * Sets the table name
      *
      * @var string
      */
-    protected $table = "returns";
+    protected $table = "return_history";
 
     /**
      * Returns the collection containing books associated with the returns
@@ -22,7 +22,7 @@ class ReturnModel extends Model //cannot use return because it is a keyword
      */
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'book_return', 'book_id', 'return_id');
+        return $this->belongsToMany(Book::class, 'book_return', 'return_id', 'book_id');
     }
 
     /**

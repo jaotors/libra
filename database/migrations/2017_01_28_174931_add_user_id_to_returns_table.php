@@ -13,7 +13,7 @@ class AddUserIdToReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::table('returns', function ($table) {
+        Schema::table('return_history', function ($table) {
             $table->integer('user_id')->unsigned();
         });
     }
@@ -25,6 +25,6 @@ class AddUserIdToReturnsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('return_history');
     }
 }
