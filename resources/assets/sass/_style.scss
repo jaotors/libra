@@ -394,6 +394,32 @@ body {
       
     }
 
+    &.reports {
+      table {
+        th {
+          &:first-child {
+            width: 70%;
+          }
+        }
+
+        td {
+          vertical-align: middle
+        }
+      }
+
+      .print-btn {
+        appearance: none;
+        border: none;
+        background: none;
+        color: #337ab7;
+        font-size: 18px;
+
+        span {
+          vertical-align: middle;
+        }
+      }
+    }
+
     &.books {
       .dataTable {
 

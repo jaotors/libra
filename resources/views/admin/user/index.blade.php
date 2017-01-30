@@ -73,7 +73,13 @@
                             <td>{{$user->last_name}}</td>
                             <td>{{$user->role()->first()->name}}</td>
                             <td>{{$user->department()->first()->name}}</td>
-                            <td>Active</td>
+                            <td>
+                                @if($user->active)
+                                    Active
+                                @else
+                                    Inactive
+                                @endif
+                            </td>
                             <td>
                                 <a class="edit" href="/admin/user/{{$user->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                             </td>
