@@ -22,7 +22,8 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::paginate(15);
-        return view('admin.department.index', compact('departments'));
+        $active_state = 'departments';
+        return view('admin.department.index', compact('departments', 'active_state'));
     }
 
     /**
@@ -80,7 +81,8 @@ class DepartmentController extends Controller
     public function edit($id)
     {
         $department = Department::findOrFail($id);
-        return view('admin.department.edit', compact('department'));
+        $active_state = 'departments';
+        return view('admin.department.edit', compact('department', 'active_state'));
     }
 
     /**

@@ -23,7 +23,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('admin.report.index');
+        $active_state = 'reports';
+        return view('admin.report.index', compact('active_state'));
     }
 
     /**

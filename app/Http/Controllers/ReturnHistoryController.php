@@ -28,7 +28,8 @@ class ReturnHistoryController extends Controller
     public function index()
     {
         $returns = ReturnHistory::all();
-        return view('admin.return-history.index', compact('returns'));
+        $active_state = 'return-history';
+        return view('admin.return-history.index', compact('returns', 'active_state'));
     }
 
     /**
@@ -40,7 +41,8 @@ class ReturnHistoryController extends Controller
     {
         $return = ReturnHistory::findOrFail($id);
         $books = $return->books()->withPivot('penalty')->get();
-        return view('admin.return-history.show', compact('return', 'books'));
+        $active_state = 'return-history';
+        return view('admin.return-history.show', compact('return', 'books', 'active_state'));
     }
 
     /**

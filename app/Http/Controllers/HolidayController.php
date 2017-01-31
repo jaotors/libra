@@ -26,7 +26,9 @@ class HolidayController extends Controller
             'regular' => 'Regular',
             'special_non_working' => 'Special non-working',
         ];
-        return view('admin.holiday.index', compact('holidays', 'types'));
+
+        $active_state = 'holidays';
+        return view('admin.holiday.index', compact('holidays', 'types', 'active_state'));
     }
 
     /**
@@ -92,7 +94,8 @@ class HolidayController extends Controller
             'special_non_working' => 'Special non-working',
         ];
 
-        return view('admin.holiday.edit', compact('holiday', 'types'));
+        $active_state = 'holidays';
+        return view('admin.holiday.edit', compact('holiday', 'types', 'active_state'));
     }
 
     /**

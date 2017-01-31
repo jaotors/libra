@@ -23,17 +23,17 @@
             <li>E-mail: <a href="mailto:OLFA_Community@yahoo.com">OLFA_Community@yahoo.com</a></li>
         </ul>
         <ul class="nav">
-            <li><a href="/admin/users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Users</a></li>
-            <li><a href="/admin/departments"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Academic Programs</a></li>
-            <li><a href="/admin/categories"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>Book Classification</a></li>
-            <li><a href="/admin/books"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
-            <li><a href="/admin/borrow"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>Borrow</a></li>
-            <li><a href="/admin/return"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>Return</a></li>
-            <li><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
-            <li><a href="/admin/return-history"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Return History</a></li>
-            <li><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
-            <li><a href="/admin/weeds"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Weeding</a></li>
-            <li><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
+            <li class="{{ $active_state == 'users' ? 'active' : '' }}"><a href="/admin/users"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Users</a></li>
+            <li class="{{ $active_state == 'departments' ? 'active' : '' }}"><a href="/admin/departments"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Academic Programs</a></li>
+            <li class="{{ $active_state == 'categories' ? 'active' : '' }}"><a href="/admin/categories"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>Book Classification</a></li>
+            <li class="{{ $active_state == 'books' ? 'active' : '' }}"><a href="/admin/books"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
+            <li class="{{ $active_state == 'borrow' ? 'active' : '' }}"><a href="/admin/borrow"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>Borrow</a></li>
+            <li class="{{ $active_state == 'return' ? 'active' : '' }}"><a href="/admin/return"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>Return</a></li>
+            <li class="{{ $active_state == 'holidays' ? 'active' : '' }}"><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
+            <li class="{{ $active_state == 'return-history' ? 'active' : '' }}"><a href="/admin/return-history"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Return History</a></li>
+            <li class="{{ $active_state == 'reports' ? 'active' : '' }}"><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
+            <li class="{{ $active_state == 'weeds' ? 'active' : '' }}"><a href="/admin/weeds"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Weeding</a></li>
+            <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
             <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Logout</a></li>
         </ul>
     </div>

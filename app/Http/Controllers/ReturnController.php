@@ -30,7 +30,8 @@ class ReturnController extends Controller
         $books = [];
         $user = null;
         Session::forget('books');
-        return view('admin.return.index', compact('books', 'user'));
+        $active_state = 'return';
+        return view('admin.return.index', compact('books', 'user', 'active_state'));
     }
 
     /**
@@ -61,7 +62,8 @@ class ReturnController extends Controller
 
             $books = $user->borrowed()->get();
 
-            return view('admin.return.index', compact('books', 'user'));
+            $active_state = 'return';
+            return view('admin.return.index', compact('books', 'user', 'active_state'));
         }
     }
 

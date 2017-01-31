@@ -25,7 +25,8 @@ class BookController extends Controller
     {
         $books = Book::paginate(15);
         $categories = Category::pluck('name', 'id');
-        return view('admin.book.index', compact('books', 'categories'));
+        $active_state = 'books';
+        return view('admin.book.index', compact('books', 'categories', 'active_state'));
     }
 
     /**
@@ -103,7 +104,8 @@ class BookController extends Controller
             'Reserved' => 'Reserved',
         ];
 
-        return view('admin.book.edit', compact('book', 'categories', 'status'));
+        $active_state = 'books';
+        return view('admin.book.edit', compact('book', 'categories', 'status', 'active_state'));
 
     }
 
@@ -148,7 +150,9 @@ class BookController extends Controller
     {
         $books = Book::onlyTrashed()->paginate(15);
         $categories = Category::pluck('name', 'id');
-        return view('admin.weed.index', compact('books', 'categories'));
+
+        $active_state = 'weeds';
+        return view('admin.weed.index', compact('books', 'categories', 'active_state'));
     }
 
     public function trashRestore($id)
