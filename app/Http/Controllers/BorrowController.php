@@ -29,7 +29,9 @@ class BorrowController extends Controller
     {
         $books = [];
         $user = null;
-        return view('admin.borrow.index', compact('books', 'user'));
+
+        $active_state = 'borrow';
+        return view('admin.borrow.index', compact('books', 'user', 'active_state'));
     }
 
     /**
@@ -62,7 +64,8 @@ class BorrowController extends Controller
 
             $books = $user->reservations()->get();
 
-            return view('admin.borrow.index', compact('books', 'user'));
+            $active_state = 'borrow';
+            return view('admin.borrow.index', compact('books', 'user', 'active_state'));
         }
     }
 

@@ -23,7 +23,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(15);
-        return view('admin.category.index', compact('categories'));
+        $active_state = 'categories';
+        return view('admin.category.index', compact('categories', 'active_state'));
     }
 
     /**
@@ -80,7 +81,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        $active_state = 'categories';
+        return view('admin.category.edit', compact('category', 'active_state'));
     }
 
     /**

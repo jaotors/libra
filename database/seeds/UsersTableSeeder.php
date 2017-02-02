@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
             'department_id' => '6',
             'email' => 'acruz@gmail.com',
             'user_id' => '20140174227',
+            'active' => true,
             'password' => bcrypt('admin'),
         ]);
 
@@ -34,6 +35,7 @@ class UsersTableSeeder extends Seeder
                 'department_id' => '1',
                 'email' => $faker->email,
                 'user_id' => $faker->randomNumber(9),
+                'active' => true,
                 'password' => bcrypt('password'),
             ]);
         }

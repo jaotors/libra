@@ -28,7 +28,8 @@ class UserController extends Controller
         $users = User::all();
         $roles = Role::pluck('name', 'id');
         $departments = Department::pluck('name', 'id');
-        return view('admin.user.index', compact('users', 'roles', 'departments'));
+        $active_state = 'users';
+        return view('admin.user.index', compact('users', 'roles', 'departments', 'active_state'));
     }
     
     /**
@@ -80,7 +81,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'id');
         $departments = Department::pluck('name', 'id');
-        return view('admin.user.edit', compact('user', 'roles', 'departments'));
+        $active_state = 'users';
+        return view('admin.user.edit', compact('user', 'roles', 'departments', 'active_state'));
     }
 
     /**
