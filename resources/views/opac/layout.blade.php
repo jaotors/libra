@@ -21,7 +21,6 @@
                     <p>La Consolacion College – Tanauan</p>
                     <ul class="nav">
                         <li><a href="/opac">Home</a></li>
-                        <li><a href="/opac">Borrowed Books</a></li>
                         <li class="drop">
                             <a href="#">Account</a>
                             <ul>

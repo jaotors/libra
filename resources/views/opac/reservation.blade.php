@@ -27,7 +27,7 @@
                 <td>{{$reservation->author}}</td>
                 <td>{{$reservation->created_at->format('Y-m-d h:i:s A')}}</td>
                 <td>Test</td>
-                <td><a class="delete" href="/opac/book/{{$reservation->id}}/remove"><span class="glyphicon glyphicon-ban-circle"></span></a></td>
+                <td><a class="delete" href="/opac/book/{{$reservation->id}}/remove"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         @endforeach
     </tbody>

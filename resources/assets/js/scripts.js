@@ -50,7 +50,15 @@ $(document).ready(function() {
         });
     }).trigger("change");
 
-    /* dropdown top nav */
+    /* dropdown sidenav */
+    $('.sidenav .dropdown > a').on('click', function(e) {
+        e.preventDefault();
+        $(this).siblings('ul').slideToggle().parent().toggleClass('down');
+    });
+
+    $('.sidenav .dropdown.down').children('ul').show();
+
+    /* dropdown topnav */
     $('.topnav .drop').hover(function() {
         $(this).children('ul').toggle();
     });

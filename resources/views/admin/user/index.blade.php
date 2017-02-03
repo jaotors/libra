@@ -38,8 +38,9 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="btn-container">
+                        <p class="btn-container two-buttons">
                             {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
+                            <a data-dismiss="modal" aria-label="Close" class="btn btn-danger">Back</a>
                         </p>
                     </div>
                     {{Form::close()}}
