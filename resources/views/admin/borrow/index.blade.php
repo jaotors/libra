@@ -6,7 +6,7 @@
             <div class="modal-dialog">
                 <div class="modal-content borrow">
                     <div class="box-container add-user">
-                        <h2 class="title">Reserve Book</h2>
+                        <h2 class="title">Borrow Book</h2>
                         {{Form::open(['url' => 'admin/borrow/reserve'])}}
                         <div class="box-content">
                             <div class="form-group">
@@ -14,8 +14,9 @@
                                 {{Form::text('isbn', null, ['class' => 'form-control'])}}
                                 {{Form::hidden('user_id', "$user->id")}}
                             </div>
-                            <p class="btn-container">
-                                {{Form::submit('Reserve', ['class' => 'btn btn-primary'])}}
+                            <p class="btn-container two-buttons">
+                                {{Form::submit('Borrow', ['class' => 'btn btn-primary'])}}
+                                <a data-dismiss="modal" aria-label="Close" class="btn btn-danger">Back</a>
                             </p>
                         </div>
                         {{Form::close()}}
@@ -49,7 +50,7 @@
                     </ul>
                 @endif
                 <h3 class="title add">
-                    <span>Reserved Books</span> 
+                    <span>Borrowed Books</span> 
                     @if(!is_null($user))
                         <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a>
                     @endif

@@ -36,8 +36,9 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="btn-container">
+                        <p class="btn-container two-buttons">
                             {{Form::submit('Create', ['class' => 'btn btn-primary'])}}
+                            <a data-dismiss="modal" aria-label="Close" class="btn btn-danger">Back</a>
                         </p>
                     </div>
                     {{Form::close()}}
@@ -76,7 +77,7 @@
                                 <td>{{$book->status}}</td>
                                 <td>
                                     <a class="edit" href="/admin/book/{{$book->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="delete" href="/admin/book/{{$book->id}}/delete"><span class="glyphicon glyphicon-ban-circle"></span></a>
+                                    <a class="delete" href="/admin/book/{{$book->id}}/delete"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
                         @endforeach

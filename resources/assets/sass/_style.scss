@@ -101,30 +101,70 @@ body {
 
   .nav {
 
-    li {
-      border-bottom: 1px solid #EAEAEA;
+    & > li {
+      position: relative;
+      border-bottom: 2px solid #EAEAEA;
 
       &:first-child {
-        border-top: 1px solid #EAEAEA;
+        border-top: 2px solid #EAEAEA;
       }
 
-      &.active {
+      &.dropdown {
+
+        ul {
+          display: none;
+        }
+
+        &.down {
+          & > a:before {
+            transform: translateY(-50%) rotate(90deg);
+          }
+        }
+
+        & > a:before {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          transform: translateY(-50%);
+          font-family: 'Glyphicons Halflings';
+          content: "\e080";
+        }
+      }
+
+      & > ul {
+        padding: 0;
+
+        li {
+          border-top: 1px solid #EAEAEA;
+          &.active {
+            a {
+              background-color: #8292A8;
+            }
+          }
+        }
 
         a {
-          background-color: #8292A8;
+          padding-left: 35px;
+          font-size: 13px;
         }
       }
 
       a {
         @extend %delay;
         
+        display: block;
         color: #fff;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 15px;
         padding: 5px 15px;
+        text-decoration: none;
 
         &:hover {
           background-color: #8292A8;
+        }
+
+        &:focus {
+          background-color: transparent;
         }
       }
 
@@ -200,6 +240,10 @@ body {
         font-size: 12px;
         text-decoration: none;
         outline: 0;
+
+        &:focus {
+          background-color: transparent;
+        }
 
         &:hover {
           background-color: #476997;
@@ -590,9 +634,14 @@ body {
       list-style-type: none;
       padding: 0;
       margin-bottom: 0;
+      border-bottom: 1px solid #476997;
       
       li {
         background-color: #fff;
+
+        &:first-child {
+          border-left: 1px solid #476997;
+        }
         
         &.active {
           a {
@@ -606,6 +655,7 @@ body {
         display: block;
         padding: 15px;
         border: 1px solid #476997;
+        border-left: none;
         border-bottom: none;
         color: #476997;
         text-decoration: none;
@@ -659,15 +709,18 @@ body {
 
     input[type="submit"],
     a {
-      display: block;
+      display: inline-block;
       margin: 0 auto;
-      width: 50%;
+      width: 20%;
       padding: 10px;
       border-radius: 0;
     }
 
     &.two-buttons {
       text-align: right;
+      input[type="submit"] {
+        margin-right: 10px;
+      }
     }
 
     input[type="submit"] {
@@ -741,7 +794,6 @@ body {
         max-height: none;
         overflow: visible;
         background-color: #fff;
-        border-top: 1px solid #476997;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       }
 
