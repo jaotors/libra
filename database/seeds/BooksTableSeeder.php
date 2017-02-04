@@ -24,6 +24,7 @@ class BooksTableSeeder extends Seeder
                 'name' => $title,
                 'year' => $faker->year,
                 'isbn' => $faker->isbn13,
+                'call_number' => $faker->isbn13,
                 'author' => $faker->name,
                 'summary' => $faker->text,
                 'category_id' => 1,

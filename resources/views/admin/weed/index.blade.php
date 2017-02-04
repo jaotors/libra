@@ -14,6 +14,7 @@
                             <th>Name</th>
                             <th>Year</th>
                             <th>ISBN</th>
+                            <th>Call Number</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
@@ -27,6 +28,7 @@
                                 <td>{{$book->name}}</td>
                                 <td>{{$book->year}}</td>
                                 <td>{{$book->isbn}}</td>
+                                <td>{{$book->call_number}}</td>
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>

@@ -26,6 +26,10 @@
                         {{Form::text('isbn', null, ['class' => 'form-control'])}}
                     </div>
                     <div class="form-group">
+                        {{Form::label('call_number','Call Number', ['class' => 'control-label'])}}
+                        {{Form::text('call_number', null, ['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
                         {{Form::label('category','Category', ['class' => 'control-label'])}}
                         {{Form::select('category', $categories, $book->category_id, ['class' => 'form-control'])}}
                     </div>

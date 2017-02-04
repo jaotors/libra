@@ -27,6 +27,10 @@
                                     {{Form::text('isbn', null, ['class' => 'form-control'])}}
                                 </div>
                                 <div class="form-group">
+                                    {{Form::label('call_number','Call Number', ['class' => 'control-label'])}}
+                                    {{Form::text('call_number', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
                                     {{Form::label('category','Category', ['class' => 'control-label'])}}
                                     {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
                                 </div>
@@ -59,6 +63,7 @@
                             <th>Name</th>
                             <th>Year</th>
                             <th>ISBN</th>
+                            <th>Call Number</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
@@ -72,6 +77,7 @@
                                 <td>{{$book->name}}</td>
                                 <td>{{$book->year}}</td>
                                 <td>{{$book->isbn}}</td>
+                                <td>{{$book->call_number}}</td>
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
