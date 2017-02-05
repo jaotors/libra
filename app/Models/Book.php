@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Category;
+use App\Models\ReturnHistory;
 
 class Book extends Model
 {
@@ -33,6 +34,10 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * Returns the collection containing user object
+     * associated with the book borrowed
+     */
     public function borrower()
     {
         return $this->belongsToMany(User::class, 'book_user')->withPivot('return_date', 'created_at')->withTimestamps();

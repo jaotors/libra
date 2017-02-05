@@ -40,7 +40,7 @@ class ReturnHistoryController extends Controller
     public function show($id)
     {
         $return = ReturnHistory::findOrFail($id);
-        $books = $return->books()->withPivot('penalty')->get();
+        $books = $return->books()->withPivot('penalty', 'borrowed_date')->get();
         $active_state = 'return-history';
         return view('admin.return-history.show', compact('return', 'books', 'active_state'));
     }
@@ -55,11 +55,9 @@ class ReturnHistoryController extends Controller
     public function printReceipt($id)
     {
         $return = ReturnHistory::findOrFail($id);
-        $books = $return->books()->withPivot('penalty')->get();
- 
-        $user = $return->books()->first();
-
-        $pdf = PDF::loadView('admin.return.receipt', compact('books', 'user'));
+        $books = $return->books()->withPivot('penalty', 'borrowed_date')->get();
+        $user = $return->user()->first();
+        $pdf = PDF::loadView('admin.return-history.receipt', compact('books', 'user', 'return'));
         return $pdf->stream();
     }
 }

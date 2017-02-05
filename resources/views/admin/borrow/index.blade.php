@@ -70,6 +70,13 @@
                                     <td>{{$book->isbn}}</td>
                                     <td>{{$book->name}}</td>
                                     <td>{{$book->year}}</td>
+                                    <td>
+                                        {{Form::open(['url' => '/admin/borrow/remove/book'])}}
+                                            {{Form::hidden('id', $book->id)}}
+                                            {{Form::hidden('user_id', $user->id)}}
+                                            {{Form::submit('Remove')}}
+                                        {{Form::close()}}
+                                    </td>
                                 </tr>
                             @endforeach
                         @else

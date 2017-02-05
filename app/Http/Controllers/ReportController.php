@@ -75,4 +75,18 @@ class ReportController extends Controller
         $pdf = PDF::loadView('admin.report.bookreport', compact('books'));
         return $pdf->stream();
     }
+
+    /**
+     * Displays the barcode of books for printing
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function bookBarcodeReport(Request $request)
+    {
+        $books = Book::all();
+        $pdf = PDF::loadView('admin.report.barcode', compact('books'));
+        $pdf->setPaper('a7');
+
+        return $pdf->stream();
+    }
 }

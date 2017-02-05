@@ -156,4 +156,26 @@ class BorrowController extends Controller
             return redirect()->back();
         }
     }
+
+    /**
+     * Remove a book from a reservation
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response @reponse
+     */
+    public function remove(Request $request)
+    {
+        $book = Book::findOrFail($request->get('id'));
+        $book->status = 'Available';
+        $book->save();
+
+        $user = User::findOrFail($request->get('user_id'));
+        $reservation = Reservation::where('user_id', $user->id)->where('book_id', $book->id)->first();
+
+        $reservation->delete();
+
+        Session::flash('info_message', 'Book succesfuly removed from reservation');
+        return redirect()->back();
+    }
 }

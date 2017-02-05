@@ -145,6 +145,5 @@ class OpacController extends Controller
 
         Session::flash('info_message', 'Book succesfuly removed from reservation');
         return redirect()->back();
-
     }
 }

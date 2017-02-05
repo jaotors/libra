@@ -76,6 +76,7 @@ class ReturnController extends Controller
     {
         $books = $request->get('books');
         $return = new ReturnHistory();
+        $dateBorrowed = date('Y-m-d');
         $penalties = 0;
         $userId = $request->get('user_id');
 
@@ -103,13 +104,13 @@ class ReturnController extends Controller
 
         foreach ($books as $id) {
             $book = Book::findOrFail($id);
-            $return->books()->attach($book->id, ['penalty' => computeForPenalty($book)]);
+            $dateBorrowed = $book->borrower()->first()->pivot->created_at;
+            $return->books()->attach($book->id, ['penalty' => computeForPenalty($book), 'borrowed_date' => $dateBorrowed]);
             $borrow = Borrow::where('book_id', $book->id);
             $borrow->delete();
         }
 
         Session::flash('info_message', 'Books have been return succesfuly');
-        return redirect()->back();
+        return redirect()->to("/admin/return-history/$return->id");
     }
-
 }

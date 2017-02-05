@@ -15,6 +15,7 @@
                             <th>Last Name</th>
                             <th>Returned Date</th>
                             <th>Penalties</th>
+                            <th>Is Paid?</th>
                             <th>View Books</th>
                         </tr>
                     </thead>
@@ -26,6 +27,13 @@
                                 <td>{{$return->user()->first()->last_name}}</td>
                                 <td>{{$return->created_at->format('Y-m-d')}}</td>
                                 <td>{{number_format($return->books()->sum('penalty'), 2)}}</td>
+                                <td>
+                                    @if($return->is_paid)
+                                        Yes
+                                    @else
+                                        No 
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="edit" href="/admin/return-history/{{$return->id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 </td>

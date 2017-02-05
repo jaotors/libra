@@ -17,7 +17,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            {{Form::open(['url' => 'admin/reports/user'])}}
+                            {{Form::open(['url' => 'admin/reports/user', 'target' => '_blank'])}}
                             <td>Users</td>
                             <td>
                                 {{Form::select('type', ['All', 'Student', 'Librarian', 'Employee'], null, ['class' => 'form-control'])}}
@@ -28,7 +28,7 @@
                             {{Form::close()}}
                         </tr>
                         <tr>
-                            {{Form::open(['url' => 'admin/reports/book'])}}
+                            {{Form::open(['url' => 'admin/reports/book', 'target' => '_blank'])}}
                             <td>Books</td>
                             <td>
                                 {{Form::select('type', ['All', 'Available', 'Unavailable'], null, ['class' => 'form-control'])}}
@@ -38,6 +38,10 @@
                             </td>
                             {{Form::close()}}
                         </tr>
+                        <tr>
+                            <td> Generate Student Barcode </td>
+                            <td>&nbsp;</td>
+                            <td><a href="/admin/reports/barcode" class="print-btn" target="_blank"><span class="glyphicon glyphicon-print"></span></a></td>
                     </tbody>
                 </table>
             </div>

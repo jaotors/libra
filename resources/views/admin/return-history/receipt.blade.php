@@ -23,6 +23,7 @@
                 width: 100%;
             }
         </style>
+        <title>Library Receipt</title>
     </head>
     <body>
         <div class="content">
@@ -42,7 +43,7 @@
                         <th>ISBN</th>
                         <th>Name</th>
                         <th>Year</th>
-                        <th>Return Date </th>
+                        <th>Borrowed Date</th>
                         <th>Penalty </th>
                     </tr>
                 </thead>
@@ -53,9 +54,9 @@
                             <td>{{$book->isbn}}</td>
                             <td>{{$book->name}}</td>
                             <td>{{$book->year}}</td>
-                            <td>{{$book->borrower()->first()->pivot->return_date}}</td>
-                            <td>{{number_format(computeForPenalty($book), 2)}}</td>
-                            <?php $total += computeForPenalty($book) ?>
+                            <td>{{$book->pivot->borrowed_date}}</td>
+                            <td>{{$book->pivot->penalty}}</td>
+                            <?php $total += $book->pivot->penalty ?>
                         </tr>
                     @endforeach
                 </tbody>

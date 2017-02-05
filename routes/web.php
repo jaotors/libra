@@ -63,18 +63,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('borrow/search', 'BorrowController@search');
     Route::get('borrow/{id}/borrow', 'BorrowController@borrow');
     Route::post('borrow/reserve', 'BorrowController@reserve');
+    Route::post('borrow/remove/book', 'BorrowController@remove');
 
     Route::get('return', 'ReturnController@index');
     Route::get('return/search', 'ReturnController@search');
     Route::post('return/books', 'ReturnController@returnBooks');
-    Route::get('return/print/{id}', 'ReturnController@printReceipt');
 
     Route::get('return-history', 'ReturnHistoryController@index');
     Route::get('return-history/{id}', 'ReturnHistoryController@show');
+    Route::get('return-history/{id}/print', 'ReturnHistoryController@printReceipt');
 
     Route::get('reports', 'ReportController@index');
     Route::post('reports/user', 'ReportController@userReport');
     Route::post('reports/book', 'ReportController@bookReport');
+    Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

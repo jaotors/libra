@@ -12,32 +12,32 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Access Number </th>
                             <th>Name</th>
                             <th>Year</th>
                             <th>ISBN</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
+                            <th>Date Borrowed</th>
                             <th>Penalty</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($books as $book)
                             <tr>
-                                <td>{{str_pad($book->id, 5, '0', STR_PAD_LEFT)}}</td>
                                 <td>{{$book->name}}</td>
                                 <td>{{$book->year}}</td>
                                 <td>{{$book->isbn}}</td>
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
+                                <td>{{$book->pivot->borrowed_date}}</td>
                                 <td>{{number_format($book->pivot->penalty, 2)}}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                    <a href="/return-history/print/{{$return->id}}" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Print </a>
+                <a href="/admin/return-history/{{$return->id}}/print" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Print </a>
             </div>
         </div>
     </div>
