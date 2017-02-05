@@ -23,7 +23,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(15);
+        $books = Book::all();
         $categories = Category::pluck('name', 'id');
         $active_state = 'books';
         return view('admin.book.index', compact('books', 'categories', 'active_state'));
@@ -58,6 +58,7 @@ class BookController extends Controller
                 'isbn'  => $request->get('isbn'),
                 'summary' => $request->get('summary'),
                 'category_id' => $request->get('category'),
+                'call_number' => $request->get('call_number'),
                 'status' => 'Available',
             ]);
 
@@ -136,6 +137,7 @@ class BookController extends Controller
             $book->year = $request->get('year');
             $book->author = $request->get('author');
             $book->isbn = $request->get('isbn');
+            $book->call_number = $request->get('call_number');
             $book->summary = $request->get('summary');
             $book->category_id = $request->get('category');
             $book->status = $request->get('status');

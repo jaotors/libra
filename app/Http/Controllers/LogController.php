@@ -22,7 +22,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::paginate(15);
+        $logs = Log::all();
         $active_state = 'logs';
         return view('admin.log.index', compact('logs', 'active_state'));
     }

@@ -22,7 +22,7 @@ class Book extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'summary', 'year', 'isbn', 'author', 'category_id', 'status'];
+    protected $fillable = ['name', 'summary', 'year', 'isbn', 'author', 'category_id', 'status', 'call_number'];
 
     /**
      * Returns the collection containing category objects

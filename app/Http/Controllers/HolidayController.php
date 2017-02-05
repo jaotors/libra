@@ -21,7 +21,7 @@ class HolidayController extends Controller
      */
     public function index()
     {
-        $holidays = Holiday::paginate(15);
+        $holidays = Holiday::all();
         $types = [
             'regular' => 'Regular',
             'special_non_working' => 'Special non-working',

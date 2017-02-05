@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
+        $categories = Category::all();
         $active_state = 'categories';
         return view('admin.category.index', compact('categories', 'active_state'));
     }

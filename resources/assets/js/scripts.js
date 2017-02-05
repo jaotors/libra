@@ -51,12 +51,12 @@ $(document).ready(function() {
     }).trigger("change");
 
     /* dropdown sidenav */
+    $('.sidenav .dropdown.down').children('ul').show();
     $('.sidenav .dropdown > a').on('click', function(e) {
         e.preventDefault();
-        $(this).siblings('ul').slideToggle().parent().toggleClass('down');
+        $(this).siblings('ul').slideToggle().parent().toggleClass('down').siblings('li').removeClass('down').children('ul').slideUp();
     });
 
-    $('.sidenav .dropdown.down').children('ul').show();
 
     /* dropdown topnav */
     $('.topnav .drop').hover(function() {

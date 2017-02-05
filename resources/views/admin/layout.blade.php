@@ -33,8 +33,8 @@
             <li class="dropdown {{ $active_state == 'categories'? 'down' : '' }} {{ $active_state == 'books'? 'down' : '' }} {{ $active_state == 'weeds'? 'down' : ''}}">
                 <a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Book Classification</a>
                 <ul>
-                    <li class="{{ $active_state == 'categories' ? 'active' : '' }}"><a href="/admin/categories"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Book Classification</a></li>
                     <li class="{{ $active_state == 'books' ? 'active' : '' }}"><a href="/admin/books"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Books</a></li>
+                    <li class="{{ $active_state == 'categories' ? 'active' : '' }}"><a href="/admin/categories"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Book Classification</a></li>
                     <li class="{{ $active_state == 'weeds' ? 'active' : '' }}"><a href="/admin/weeds"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Weeding</a></li>
                 </ul>
             </li>
