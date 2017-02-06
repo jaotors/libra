@@ -46,13 +46,20 @@
                     <li class="{{ $active_state == 'return-history' ? 'active' : '' }}"><a href="/admin/return-history"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Return History</a></li>
                 </ul>
             </li>
-            <li><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
-            <li><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
-            <li><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
-            <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Logout</a></li>
+            <li class="{{ $active_state == 'holidays' ? 'active' : '' }}"><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
+            <li class="{{ $active_state == 'reports' ? 'active' : '' }}"><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
+            <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
+            <li class="dropdown {{ $active_state == 'account'? 'down' : '' }}">
+                <a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Account</a>
+                <ul>
+                    <li><a href="#" data-toggle="modal" data-target=".modal-change-pass"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Change Password</a></li>
+                    <li><a href="/logout"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Logout</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="main">
+        @include('admin.changepassword')
         @yield('content')
     </div>
 </div>

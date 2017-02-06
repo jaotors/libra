@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Department;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Auth;
 
 class UserController extends Controller
 {
@@ -127,6 +129,48 @@ class UserController extends Controller
 
             Session::flash('info_message', 'User Successfuly Updated');
             return redirect()->to('/admin/users');
+        }
+    }
+
+    /**
+     * change password of user
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function changePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => [
+                'required',
+            ],
+            'new_password' => [
+                'required',
+            ],
+            'repeat_password' => [
+                'same:new_password',
+            ],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        } else {
+            $user = Auth::user();
+            if(Hash::check($request->old_password, $user->password)) {
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+
+                Session::flash('info_message', 'Change password success');
+                return redirect()->to('/admin/users');
+            } else {
+                Session::flash('info_message', 'Old password does not match!');
+                Session::flash('alert-class', 'alert-danger');
+                return redirect()->back();
+            }
         }
     }
 }
