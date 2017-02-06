@@ -24,7 +24,7 @@
                         <li class="drop">
                             <a href="#">Account</a>
                             <ul>
-                                <li><a href="#">Change Password</a></li>
+                                <li><a href="#" data-toggle="modal" data-target=".modal-change-pass">Change Password</a></li>
                                 <li><a href="#">Help</a></li>
                                 <li>
                                     @if (Auth::check())
@@ -39,6 +39,7 @@
                 </div>
             </div>
             <div class="main fullwidth opac">
+                @include('opac.changepassword')
                 @yield('content')
             </div>
         </div>

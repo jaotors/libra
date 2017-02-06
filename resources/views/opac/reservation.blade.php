@@ -1,5 +1,3 @@
-@include('errors')
-@include('info')
 <table class="table table-hover">
     <thead>
         <tr>

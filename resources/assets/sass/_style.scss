@@ -109,6 +109,12 @@ body {
         border-top: 2px solid #EAEAEA;
       }
 
+      &.active {
+        a {
+          background-color: #8292A8;
+        }
+      }
+
       &.dropdown {
 
         ul {
