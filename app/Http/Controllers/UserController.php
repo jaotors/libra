@@ -165,7 +165,7 @@ class UserController extends Controller
                 $user->save();
 
                 Session::flash('info_message', 'Change password success');
-                return redirect()->to('/admin/users');
+                return redirect()->back();
             } else {
                 Session::flash('info_message', 'Old password does not match!');
                 Session::flash('alert-class', 'alert-danger');

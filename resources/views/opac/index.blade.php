@@ -1,14 +1,14 @@
 @extends('opac.layout')
 
 @section('content')
+    @include('errors')
+    @include('info')
     <div class="modal fade modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="box-container view">
                     <h2 class="title">Book Information</h2>
                     <div class="box-content">
-                        @include('errors')
-                        @include('info')
                         <div class="row">
                             <section class="col-md-6">
                                 <h4>Book Title</h4>
@@ -86,8 +86,6 @@
             </div>
         </div>
     </div>
-    @include('errors')
-    @include('info')
     <div class="flex-container">
         <div class="box-container">
             <ul class="title-tab">
