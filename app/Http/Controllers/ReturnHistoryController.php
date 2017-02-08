@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Book;
-use App\Models\Borrow;
 use App\Models\ReturnHistory;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
 use Validator;
 use Session;
 use PDF;
@@ -23,7 +18,7 @@ class ReturnHistoryController extends Controller
     /**
      * Displays the return history page
      *
-     * @return \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -35,7 +30,7 @@ class ReturnHistoryController extends Controller
     /**
      * Displays the return history page
      *
-     * @return \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
