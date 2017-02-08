@@ -53,7 +53,11 @@ class ReportController extends Controller
         }
 
         $pdf = PDF::loadView('admin.report.userreport', compact('users', 'auth'));
+<<<<<<< HEAD
         return $pdf->stream();
+=======
+        return @$pdf->stream();
+>>>>>>> 6bbad0c93d2cc1daead67c5e7fe97c1140d0aa02
     }
 
     /**
@@ -78,7 +82,11 @@ class ReportController extends Controller
         }
 
         $pdf = PDF::loadView('admin.report.bookreport', compact('books', 'auth'));
+<<<<<<< HEAD
         return $pdf->stream();
+=======
+        return @$pdf->stream();
+>>>>>>> 6bbad0c93d2cc1daead67c5e7fe97c1140d0aa02
     }
 
     /**
@@ -92,6 +100,6 @@ class ReportController extends Controller
         $pdf = PDF::loadView('admin.report.barcode', compact('books'));
         $pdf->setPaper('a7');
 
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 }

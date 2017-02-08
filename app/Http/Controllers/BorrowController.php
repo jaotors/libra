@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\Reservation;
+use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Validator;
 use Session;
 use Auth;
@@ -82,9 +81,14 @@ class BorrowController extends Controller
         $user = User::findOrFail($id);
         $books = $user->reservations()->get();
 
+        $studentNumberOfBooks = Setting::where('title', 'Student Books')->first()->value;
+        $employeeNumberOfBooks = Setting::where('title', 'Employee Books')->first()->value;
+        $studentBorrowPeriod = Setting::where('title', 'Student Duration')->first()->value;
+        $employeeBorrowPeriod = Setting::where('title', 'Employee Duration')->first()->value;
+        
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
-        $period = $user->type == 1 ? config('app.student_borrow_period') : config('app.employee_borrow_period');
+        $limit = $user->type == 1 ? $studentNumberOfBooks : $employeeNumberOfBooks;
+        $period = $user->type == 1 ? $studentBorrowPeriod : $employeeBorrowPeriod;
 
         if ($count > $limit) {
             Session::flash('info_message', 'Maximum limit of borrowed book reached');

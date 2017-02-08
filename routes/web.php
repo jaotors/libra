@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('return-history', 'ReturnHistoryController@index');
     Route::get('return-history/{id}', 'ReturnHistoryController@show');
     Route::get('return-history/{id}/print', 'ReturnHistoryController@printReceipt');
+    Route::get('return-history/{id}/pay', 'ReturnHistoryController@pay');
 
     Route::get('reports', 'ReportController@index');
     Route::post('reports/user', 'ReportController@userReport');
@@ -79,6 +80,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
 
     Route::post('changepassword', 'UserController@changePassword');
+
+    Route::get('settings', 'SettingController@index');
+    Route::get('settings/{id}', 'SettingController@edit');
+    Route::put('settings', 'SettingController@update');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

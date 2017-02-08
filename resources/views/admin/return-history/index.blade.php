@@ -17,6 +17,7 @@
                             <th>Penalties</th>
                             <th>Is Paid?</th>
                             <th>View Books</th>
+                            <th> Pay </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,11 @@
                                 </td>
                                 <td>
                                     <a class="edit" href="/admin/return-history/{{$return->id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                </td>
+                                <td>
+                                    @if(!$return->is_paid)
+                                        <a class="btn btn-primary" href="/admin/return-history/{{$return->id}}/pay"> Pay </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
