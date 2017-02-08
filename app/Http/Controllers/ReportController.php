@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Validator;
 use Session;
 use PDF;
+use Auth;
 
 class ReportController extends Controller
 {
@@ -34,6 +35,8 @@ class ReportController extends Controller
      */
     public function userReport(Request $request)
     {
+        $auth = Auth::user();
+
         switch ($request->type) {
             case 1:
                 $users = Role::where('name', 'Student')->first()->user;
@@ -49,7 +52,7 @@ class ReportController extends Controller
                 break;
         }
 
-        $pdf = PDF::loadView('admin.report.userreport', compact('users'));
+        $pdf = PDF::loadView('admin.report.userreport', compact('users', 'auth'));
         return $pdf->stream();
     }
 
@@ -60,6 +63,8 @@ class ReportController extends Controller
      */
     public function bookReport(Request $request)
     {
+        $auth = Auth::user();
+
         switch ($request->type) {
             case 1:
                 $books = Book::all();
@@ -72,7 +77,7 @@ class ReportController extends Controller
                 break;
         }
 
-        $pdf = PDF::loadView('admin.report.bookreport', compact('books'));
+        $pdf = PDF::loadView('admin.report.bookreport', compact('books', 'auth'));
         return $pdf->stream();
     }
 

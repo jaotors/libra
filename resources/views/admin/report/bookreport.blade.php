@@ -33,7 +33,7 @@
             Tanauan City, Batangas 4232 <br>
             Telephone: (043) 778-1020 <br>
             Fax: (043) 778-8850 <br><br>
-            <table style="margin-bottom: 10px; width: 100%;">
+            <table style="margin-bottom: 5px; width: 100%;">
                 <thead>
                     <tr>
                         <th>Access Number</th>
@@ -65,7 +65,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <p style="text-align: right"><strong>Total of: {{ count($books) }}</strong></p>
+            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($books) }}</strong></p>
+            <p style="text-align: right; padding: 0; margin: 0;"><strong>Printed By: {{ $auth->last_name }}, {{ $auth->first_name }}</strong></p>
+            <p style="text-align: right; padding: 0; margin: 0;"><strong>{{$auth->role()->first()->name}}</strong></p>
         </div>
     </body>
 </html>
