@@ -53,7 +53,7 @@ class ReturnHistoryController extends Controller
         $books = $return->books()->withPivot('penalty', 'borrowed_date')->get();
         $user = $return->user()->first();
         $pdf = PDF::loadView('admin.return-history.receipt', compact('books', 'user', 'return'));
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 
     /**

@@ -53,7 +53,7 @@ class ReportController extends Controller
         }
 
         $pdf = PDF::loadView('admin.report.userreport', compact('users', 'auth'));
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 
     /**
@@ -78,7 +78,7 @@ class ReportController extends Controller
         }
 
         $pdf = PDF::loadView('admin.report.bookreport', compact('books', 'auth'));
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 
     /**
@@ -92,6 +92,6 @@ class ReportController extends Controller
         $pdf = PDF::loadView('admin.report.barcode', compact('books'));
         $pdf->setPaper('a7');
 
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 }
