@@ -27,7 +27,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd(\App\Models\Setting::where('title', 'Employee Books')->first());
         $users = User::all();
         $roles = Role::pluck('name', 'id');
         $departments = Department::pluck('name', 'id');
