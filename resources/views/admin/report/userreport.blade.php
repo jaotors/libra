@@ -63,7 +63,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <p style="text-align: right"><strong>Total of: {{ count($users) }}</strong></p>
+            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($users) }}</strong></p>
+            <p style="text-align: right; padding: 0; margin: 0;"><strong>Printed By: {{ $auth->last_name }}, {{ $auth->first_name }}</strong></p>
+            <p style="text-align: right; padding: 0; margin: 0;"><strong>{{$auth->role()->first()->name}}</strong></p>
         </div>
     </body>
 </html>
