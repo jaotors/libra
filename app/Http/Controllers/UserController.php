@@ -160,7 +160,7 @@ class UserController extends Controller
                 ->withInput();
         } else {
             $user = Auth::user();
-            if(Hash::check($request->old_password, $user->password)) {
+            if (Hash::check($request->old_password, $user->password)) {
                 $user->password = Hash::make($request->new_password);
                 $user->save();
 
