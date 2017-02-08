@@ -80,6 +80,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
 
     Route::post('changepassword', 'UserController@changePassword');
+
+    Route::get('settings', 'SettingController@index');
+    Route::get('settings/{id}', 'SettingController@edit');
+    Route::put('settings', 'SettingController@update');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
