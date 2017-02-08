@@ -33,5 +33,15 @@ class SettingsTableSeeder extends Seeder
             'title' => 'Employee Duration',
             'value' => 7
         ]);
+        
+        Setting::create([
+            'title' => 'Employee Penalty',
+            'value' => 5
+        ]);
+        
+        Setting::create([
+            'title' => 'Student Penalty',
+            'value' => 20
+        ]);
     }
 }

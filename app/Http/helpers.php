@@ -63,10 +63,10 @@ function computeForPenalty(App\Models\Book $book)
     $multiplier = 1;
 
     if (Auth::user()->role()->first()->name == 'Student') {
-        $multiplier = 5;
+        $multiplier = App\Models\Setting::where('title', 'Student Penalty')->first()->value;
     } else {
-        $multiplier = 25;
+        $multiplier = App\Models\Setting::where('title', 'Employee Penalty')->first()->value;
     }
 
-    return ($diff - $notCountedDays) * $multiplier;
+    return (($diff - $notCountedDays) + 1) == 1 ? 0 : (($diff - $notCountedDays) + 1) * $multiplier;
 }
