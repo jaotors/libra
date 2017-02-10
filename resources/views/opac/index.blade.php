@@ -74,7 +74,8 @@
                 <li class="active"><a href="#book" role="tab" data-toggle="tab" aria-controls="book" aria-expanded="true">Book List</a></li>
                 @if (Auth::check()) 
                     <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
-                    <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true">Borrow History</a></li>
+                    <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true"> Current Books </a> </li>
+                    <li><a href="#borrowed" role="tab" data-toggle="tab" aria-controls="borrowed" aria-expanded="true">Borrow History</a></li>
                 @endif
             </ul>
             <div class="tab-content">
@@ -137,6 +138,9 @@
                 </div>
                 <div class="box-content tab-pane fade" id="reservation" aria-labelledby="reservation-tab">
                     @include('opac/reservation')
+                </div>
+                <div class="box-content tab-pane fade" id="borrowed" aria-labelledby="reservation-tab">
+                    @include('opac/borrowed')
                 </div>
                 <div class="box-content tab-pane fade" id="borrow" aria-labelledby="reservation-tab">
                     @include('opac/borrow')
