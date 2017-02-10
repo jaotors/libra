@@ -37,18 +37,6 @@
                                     <h4>Book Publisher</h4>
                                     <p class="book-publisher">Book Publisher</p>
                                 </section>
-                                <section>
-                                    <h4>Book Edition</h4>
-                                    <p class="book-edition num">14th</p>
-                                </section>
-                                <section>
-                                    <h4>Location</h4>
-                                    <p class="location">Location location</p>
-                                </section>
-                                <section>
-                                    <h4>Book Quantity</h4>
-                                    <p class="num book-quantity">14</p>
-                                </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
@@ -60,26 +48,20 @@
                                     <p class="status"></p>
                                 </section>
                                 <section>
-                                    <h4>Purchase Price</h4>
-                                    <p class="num purchase-price">3141.5</p>
+                                    <h4>Book Edition</h4>
+                                    <p class="book-edition num">14th</p>
                                 </section>
                                 <section>
-                                    <h4>Purchase Date</h4>
-                                    <p class="num purchase-date">2016-03-14</p>
-                                </section>
-                                <section>
-                                    <h4>Pages</h4>
-                                    <p class="num pages">314</p>
-                                </section>
-                                <section>
-                                    <h4>Call Number</h4>
-                                    <p class="num call-number">09314152417</p>
+                                    <h4>Location</h4>
+                                    <p class="location">Location location</p>
                                 </section>
                             </div>
                         </div>
                         <ul class="links">
                             <li><a data-dismiss="modal" aria-label="Close" class="btn btn-danger">Back</a></li>
-                            <li><a class="for-avail btn btn-primary" href="">Reserve</a></li>
+                            @if(Auth::check())
+                                <li><a class="for-avail btn btn-primary" href="">Reserve</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
