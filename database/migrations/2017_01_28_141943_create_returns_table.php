@@ -14,7 +14,7 @@ class CreateReturnsTable extends Migration
     public function up()
     {
         Schema::create('return_history', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->boolean('is_paid')->default(false);
             $table->string('remarks')->default('');
             $table->timestamps();

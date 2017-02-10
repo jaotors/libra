@@ -14,7 +14,7 @@ class CreateHolidaysTable extends Migration
     public function up()
     {
         Schema::create('holidays', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1); 
             $table->string('name');
             $table->date('date');
             $table->softdeletes();

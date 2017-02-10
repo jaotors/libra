@@ -92,12 +92,12 @@ class LoginController extends Controller
      *
      * @param $action
      */
-    private function logs($action) {
+    private function logs($action)
+    {
         $logs = new Log();
         $logs->user_id = Auth::user()->id;
         $logs->role_id = Auth::user()->role_id;
         $logs->action = $action;
         $logs->save();
     }
-
 }

@@ -14,7 +14,7 @@ class CreateLogsTable extends Migration
     public function up()
     {
         Schema::create('logs', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->string('action');
