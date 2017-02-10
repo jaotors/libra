@@ -74,7 +74,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Return the collection containing all reserved books by the user
+     * Return the collection containing all currently borrowed books by the user
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      *
@@ -82,5 +82,13 @@ class User extends Authenticatable
     public function borrowed()
     {
         return $this->belongsToMany(Book::class, 'book_user')->withTimestamps()->withPivot('return_date');
+    }
+
+    /**
+     * Returns the collection containing all borrowed books by the user
+     */
+    public function history()
+    {
+        return $this->hasMany(ReturnHistory::class);
     }
 }

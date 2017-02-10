@@ -90,8 +90,10 @@
         <div class="box-container">
             <ul class="title-tab">
                 <li class="active"><a href="#book" role="tab" data-toggle="tab" aria-controls="book" aria-expanded="true">Book List</a></li>
-                <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
-                <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true">Borrowed List</a></li>
+                @if (Auth::check()) 
+                    <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
+                    <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true">Borrow History</a></li>
+                @endif
             </ul>
             <div class="tab-content">
                 <div class="box-content tab-pane fade active in" id="book" aria-labelledby="book-tab">

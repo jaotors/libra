@@ -28,9 +28,16 @@ class OpacController extends Controller
         $books = Book::paginate(15);
         $categories = Category::pluck('name', 'id');
         $user = Auth::user();
-        $reservations = $user->reservations()->get();
+
+        $reservations = [];
+        $histories = [];
+
+        if (Auth::check()) {
+            $reservations = $user->reservations()->get();
+            $histories = $user->history()->get();
+        }
         
-        return view('opac.index', compact('books', 'categories', 'reservations'));
+        return view('opac.index', compact('books', 'categories', 'reservations', 'histories'));
     }
 
     /**
