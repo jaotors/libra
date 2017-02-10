@@ -80,6 +80,10 @@ $(document).ready(function() {
                 $('.isbn').text(data.isbn);
                 $('.category').text(data.category);
                 $('.status').text(data.status);
+                $('.book-publisher').text(data.publisher);
+                $('.material').text(data.material);
+                $('.location').text(data.location);
+
                 console.log(data.status);
                 if(data.status != 'Available') {
                     $('.for-avail').hide();

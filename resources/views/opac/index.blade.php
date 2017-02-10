@@ -48,8 +48,8 @@
                                     <p class="status"></p>
                                 </section>
                                 <section>
-                                    <h4>Book Edition</h4>
-                                    <p class="book-edition num">14th</p>
+                                    <h4>Material</h4>
+                                    <p class="material"></p>
                                 </section>
                                 <section>
                                     <h4>Location</h4>

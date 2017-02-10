@@ -34,6 +34,18 @@
                         {{Form::select('category', $categories, $book->category_id, ['class' => 'form-control'])}}
                     </div>
                     <div class="form-group">
+                        {{Form::label('publisher','Publisher', ['class' => 'control-label'])}}
+                        {{Form::text('publisher', null, ['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('location','Publisher Address', ['class' => 'control-label'])}}
+                        {{Form::text('location', null, ['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('material','Material', ['class' => 'control-label'])}}
+                        {{Form::select('material', ['Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
                         {{Form::label('status','Status', ['class' => 'control-label'])}}
                         {{Form::select('status', $status, $book->status, ['class' => 'form-control'])}}
                     </div>

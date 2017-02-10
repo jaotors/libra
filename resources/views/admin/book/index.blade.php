@@ -35,6 +35,18 @@
                                     {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
                                 </div>
                                 <div class="form-group">
+                                    {{Form::label('publisher','Publisher', ['class' => 'control-label'])}}
+                                    {{Form::text('publisher', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('location','Publisher Address', ['class' => 'control-label'])}}
+                                    {{Form::text('location', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
+                                    {{Form::label('material','Material', ['class' => 'control-label'])}}
+                                    {{Form::select('material', ['Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group">
                                     {{Form::label('summary','Summary', ['class' => 'control-label'])}}
                                     {{Form::textarea('summary', null, ['class' => 'form-control', 'rows' => '4'])}}
                                 </div>
@@ -64,6 +76,8 @@
                             <th>Year</th>
                             <th>ISBN</th>
                             <th>Call Number</th>
+                            <th>Material Type</th>
+                            <th>Publisher</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
@@ -78,6 +92,8 @@
                                 <td>{{$book->year}}</td>
                                 <td>{{$book->isbn}}</td>
                                 <td>{{$book->call_number}}</td>
+                                <td>{{$book->publisher}}</td>
+                                <td>{{$book->material}}</td>
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
