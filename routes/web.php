@@ -89,6 +89,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
 
     Route::post('payment', 'PaymentController@store');
     Route::get('payment', 'PaymentController@index');
+    Route::get('user/{id}/forgot', 'UserController@showForgotPassword');
+    Route::put('user/forgot-password', 'UserController@updatePassword');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

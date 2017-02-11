@@ -22,6 +22,10 @@
                             {{ Form::label('last_name', 'Last Name', ['class' => 'control-label']) }}
                             {{ Form::text('last_name', null, ['class' => 'form-control']) }}
                         </div>
+                        <div class="form-group">
+                            {{ Form::label('active', 'Active', ['class' => 'control-label']) }}
+                            {{ Form::select('active',['1' => 'Yes', '0' => 'No'] ,null, ['class' => 'form-control']) }}
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -36,6 +40,7 @@
                             {{ Form::label('department', 'Course / Department', ['class' => 'control-label']) }}
                             {{ Form::select('department', $departments, $user->department_id, ['class' => 'form-control', 'id' => 'department']) }}
                         </div>
+
                     </div>
                 </div>
                 <p class="btn-container two-buttons">
