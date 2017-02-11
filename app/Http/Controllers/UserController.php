@@ -56,7 +56,7 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            User::create([
+            $user = User::create([
                 'first_name'  => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
                 'role_id' => $request->get('role'),
@@ -64,9 +64,13 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'user_id' => $request->get('user_id'),
                 'password' => Hash::make($request->get('user_id')),
+                'delinquent' => false,
                 'active' => '1',
             ]);
-            
+
+            $user->password = bcrypt($request->get('user_id'));
+            $user->save();
+
             Session::flash('info_message', 'User Successfuly Created');
             return redirect()->back();
         }
@@ -128,6 +132,7 @@ class UserController extends Controller
             $user->user_id = $request->get('user_id');
             $user->email = $request->get('email');
             $user->active = $request->get('active');
+            $user->delinquent = $request->get('delinquent');
             $user->save();
 
             Session::flash('info_message', 'User Successfuly Updated');

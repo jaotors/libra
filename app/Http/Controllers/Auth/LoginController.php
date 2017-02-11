@@ -48,7 +48,7 @@ class LoginController extends Controller
             $user_id = $request->get('user_id');
             $password = $request->get('password');
 
-            if (Auth::attempt(['user_id' => $user_id, 'password' => $password, 'active' => true])) {
+            if (Auth::attempt(['user_id' => $user_id, 'password' => $password, 'active' => true, 'delinquent' => false])) {
                 $this->logs('login');
                 $user = Auth::user();
                 if (Auth::user()->role()->first()->name == "Librarian") {

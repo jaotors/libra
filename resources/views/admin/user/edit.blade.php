@@ -40,7 +40,10 @@
                             {{ Form::label('department', 'Course / Department', ['class' => 'control-label']) }}
                             {{ Form::select('department', $departments, $user->department_id, ['class' => 'form-control', 'id' => 'department']) }}
                         </div>
-
+                        <div class="form-group">
+                            {{ Form::label('delinquent', 'Delinquency', ['class' => 'control-label']) }}
+                            {{ Form::select('delinquent',['1' => 'Yes', '0' => 'No'] ,null, ['class' => 'form-control']) }}
+                        </div>
                     </div>
                 </div>
                 <p class="btn-container two-buttons">
