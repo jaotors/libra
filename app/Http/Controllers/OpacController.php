@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Book;
 use App\Models\Reservation;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -140,7 +141,9 @@ class OpacController extends Controller
         $book = Book::findOrFail($id);
         $userId = Auth::user()->id;
         $count = Reservation::where('user_id', $userId)->count() + Auth::user()->books()->count();
-        $limit = Auth::user()->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $employeeBooks = Setting::where('title', 'Employee Books')->first();
+        $limit = Auth::user()->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 
         if ($count < $limit) {
             $reservation = new Reservation();
@@ -153,7 +156,7 @@ class OpacController extends Controller
                 $reservation->book_id = $id;
                 $reservation->save();
 
-
+                Session::flash('info_message', 'Book reservation successful');
                 return redirect()->to('/opac');
             } else {
                 Session::flash('info_message', 'Book has already been reserved');
