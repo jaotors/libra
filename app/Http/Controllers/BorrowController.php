@@ -89,8 +89,8 @@ class BorrowController extends Controller
         $employeeBorrowPeriod = Setting::where('title', 'Employee Duration')->first()->value;
         
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user->type == 1 ? $studentNumberOfBooks : $employeeNumberOfBooks;
-        $period = $user->type == 1 ? $studentBorrowPeriod : $employeeBorrowPeriod;
+        $limit = $user->role_id == 1 ? $studentNumberOfBooks : $employeeNumberOfBooks;
+        $period = $user->role_id == 1 ? $studentBorrowPeriod : $employeeBorrowPeriod;
 
         if ($count > $limit) {
             Session::flash('info_message', 'Maximum limit of borrowed book reached');
@@ -141,7 +141,9 @@ class BorrowController extends Controller
         $isbn = $request->get('isbn');
         $book = Book::where('isbn', "$isbn")->first();
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $employeeBooks = Setting::where('title', 'Employee Books')->first();
+        $limit = $user->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 
         if ($count < $limit) {
             $reservation = new Reservation();

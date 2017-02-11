@@ -63,7 +63,7 @@ class UserController extends Controller
                 'department_id' => $request->get('department'),
                 'email' => $request->get('email'),
                 'user_id' => $request->get('user_id'),
-                'password' => bcrypt($request->get('user_id')),
+                'password' => Hash::make($request->get('user_id')),
                 'active' => '1',
             ]);
             
