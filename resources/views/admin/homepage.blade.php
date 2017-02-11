@@ -22,6 +22,18 @@
                         <h5>Valid Users: {{$users}} </h5>
                     </div>
                 </div>
+                <div class ="row homepage">
+                    <div class="col-md-4">
+                        <span class="glyphicon glyphicon-align-justify big"></span>
+                        <h5>On Shelf Books: {{$booksCount}} </h5>
+                        <a href="/admin/book"> View Books </a>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="glyphicon glyphicon-check big"></span>
+                        <h5>Attendance Today: {{$attendanceCount}} </h5>
+                        <a href="/admin/attendance"> View Attendance </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
