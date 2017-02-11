@@ -11,7 +11,7 @@
                     <div class="col-md-4">
                         <span class="glyphicon glyphicon-piggy-bank big"></span>
                         <h5>Number of unpaid borrows: {{$returns}} </h5>
-                        <a href="/"> View Returns </a>
+                        <a href="/admin/return-history"> View Returns </a>
                     </div>
                     <div class="col-md-4">
                         <span class="glyphicon glyphicon-book big"></span>
