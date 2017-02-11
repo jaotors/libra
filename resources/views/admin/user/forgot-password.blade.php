@@ -19,7 +19,7 @@
 
                 <p class="btn-container two-buttons">
                     {{Form::submit('Update', ['class' => 'btn btn-primary update'])}}
-                    <a href="/admin/books" class="btn btn-danger cancel">Cancel</a>
+                    <a href="/admin/users" class="btn btn-danger cancel">Cancel</a>
                 </p>
             </div>
         </div>

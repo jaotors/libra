@@ -91,6 +91,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('payment', 'PaymentController@index');
     Route::get('user/{id}/forgot', 'UserController@showForgotPassword');
     Route::put('user/forgot-password', 'UserController@updatePassword');
+
+    Route::get('/attendance', 'AttendanceController@index');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
+
+Route::get('/attendance', function () {
+    return view('attendance');
+});
+
+Route::post('/attendance', 'AttendanceController@store');
