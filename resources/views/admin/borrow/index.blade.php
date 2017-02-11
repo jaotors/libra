@@ -74,7 +74,7 @@
                                         {{Form::open(['url' => '/admin/borrow/remove/book'])}}
                                             {{Form::hidden('id', $book->id)}}
                                             {{Form::hidden('user_id', $user->id)}}
-                                            {{Form::submit('Remove')}}
+                                            {{Form::submit('x')}}
                                         {{Form::close()}}
                                     </td>
                                 </tr>
@@ -86,7 +86,39 @@
                         @endif
                     </tbody>
                 </table>
-                @if(count($books) > 0)
+                @if (count($histories))
+                    <h3 class="title add">
+                        <span>Unpaid Penalties</span> 
+                    </h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Access Number</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Penalty </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($histories as $history)
+                                @foreach($history->books as $book)
+                                    @if ($book->pivot->penalty != 0)
+                                    <tr>
+                                        <td>
+                                            {{str_pad($book->id, 5, '0', STR_PAD_LEFT)}}
+                                        </td>
+                                        <td>{{$book->name}}</td>
+                                        <td>{{$book->category()->first()->name}}</td>
+                                        <td>{{number_format($book->pivot->penalty, 2)}} </td>
+                                        <td>
+                                    </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+                @if (count($books) > 0)
                     <p><a href="/admin/borrow/{{ $user->id }}/borrow" class="btn btn-success btn-borrow">Borrow</a></p>
                 @endif
             </div>

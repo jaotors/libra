@@ -22,7 +22,7 @@ class ReturnHistory extends Model
      */
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'book_return', 'return_id', 'book_id');
+        return $this->belongsToMany(Book::class, 'book_return', 'return_id', 'book_id')->withPivot('penalty');
     }
 
     /**

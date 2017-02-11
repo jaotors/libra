@@ -35,10 +35,10 @@ class OpacController extends Controller
         
         if (Auth::check()) {
             $reservations = $user->reservations()->get();
-            $histories = $user->history()->orderBy('created_at', 'DESC')->get();
+            $histories = $user->history()->orderBy('created_at', 'DESC')->with('books')->get();
             $booksBorrowed = $user->borrowed()->get();
         }
-        
+
         return view('opac.index', compact('books', 'categories', 'reservations', 'histories', 'booksBorrowed'));
     }
 

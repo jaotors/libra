@@ -33,10 +33,14 @@ function isSetForReturn($id)
  */
 function computeForPenalty(App\Models\Book $book)
 {
-    $date_borrowed = $book->borrower()->first()->pivot->created_at;
+    $date_borrowed = $book->borrower()->first()->pivot->return_date;
 
     $date1 = new DateTime($date_borrowed);
     $date2 = new DateTime(date('Y-m-d'));
+
+    if ($date1 >= $date2) {
+        return 0;
+    }
 
     //checking for holidays, and sundays
     $interval = DateInterval::createFromDateString('1 day');
@@ -68,5 +72,5 @@ function computeForPenalty(App\Models\Book $book)
         $multiplier = App\Models\Setting::where('title', 'Employee Penalty')->first()->value;
     }
 
-    return (($diff - $notCountedDays) + 1) == 1 ? 0 : (($diff - $notCountedDays) + 1) * $multiplier;
+    return ($diff - $notCountedDays) * $multiplier;
 }

@@ -27,10 +27,11 @@ class BorrowController extends Controller
     public function index()
     {
         $books = [];
+        $histories = [];
         $user = null;
 
         $active_state = 'borrow';
-        return view('admin.borrow.index', compact('books', 'user', 'active_state'));
+        return view('admin.borrow.index', compact('books', 'user', 'active_state', 'histories'));
     }
 
     /**
@@ -61,15 +62,16 @@ class BorrowController extends Controller
                 return redirect()->back();
             }
 
+            $histories = $user->history()->where('is_paid', false)->with('books')->get();
             $books = $user->reservations()->get();
 
             $active_state = 'borrow';
-            return view('admin.borrow.index', compact('books', 'user', 'active_state'));
+            return view('admin.borrow.index', compact('books', 'user', 'active_state', 'histories'));
         }
     }
 
     /**
-     * borrow the book resource
+     * Borrows the book resource
      *
      * @param $id
      *

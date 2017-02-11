@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         @foreach($histories as $history)
-            @foreach($books as $book)
+            @foreach($history->books as $book)
                 <tr>
                     <td>
                         {{str_pad($book->id, 5, '0', STR_PAD_LEFT)}}
