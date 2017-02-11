@@ -75,9 +75,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('return-history/{id}/pay', 'ReturnHistoryController@pay');
 
     Route::get('reports', 'ReportController@index');
-    Route::post('reports/user', 'ReportController@userReport');
-    Route::post('reports/book', 'ReportController@bookReport');
+    Route::get('reports/user', 'ReportController@userReport');
+    Route::get('reports/book', 'ReportController@bookReport');
     Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
+    Route::get('reports/returns', 'ReportController@returnsReport');
 
     Route::post('changepassword', 'UserController@changePassword');
 

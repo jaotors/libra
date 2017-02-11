@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Book;
+use App\Models\ReturnHistory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -91,6 +92,24 @@ class ReportController extends Controller
         $books = Book::all();
         $pdf = PDF::loadView('admin.report.barcode', compact('books'));
 
+        return @$pdf->stream();
+    }
+
+    /**
+     * Displays the returns report
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     **/
+    public function returnsReport(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $auth = Auth::user();
+
+        $returns = ReturnHistory::whereBetween('created_at', [$from, $to])->get();
+        $pdf = PDF::loadView('admin.report.returns', compact('returns', 'auth', 'from', 'to'));
         return @$pdf->stream();
     }
 }
