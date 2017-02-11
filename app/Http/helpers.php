@@ -36,6 +36,7 @@ function computeForPenalty(App\Models\Book $book)
     $date_borrowed = $book->borrower()->first()->pivot->return_date;
 
     $date1 = new DateTime($date_borrowed);
+    $date1->modify('+1 day');
     $date2 = new DateTime(date('Y-m-d'));
 
     if ($date1 >= $date2) {
