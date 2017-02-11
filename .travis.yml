@@ -20,8 +20,9 @@ cache:
 install:
 - if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN};
   fi;
--   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-
+- . $HOME/.nvm/nvm.sh
+- nvm install stable
+- nvm use stable
 - travis_retry composer self-update && travis_retry composer install --no-interaction
 script:
 - vendor/bin/phpunit --testsuite "Application Test Suite"
