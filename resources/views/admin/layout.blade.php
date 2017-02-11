@@ -72,7 +72,7 @@
 <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
 <script src="{{ secure_asset('js/config.js') }}"></script>
 <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ secureasset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.dataTables.js') }}"></script>
 <script src="{{ secure_asset('js/scripts.js') }}"></script>
 @yield('scripts')
 </body>
