@@ -24,7 +24,9 @@
                         <li class="drop">
                             <a href="#">Account</a>
                             <ul>
-                                <li><a href="#" data-toggle="modal" data-target=".modal-change-pass">Change Password</a></li>
+                                @if (Auth::check())
+                                    <li><a href="#" data-toggle="modal" data-target=".modal-change-pass">Change Password</a></li>
+                                @endif
                                 <li><a href="#">Help</a></li>
                                 <li>
                                     @if (Auth::check())

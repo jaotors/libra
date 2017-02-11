@@ -127,8 +127,15 @@ class BorrowController extends Controller
     public function reserve(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'isbn' => 'required|numeric',
+            'isbn' => 'required|exists:books',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $user = User::findOrFail($request->get('user_id'));
         $isbn = $request->get('isbn');
