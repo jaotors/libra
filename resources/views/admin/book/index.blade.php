@@ -76,8 +76,8 @@
                             <th>Year</th>
                             <th>ISBN</th>
                             <th>Call Number</th>
-                            <th>Material Type</th>
                             <th>Publisher</th>
+                            <th>Material Type</th>
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
