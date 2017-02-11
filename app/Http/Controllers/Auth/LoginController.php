@@ -59,7 +59,6 @@ class LoginController extends Controller
                     return redirect()->intended('/opac');
                 }
             } else {
-                return var_dump('WHUT');
                 $validator->errors()->add('login', 'Invalid login credentials');
                 return redirect()
                     ->back()
