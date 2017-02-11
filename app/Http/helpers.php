@@ -67,7 +67,7 @@ function computeForPenalty(App\Models\Book $book)
 
     $multiplier = 1;
 
-    if (Auth::user()->role()->first()->name == 'Student') {
+    if ($book->borrower()->first()->role()->first()->name == 'Student') {
         $multiplier = App\Models\Setting::where('title', 'Student Penalty')->first()->value;
     } else {
         $multiplier = App\Models\Setting::where('title', 'Employee Penalty')->first()->value;
