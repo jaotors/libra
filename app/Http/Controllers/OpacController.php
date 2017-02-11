@@ -31,6 +31,7 @@ class OpacController extends Controller
 
         $reservations = [];
         $histories = [];
+        $booksBorrowed = [];
         
         if (Auth::check()) {
             $reservations = $user->reservations()->get();
@@ -52,10 +53,26 @@ class OpacController extends Controller
     {
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
-        $books = Book::where($searchSelect, 'like', "%$searchQuery%")->paginate(15);
+        $category = Category::findOrFail($request->get('category'));
+        $books = Book::where($searchSelect, 'like', "%$searchQuery%")
+                     ->where('material', $request->get('material'))
+                     ->where('category_id', $category->id)
+                     ->where('status', $request->get('status'))
+                     ->paginate(15);
+        $categories = Category::pluck('name', 'id');
         $user = Auth::user();
-        $reservations = $user->reservations()->get();
-        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations'));
+
+        $reservations = [];
+        $histories = [];
+        $booksBorrowed = [];
+        
+        if (Auth::check()) {
+            $reservations = $user->reservations()->get();
+            $histories = $user->history()->orderBy('created_at', 'DESC')->get();
+            $booksBorrowed = $user->borrowed()->get();
+        }
+
+        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations', 'histories', 'booksBorrowed'));
     }
 
     /**

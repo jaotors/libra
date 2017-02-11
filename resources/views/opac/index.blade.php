@@ -89,8 +89,23 @@
                                 <div class="form-group search-select">
                                     {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'isbn' => 'ISBN'], null, ['class' => 'form-control'])}}
                                 </div>
+
                                 <div class="btn-container">
                                     {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
+                                </div>
+                            </div>
+                            <div class="search-input">
+                                <div class="form-group search-select">
+                                    {{Form::label('material','Material', ['class' => 'control-label'])}}
+                                    {{Form::select('material', ['Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group search-select">
+                                    {{Form::label('category','Category', ['class' => 'control-label'])}}
+                                    {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group search-select">
+                                    {{Form::label('status','Status', ['class' => 'control-label'])}}
+                                    {{Form::select('status', ['Available' => 'Available', 'Reserved' => 'Reserved', 'Borrowed' => 'Borrowed'], null, ['class' => 'form-control'])}}
                                 </div>
                             </div>
                         {{Form::close()}}
@@ -106,6 +121,9 @@
                                 <th>Category</th>
                                 <th>Author</th>
                                 <th>Status</th>
+                                <th>Publisher</th>
+                                <th>Location </th>
+                                <th>Material Type</th>
                                 <th>More Info</th>
                             </tr>
                         </thead>
@@ -125,6 +143,9 @@
                                     <td>{{$book->category()->first()->name}}</td>
                                     <td>{{$book->author}}</td>
                                     <td>{{$book->status}}</td>
+                                    <td>{{$book->publisher}}</td>
+                                    <td>{{$book->location}}</td>
+                                    <td>{{$book->material}}</td>
                                     <td><a class="view-book" href="#" data-link="/opac/book/{{$book->id}}/view" data-toggle="modal" data-target=".modal-view"><span class="glyphicon glyphicon-eye-open"></a></td>
                                 </tr>
                             @endforeach
