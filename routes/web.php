@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::group(array('middleware' => 'forceSSL'), function () {
-
     Route::get('/', 'HomeController@index');
     Route::get('login', 'Auth\LoginController@showLogin');
     Route::post('login', 'Auth\LoginController@authenticate');
@@ -103,5 +101,3 @@ Route::group(array('middleware' => 'forceSSL'), function () {
     });
 
     Route::post('/attendance', 'AttendanceController@store');
-
-});
