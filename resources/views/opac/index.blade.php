@@ -97,7 +97,7 @@
                             <div class="search-input">
                                 <div class="form-group search-select">
                                     {{Form::label('material','Material', ['class' => 'control-label'])}}
-                                    {{Form::select('material', ['Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
+                                    {{Form::select('material', ['-1' => 'Choose One','Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
                                 </div>
                                 <div class="form-group search-select">
                                     {{Form::label('category','Category', ['class' => 'control-label'])}}
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="form-group search-select">
                                     {{Form::label('status','Status', ['class' => 'control-label'])}}
-                                    {{Form::select('status', ['Available' => 'Available', 'Reserved' => 'Reserved', 'Borrowed' => 'Borrowed'], null, ['class' => 'form-control'])}}
+                                    {{Form::select('status', ['-1' => 'Choose One', 'Available' => 'Available', 'Reserved' => 'Reserved', 'Borrowed' => 'Borrowed'], null, ['class' => 'form-control'])}}
                                 </div>
                             </div>
                         {{Form::close()}}

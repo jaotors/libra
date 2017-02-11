@@ -27,6 +27,7 @@ class OpacController extends Controller
     {
         $books = Book::paginate(15);
         $categories = Category::pluck('name', 'id');
+        $categories->prepend("Choose One", -1);
         $user = Auth::user();
 
         $reservations = [];
@@ -53,13 +54,27 @@ class OpacController extends Controller
     {
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
-        $category = Category::findOrFail($request->get('category'));
-        $books = Book::where($searchSelect, 'like', "%$searchQuery%")
-                     ->where('material', $request->get('material'))
-                     ->where('category_id', $category->id)
-                     ->where('status', $request->get('status'))
-                     ->paginate(15);
+        $books = Book::where($searchSelect, 'like', "%$searchQuery%");
+        $material = $request->get('material');
+        $status = $request->get('status');
+        $category = $request->get('category');
+
+        if (isset($material) && $material != -1) {
+            $books = $books->where('material', $material);
+        }
+
+        if (isset($category) && $category != -1) {
+            $category = Category::findOrFail($category);
+            $books = $books->where('category_id', $category->id);
+        }
+
+        if (isset($status) && $status != -1) {
+            $book = $books->where('status', $status);
+        }
+
+        $books = $books->paginate(15);
         $categories = Category::pluck('name', 'id');
+        $categories->prepend("Choose One", -1);
         $user = Auth::user();
 
         $reservations = [];
@@ -71,6 +86,8 @@ class OpacController extends Controller
             $histories = $user->history()->orderBy('created_at', 'DESC')->get();
             $booksBorrowed = $user->borrowed()->get();
         }
+
+        $request->flash();
 
         return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations', 'histories', 'booksBorrowed'));
     }
