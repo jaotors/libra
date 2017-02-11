@@ -65,6 +65,7 @@
             <br>
             <br>
             <h4 style="text-align: right"> Total: {{ number_format($total, 2) }} </h4>
+            <p style="text-align: right; padding: 0; margin: 0;"><strong>Printed By: {{ $auth->last_name }}, {{ $auth->first_name }}</strong></p>
         </div>
     </body>
 </html>

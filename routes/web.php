@@ -79,6 +79,7 @@
         Route::get('reports/book', 'ReportController@bookReport');
         Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
         Route::get('reports/returns', 'ReportController@returnsReport');
+        Route::get('reports/payments', 'ReportController@paymentsReport');
 
         Route::post('changepassword', 'UserController@changePassword');
 
