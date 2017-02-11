@@ -64,6 +64,7 @@ class UserController extends Controller
                 'email' => $request->get('email'),
                 'user_id' => $request->get('user_id'),
                 'password' => bcrypt($request->get('user_id')),
+                'active' => '1',
             ]);
             
             Session::flash('info_message', 'User Successfuly Created');
