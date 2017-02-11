@@ -141,7 +141,7 @@ class OpacController extends Controller
         $book = Book::findOrFail($id);
         $userId = Auth::user()->id;
         $count = Reservation::where('user_id', $userId)->count() + Auth::user()->books()->count();
-        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $studentBooks = Setting::where('title', 'Student Books')->first();
         $employeeBooks = Setting::where('title', 'Employee Books')->first();
         $limit = Auth::user()->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 

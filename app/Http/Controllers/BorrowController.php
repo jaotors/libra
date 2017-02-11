@@ -141,7 +141,7 @@ class BorrowController extends Controller
         $isbn = $request->get('isbn');
         $book = Book::where('isbn', "$isbn")->first();
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $studentBooks = Setting::where('title', 'Student Books')->first();
         $employeeBooks = Setting::where('title', 'Employee Books')->first();
         $limit = $user->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 
