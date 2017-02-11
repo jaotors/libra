@@ -42,7 +42,7 @@ class ReturnController extends Controller
     public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'search_query' => 'required|numeric',
+            'search_query' => 'required',
         ]);
 
         if ($validator->fails()) {

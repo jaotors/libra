@@ -19,15 +19,15 @@
     @stop
     @section('scripts')
         <script>
-        $('#reader').html5_qrcode(function(data){
-            var student_number = data.split("\n")[1];
-            $('#user_id').val(student_number);
-            $('#submit-btn').click();
-        },
-        function(error){
-            console.log(error);
-        }, function(videoError){
-            console.log('Cannot be oppened')
-        });
+                $('#reader').html5_qrcode(function(data){
+                    var student_number = data.split("\n")[1];
+                    $('#user_id').val(student_number);
+                    $('#submit-btn').click();
+                }, function(error){
+                    console.log(error);
+                }, function(videoError){
+                    console.log('Cannot be oppened')
+                });
+
         </script>
     @endsection
