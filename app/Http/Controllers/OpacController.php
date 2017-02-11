@@ -82,13 +82,17 @@ class OpacController extends Controller
      */
     public function reservation()
     {
+        $reservations = [];
+        $histories = [];
+        $booksBorrowed = [];
+
         if (!Auth::check()) {
             return redirect()->to('/login');
         } else {
             $user = Auth::user();
             $books = $user->reservations()->get();
 
-            return view('opac.reservation', compact('books'));
+            return view('opac.reservation', compact('books', 'reservation', 'histories', 'booksBorrowed'));
         }
     }
 
