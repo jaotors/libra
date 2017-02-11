@@ -63,7 +63,7 @@ class UserController extends Controller
                 'department_id' => $request->get('department'),
                 'email' => $request->get('email'),
                 'user_id' => $request->get('user_id'),
-                'password' => bcrypt($request->get('password')),
+                'password' => bcrypt($request->get('user_id')),
             ]);
             
             Session::flash('info_message', 'User Successfuly Created');

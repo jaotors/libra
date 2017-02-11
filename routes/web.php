@@ -26,6 +26,7 @@ Route::group(['prefix' => 'opac', 'as' => 'opac::'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
+    Route::get('/', 'HomeController@homepage');
     Route::get('users', 'UserController@index');
     Route::get('departments', 'DepartmentController@index');
     Route::get('categories', 'CategoryController@index');

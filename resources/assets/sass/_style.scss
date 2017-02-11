@@ -41,6 +41,17 @@ body {
   }
 }
 
+.homepage {
+    padding-top: 50px;
+    text-align: center;
+    .big {
+        font-size: 50px;
+        width: 100%;
+        text-align: center
+    }
+}
+
+
 /* sidenav */
 .sidenav {
   @extend .col-sm-3;
