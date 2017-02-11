@@ -90,7 +90,6 @@ class ReportController extends Controller
     {
         $books = Book::all();
         $pdf = PDF::loadView('admin.report.barcode', compact('books'));
-        $pdf->setPaper('a7');
 
         return @$pdf->stream();
     }

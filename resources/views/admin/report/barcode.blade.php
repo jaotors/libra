@@ -2,10 +2,6 @@
     <head>
     <title>LCCT - Library System Report - Books</title>
         <style>
-            *{
-                margin-left: 2px;
-                margin-top: 2px;
-            }
             .barcode {
                 text-align: center;
                 width: 30px;
@@ -20,7 +16,7 @@
         <div class="content">
             @foreach($books as $book)
                 <span class="barcode">
-                    {!! DNS1D::getBarcodeHTML($book->call_number, "c128"); !!}
+                    {!! DNS1D::getBarcodeHTML($book->isbn, "C128", 1, 100); !!}
                     &nbsp;&nbsp;{{ $book->isbn }}
                 </span>
                 <br>
