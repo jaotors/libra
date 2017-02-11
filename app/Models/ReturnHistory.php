@@ -34,4 +34,14 @@ class ReturnHistory extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Returns the collection containing payment associated with the returns
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

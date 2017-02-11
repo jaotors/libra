@@ -86,6 +86,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
     Route::get('settings', 'SettingController@index');
     Route::get('settings/{id}', 'SettingController@edit');
     Route::put('settings', 'SettingController@update');
+
+    Route::post('payment', 'PaymentController@store');
+    Route::get('payment', 'PaymentController@index');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');

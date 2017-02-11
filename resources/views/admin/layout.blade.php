@@ -58,6 +58,7 @@
                     <li><a href="/logout"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Logout</a></li>
                 </ul>
             </li>
+            <li class="{{ $active_state == 'payment' ? 'active' : '' }}"><a href="/admin/payment"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Payments</a></li>
         </ul>
     </div>
     <div class="main">

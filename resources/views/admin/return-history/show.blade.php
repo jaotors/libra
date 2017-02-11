@@ -37,6 +37,28 @@
                         @endforeach
                     </tbody>
                 </table>
+                <br>
+                <br>
+                @if (!$return->is_paid)
+                    <h4> Pay </h4>
+                    {{Form::open(['url' => '/admin/payment'])}}
+                        <div class="form-group">
+                            {{Form::label('or_number', 'O.R. Number')}}
+                            {{Form::text('or_number')}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('amount', 'Amount')}}
+                            {{Form::text('amount')}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('date', 'Date Paid')}}
+                            {{Form::date('date')}}
+                        </div>
+                        {{Form::hidden('id', $return->id)}}
+                        {{Form::submit('Pay', ['class' => 'btn btn-primary'])}}
+                    {{Form::close()}}
+                @endif
+                <br>
                 <a href="/admin/return-history/{{$return->id}}/print" target="_blank" class="btn btn-primary"><span class="glyphicon glyphicon-print"></span> Print </a>
             </div>
         </div>

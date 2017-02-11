@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReturnHistory;
+use App\Models\Payment;
 use Validator;
 use Session;
 use PDF;
@@ -54,21 +55,5 @@ class ReturnHistoryController extends Controller
         $user = $return->user()->first();
         $pdf = PDF::loadView('admin.return-history.receipt', compact('books', 'user', 'return'));
         return @$pdf->stream();
-    }
-
-    /**
-     * Sets the status of return history to paid
-     *
-     * @param $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pay($id)
-    {
-        $returnHistory = ReturnHistory::find($id);
-        $returnHistory->is_paid = true;
-        $returnHistory->save();
-        Session::flash('info_message', 'Payment Succesful!');
-        return redirect()->back();
     }
 }
