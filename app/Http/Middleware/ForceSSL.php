@@ -16,7 +16,8 @@ class ForceSSL
     public function handle($request, Closure $next)
     {
 
-        if (!$request->secure()) {
+        $header = $request::header('x-forwarded-proto') <> 'https';
+        if ($header && !App::environment('local', 'staging')) {
             return redirect()->secure($request->getRequestUri());
         }
 
