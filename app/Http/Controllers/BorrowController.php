@@ -7,12 +7,14 @@ use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\Reservation;
 use App\Models\Setting;
+use App\Models\Holiday;
 use Illuminate\Http\Request;
 use Validator;
 use Session;
 use Auth;
 use PDF;
 use App\Models\Log;
+use App\Models\Holidays;
 
 class BorrowController extends Controller
 {
@@ -114,11 +116,15 @@ class BorrowController extends Controller
 
             $borrow = new Borrow();
             $book->status = 'Borrowed';
-            $book->save();
+            #$book->save();
 
             $borrow->user_id = $user->id;
             $borrow->book_id = $book->id;
-            $borrow->return_date = date('Y-m-d', strtotime("+$period days"));
+            $return_date = date('Y-m-d', strtotime("+$period days"));
+            while (!$this->isValidReturnDate($return_date)) {
+                $return_date = date('Y-m-d', strtotime("$return_date +1 days"));
+            }
+            $borrow->return_date = $return_date;
             $borrow->save();
         }
 
@@ -231,5 +237,32 @@ class BorrowController extends Controller
         $pdf = PDF::loadView('admin.borrow.receipt', compact('books', 'user', 'auth'));
 
         return @$pdf->stream();
+    }
+
+    /**
+     * Computes for the valid returnDate
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function isValidReturnDate($date)
+    {
+        $holidays = Holiday::all();
+        $date = new \DateTime($date);
+
+        if ($date->format('N') > 6) {
+            return false;
+        }
+
+        foreach ($holidays as $holiday) {
+            $holiday_date = new \DateTime($holiday->date);
+
+            if ($holiday_date->format('Y-m-d') == $date->format('Y-m-d')) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

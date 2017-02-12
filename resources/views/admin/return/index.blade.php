@@ -40,7 +40,7 @@
                             <th>Year</th>
                             <th>Penalty</th>
                             <th>Return Date </th>
-                            <th> Borrowed Date </th>
+                            <th>Borrowed Date</th>
                             <th>Set for Return</th>
                         </tr>
                     </thead>
