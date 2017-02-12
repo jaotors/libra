@@ -43,6 +43,7 @@ class BookController extends Controller
             'year' => 'required|size:4',
             'author' => 'required',
             'isbn' => 'required|size:13',
+            'call_number' => 'required',
             'publisher' => 'required',
             'material' => 'required',
         ]);
@@ -128,7 +129,11 @@ class BookController extends Controller
             'name' => 'required',
             'year' => 'required|size:4',
             'author' => 'required',
-            'isbn' => 'required|size:13'
+            'isbn' => 'required|size:13',
+            'call_number' => 'required',
+            'publisher' => 'required',
+            'material' => 'required',
+ 
         ]);
 
         if ($validator->fails()) {

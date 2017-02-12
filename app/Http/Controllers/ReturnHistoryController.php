@@ -43,7 +43,7 @@ class ReturnHistoryController extends Controller
     }
 
     /**
-     * Prints the receipt needed after borrowing the book
+     * Prints the receipt needed after returning the book
      *
      * @param $id
      *

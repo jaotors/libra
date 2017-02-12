@@ -85,6 +85,7 @@
                             <td>
                                 <a class="edit" href="/admin/user/{{$user->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a href="/admin/user/{{$user->id}}/forgot"><span class="glyphicon glyphicon-question-sign"></span></a>
+                                <a href="/admin/user/{{$user->id}}/book"><span class="glyphicon glyphicon-book"></span></a>
                             </td>
                         </tr>
                     @endforeach

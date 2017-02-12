@@ -98,6 +98,8 @@
 
         Route::get('import', 'ImportController@index');
         Route::post('import', 'ImportController@upload');
+        Route::get('user/{id}/book', 'UserController@books');
+        Route::get('borrow/{id}/print', 'BorrowController@printReceipt');
     });
 
     Route::get('logout', 'Auth\LoginController@logout');

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Validator;
 use Session;
 use Auth;
+use PDF;
 
 class BorrowController extends Controller
 {
@@ -121,7 +122,7 @@ class BorrowController extends Controller
         }
 
         Session::flash('info_message', 'You have successfuly borrowed the book');
-        return redirect()->back();
+        return redirect()->to("/admin/user/$user->id/book");
     }
 
     /**
@@ -206,5 +207,22 @@ class BorrowController extends Controller
 
         Session::flash('info_message', 'Book succesfuly removed from reservation');
         return redirect()->back();
+    }
+
+    /**
+     * Prints the receipt needed after borrowing the book
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function printReceipt($id)
+    {
+        $user = User::findOrFail($id);
+        $books = $user->books()->get();
+        $auth = Auth::user();
+        $pdf = PDF::loadView('admin.borrow.receipt', compact('books', 'user', 'auth'));
+
+        return @$pdf->stream();
     }
 }

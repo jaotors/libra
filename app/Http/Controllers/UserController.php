@@ -239,4 +239,18 @@ class UserController extends Controller
 
         return $csv->output('users.csv');
     }
+
+    /**
+     * Shows the borrowed books of the user
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function books($id)
+    {
+        $user = User::findOrFail($id);
+        $books = $user->books()->get();
+        $active_state = 'user';
+        return view('admin.user.book', compact('books', 'user', 'active_state'));
+    }
 }
