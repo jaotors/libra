@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Payment;
 use App\Models\ReturnHistory;
+use App\Models\User;
 use Validator;
 use Session;
 use App\Models\Log;
