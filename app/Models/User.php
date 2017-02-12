@@ -91,4 +91,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(ReturnHistory::class);
     }
+
+    /**
+     * Returns true if the user has dues, else false
+     *
+     * @return bool
+     */
+    public function hasDues()
+    {
+        $books = $this->borrowed()->get();
+
+        foreach ($books as $book) {
+            if (computeForPenalty($book) != 0) {
+                return true;
+            }
+        }
+
+        $histories = $this->history()->get();
+
+        foreach ($histories as $history) {
+            if (!$history->is_paid) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

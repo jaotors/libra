@@ -138,6 +138,14 @@ class OpacController extends Controller
      */
     public function reserve($id)
     {
+        $user = Auth::user();
+        if ($user->hasDues) {
+            Session::flash('info_message', 'Book has already been reserved');
+            Session::flash('alert-class', 'alert-danger');
+
+            return redirect()->back();
+        }
+
         $book = Book::findOrFail($id);
         $userId = Auth::user()->id;
         $count = Reservation::where('user_id', $userId)->count() + Auth::user()->books()->count();
