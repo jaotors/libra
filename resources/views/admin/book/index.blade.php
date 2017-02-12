@@ -68,6 +68,7 @@
         <div class="box-container books">
             <h2 class="title add">Book List <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a></h2>
             <div class="box-content">
+                <a href="/admin/csv/books" class="btn btn-success" target="_blank"><span class="glyphicon glyphicon-download"> </span> Export </a>
                 <table class="table data-table table-hover">
                     <thead>
                         <tr>

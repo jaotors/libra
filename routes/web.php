@@ -92,7 +92,9 @@
         Route::get('user/{id}/forgot', 'UserController@showForgotPassword');
         Route::put('user/forgot-password', 'UserController@updatePassword');
 
-        Route::get('/attendance', 'AttendanceController@index');
+        Route::get('attendance', 'AttendanceController@index');
+        Route::get('csv/users', 'UserController@export');
+        Route::get('csv/books', 'BookController@export');
     });
 
     Route::get('logout', 'Auth\LoginController@logout');

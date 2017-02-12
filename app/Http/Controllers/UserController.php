@@ -223,4 +223,20 @@ class UserController extends Controller
         Session::flash('info_message', 'Change password success');
         return redirect()->to('/admin/users');
     }
+
+    /**
+     * Export to csv
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+        $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+
+        User::all()->each(function ($user) use ($csv) {
+            $csv->insertOne($user->toArray());
+        });
+
+        return $csv->output('users.csv');
+    }
 }

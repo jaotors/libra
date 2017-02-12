@@ -172,4 +172,20 @@ class BookController extends Controller
         Session::flash('info_message', 'Book Sucessfuly Restored');
         return redirect()->to('/admin/weeds');
     }
+
+    /**
+     * Export to csv
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+        $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+
+        Book::all()->each(function ($book) use ($csv) {
+            $csv->insertOne($book->toArray());
+        });
+
+        return $csv->output('books.csv');
+    }
 }
