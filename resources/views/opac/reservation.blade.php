@@ -8,7 +8,6 @@
             <th>Category</th>
             <th>Author</th>
             <th>Date Reserved</th>
-            <th>Date Expiration</th>
             <th>Remove</th>
         </tr>
     </thead>
@@ -24,7 +23,6 @@
                 <td>{{$reservation->category()->first()->name}}</td>
                 <td>{{$reservation->author}}</td>
                 <td>{{$reservation->created_at->format('Y-m-d h:i:s A')}}</td>
-                <td>{{$reservation->return_date}}</td>
                 <td><a class="delete" href="/opac/book/{{$reservation->id}}/remove"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         @endforeach
