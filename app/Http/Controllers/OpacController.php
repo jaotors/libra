@@ -139,7 +139,7 @@ class OpacController extends Controller
     public function reserve($id)
     {
         $user = Auth::user();
-        if ($user->hasDues) {
+        if ($user->hasDues()) {
             Session::flash('info_message', 'Book has already been reserved');
             Session::flash('alert-class', 'alert-danger');
 
