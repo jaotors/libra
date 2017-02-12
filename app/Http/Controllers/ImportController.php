@@ -62,9 +62,10 @@ class ImportController extends Controller
             $res = $csv->fetchAll();
             for ($index = 0; $index < count($res); ++$index) {
                 $row = $res[$index];
-                $user = User::find($row[0]);
+                $user = User::where('user_id', $row[4])->get();
 
-                if ($user) {
+                if (count($user) != 0) {
+                    $user = $user->first();
                     $user->active = true;
                     $user->save();
                 } else {
