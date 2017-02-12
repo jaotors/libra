@@ -40,6 +40,7 @@
                             <th>Year</th>
                             <th>Penalty</th>
                             <th>Return Date </th>
+                            <th> Borrowed Date </th>
                             <th>Set for Return</th>
                         </tr>
                     </thead>
@@ -53,6 +54,7 @@
                                         <td>{{$book->year}}</td>
                                         <td>{{number_format(computeForPenalty($book), 2)}}</td>
                                         <td>{{date('Y-m-d', strtotime($book->pivot->return_date))}}</td>
+                                        <td>{{date('Y-m-d', strtotime($book->pivot->created_at))}}</td>
                                         <td>{{ Form::checkbox('books[]', $book->id) }}</td>
                                     </tr>
                                 @endif
