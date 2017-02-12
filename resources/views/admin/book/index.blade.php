@@ -82,6 +82,7 @@
                             <th>Category</th>
                             <th>Author</th>
                             <th>Status</th>
+                            <th> User </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -98,6 +99,13 @@
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
                                 <td>{{$book->status}}</td>
+                                <td> 
+                                    @if ($book->status == 'Borrowed')
+                                        {{$book->borrower()->first()->last_name . ' ' . $book->borrower()->first()->first_name}}
+                                    @elseif ($book->status == 'Reserved')
+                                        {{$book->reservation()->first()->last_name . ' ' . $book->reservation()->first()->first_name}}
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="edit" href="/admin/book/{{$book->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a class="delete" href="/admin/book/{{$book->id}}/delete"><span class="glyphicon glyphicon-trash"></span></a>

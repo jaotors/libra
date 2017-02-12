@@ -59,7 +59,6 @@
                                 <td>{{ $holiday->type }}</td>
                                 <td>
                                     <a class="edit" href="/admin/holiday/{{ $holiday->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="delete" href="/admin/holiday/{{ $holiday->id }}/delete"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
                         @endforeach

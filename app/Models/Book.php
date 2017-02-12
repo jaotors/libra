@@ -42,4 +42,13 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class, 'book_user')->withPivot('return_date', 'created_at')->withTimestamps();
     }
+
+    /**
+     * Returns the collection containing user object
+     * associated with the book borrowed
+     */
+    public function reservation()
+    {
+        return $this->belongsToMany(User::class, 'reservations');
+    }
 }

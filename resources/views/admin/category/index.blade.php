@@ -47,7 +47,6 @@
                                 <td>{{$category->created_at}}</td>
                                 <td>
                                     <a class="edit" href="/admin/category/{{$category->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="delete" href="/admin/category/{{$category->id}}/delete"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>
                         @endforeach
