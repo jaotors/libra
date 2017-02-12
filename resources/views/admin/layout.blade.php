@@ -52,6 +52,7 @@
             <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
             <li class="{{ $active_state == 'payment' ? 'active' : '' }}"><a href="/admin/payment"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Payments</a></li>
             <li class="{{ $active_state == 'attendance' ? 'active' : '' }}"><a href="/admin/attendance"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attendance</a></li>
+            <li class="{{ $active_state == 'import' ? 'active' : '' }}"><a href="/admin/import"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>Import</a></li>
             <li class="dropdown {{ $active_state == 'account'? 'down' : '' }} {{ $active_state == 'settings' ? 'down' : '' }}">
                 <a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Account</a>
                 <ul>

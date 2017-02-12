@@ -95,6 +95,9 @@
         Route::get('attendance', 'AttendanceController@index');
         Route::get('csv/users', 'UserController@export');
         Route::get('csv/books', 'BookController@export');
+
+        Route::get('import', 'ImportController@index');
+        Route::post('import', 'ImportController@upload');
     });
 
     Route::get('logout', 'Auth\LoginController@logout');
