@@ -80,6 +80,7 @@
         Route::get('reports/barcode', 'ReportController@bookBarcodeReport');
         Route::get('reports/returns', 'ReportController@returnsReport');
         Route::get('reports/payments', 'ReportController@paymentsReport');
+        Route::get('reports/logs', 'ReportController@logsReport');
 
         Route::post('changepassword', 'UserController@changePassword');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Borrow;
+use App\Models\Log;
 use App\Models\ReturnHistory;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -109,6 +110,14 @@ class ReturnController extends Controller
             $borrow = Borrow::where('book_id', $book->id);
             $borrow->delete();
         }
+
+        $user = User::find($userId);
+
+        $logs = new Log();
+        $logs->user_id = $user->id;
+        $logs->role_id = $user->role_id;
+        $logs->action = "Return";
+        $logs->save();
 
         Session::flash('info_message', 'Books have been return succesfuly');
         return redirect()->to("/admin/return-history/$return->id");

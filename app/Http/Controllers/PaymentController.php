@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\ReturnHistory;
 use Validator;
 use Session;
+use App\Models\Log;
 
 class PaymentController extends Controller
 {
@@ -62,6 +63,14 @@ class PaymentController extends Controller
             'or_number' => $request->get('or_number'),
             'payment_date' => $request->get('date'),
         ]);
+
+        $user = User::find($returnHistory->user_id);
+
+        $logs = new Log();
+        $logs->user_id = $user->id;
+        $logs->role_id = $user->role_id;
+        $logs->action = "Pay";
+        $logs->save();
 
         Session::flash('info_message', 'Payment Succesful!');
         return redirect()->back();

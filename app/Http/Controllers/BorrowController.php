@@ -12,6 +12,7 @@ use Validator;
 use Session;
 use Auth;
 use PDF;
+use App\Models\Log;
 
 class BorrowController extends Controller
 {
@@ -120,6 +121,12 @@ class BorrowController extends Controller
             $borrow->return_date = date('Y-m-d', strtotime("+$period days"));
             $borrow->save();
         }
+
+        $logs = new Log();
+        $logs->user_id = $user->id;
+        $logs->role_id = $user->role_id;
+        $logs->action = "Borrow";
+        $logs->save();
 
         Session::flash('info_message', 'You have successfuly borrowed the book');
         return redirect()->to("/admin/user/$user->id/book");

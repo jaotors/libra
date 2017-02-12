@@ -49,7 +49,7 @@
             </li>
             <li class="{{ $active_state == 'holidays' ? 'active' : '' }}"><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
             <li class="{{ $active_state == 'reports' ? 'active' : '' }}"><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
-            <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
+            <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Transaction History</a></li>
             <li class="{{ $active_state == 'payment' ? 'active' : '' }}"><a href="/admin/payment"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Payments</a></li>
             <li class="{{ $active_state == 'attendance' ? 'active' : '' }}"><a href="/admin/attendance"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attendance</a></li>
             <li class="{{ $active_state == 'import' ? 'active' : '' }}"><a href="/admin/import"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>Import</a></li>

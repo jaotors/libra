@@ -11,6 +11,8 @@
                     <thead>
                         <tr>
                             <th>User Number</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>User Type</th>
                             <th>Action</th>
                             <th>Date</th>
@@ -20,6 +22,8 @@
                         @foreach($logs as $log)
                             <tr>
                                 <td>{{$log->user()->first()->user_id}}</td>
+                                <td>{{$log->user()->first()->first_name}}</td>
+                                <td>{{$log->user()->first()->last_name}}</td>
                                 <td>{{$log->user()->first()->role()->first()->name}}</td>
                                 <td>{{strtoupper($log->action)}}</td>
                                 <td>{{$log->created_at->format('Y-m-d h:i:s A')}}</td>

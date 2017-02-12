@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Book;
 use App\Models\Payment;
 use App\Models\ReturnHistory;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -115,7 +116,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Displays the paymentss report
+     * Displays the payments report
      *
      * @param \Illuminate\Http\Request
      *
@@ -129,6 +130,24 @@ class ReportController extends Controller
 
         $payments = Payment::whereBetween('created_at', [$from, $to])->get();
         $pdf = PDF::loadView('admin.report.payment', compact('payments', 'auth', 'from', 'to'));
+        return @$pdf->stream();
+    }
+
+    /**
+     * Displays the payments report
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     **/
+    public function logsReport(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $auth = Auth::user();
+
+        $logs = Log::whereBetween('created_at', [$from, $to])->get();
+        $pdf = PDF::loadView('admin.report.log', compact('logs', 'auth', 'from', 'to'));
         return @$pdf->stream();
     }
 }

@@ -33,32 +33,32 @@
             Tanauan City, Batangas 4232 <br>
             Telephone: (043) 778-1020 <br>
             Fax: (043) 778-8850 <br>
-            Payments Report from: <br>{{$from}} to: {{$to}}<br> <br>
-                <table class="table data-table table-hover">
+            Transaction History Report from: <br>{{$from}} to: {{$to}}<br> <br>
+            <table class="logs-table table data-table table-hover">
                     <thead>
                         <tr>
-                            <th>Payment ID</th>
+                            <th>User Number</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>OR Number</th>
-                            <th>Amount</th>
-                            <th>Payment Date</th>
+                            <th>User Type</th>
+                            <th>Action</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($payments as $payment)
+                        @foreach($logs as $log)
                             <tr>
-                                <td>{{str_pad($payment->id, 5, '0', STR_PAD_LEFT)}}</td>
-                                <td>{{$payment->user()->first()->first_name}}</td>
-                                <td>{{$payment->user()->first()->last_name}}</td>
-                                <td>{{$payment->or_number}}</td>
-                                <td>{{number_format($payment->amount, 2)}}</td>
-                                <td>{{$payment->payment_date->format('Y-m-d')}}</td>
+                                <td>{{$log->user()->first()->user_id}}</td>
+                                <td>{{$log->user()->first()->first_name}}</td>
+                                <td>{{$log->user()->first()->last_name}}</td>
+                                <td>{{$log->user()->first()->role()->first()->name}}</td>
+                                <td>{{strtoupper($log->action)}}</td>
+                                <td>{{$log->created_at->format('Y-m-d h:i:s A')}}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($payments) }}</strong></p>
+            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($logs) }}</strong></p>
             <p style="text-align: right; padding: 0; margin: 0;"><strong>Printed By: {{ $auth->last_name }}, {{ $auth->first_name }}</strong></p>
             <p style="text-align: right; padding: 0; margin: 0;"><strong>{{$auth->role()->first()->name}}</strong></p>
         </div>
