@@ -140,7 +140,7 @@ class OpacController extends Controller
     {
         $user = Auth::user();
         if ($user->hasDues()) {
-            Session::flash('info_message', 'Book has already been reserved');
+            Session::flash('info_message', 'You have outstanding due\'s. please settle first your penalties');
             Session::flash('alert-class', 'alert-danger');
 
             return redirect()->back();

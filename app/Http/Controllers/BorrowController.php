@@ -81,6 +81,14 @@ class BorrowController extends Controller
     {
 
         $user = User::findOrFail($id);
+
+        if ($user->hasDues()) {
+            Session::flash('info_message', 'You have outstanding due\'s. please settle first your penalties');
+            Session::flash('alert-class', 'alert-danger');
+
+            return redirect()->back();
+        }
+
         $books = $user->reservations()->get();
 
         $studentNumberOfBooks = Setting::where('title', 'Student Books')->first()->value;
@@ -138,6 +146,12 @@ class BorrowController extends Controller
         }
 
         $user = User::findOrFail($request->get('user_id'));
+        if ($user->hasDues()) {
+            Session::flash('info_message', 'You have outstanding due\'s. please settle first your penalties');
+            Session::flash('alert-class', 'alert-danger');
+
+            return redirect()->back();
+        }
         $isbn = $request->get('isbn');
         $book = Book::where('isbn', "$isbn")->first();
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
