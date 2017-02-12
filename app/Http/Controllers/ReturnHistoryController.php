@@ -7,6 +7,7 @@ use App\Models\Payment;
 use Validator;
 use Session;
 use PDF;
+use Auth;
 
 class ReturnHistoryController extends Controller
 {
