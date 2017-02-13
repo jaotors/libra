@@ -14,7 +14,7 @@ class CreateBookReturnTable extends Migration
     public function up()
     {
         Schema::create('book_return', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('return_id')->unsigned();
             $table->integer('book_id')->unsigned();
             $table->decimal('penalty', 8, 2);

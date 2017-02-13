@@ -14,7 +14,7 @@ class AddActiveOnUserTable extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->boolean('active');
+            $table->boolean('active')->default(false);
         });
     }
 

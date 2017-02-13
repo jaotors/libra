@@ -42,7 +42,9 @@ class BookController extends Controller
             'name' => 'required',
             'year' => 'required|size:4',
             'author' => 'required',
-            'isbn' => 'required|size:13'
+            'isbn' => 'required|size:13',
+            'publisher' => 'required',
+            'material' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -59,6 +61,9 @@ class BookController extends Controller
                 'summary' => $request->get('summary'),
                 'category_id' => $request->get('category'),
                 'call_number' => $request->get('call_number'),
+                'publisher' => $request->get('publisher'),
+                'material' => $request->get('material'),
+                'location' => $request->get('location'),
                 'status' => 'Available',
             ]);
 
@@ -138,6 +143,9 @@ class BookController extends Controller
             $book->author = $request->get('author');
             $book->isbn = $request->get('isbn');
             $book->call_number = $request->get('call_number');
+            $book->publisher = $request->get('publisher');
+            $book->material = $request->get('material');
+            $book->location = $request->get('location');
             $book->summary = $request->get('summary');
             $book->category_id = $request->get('category');
             $book->status = $request->get('status');

@@ -35,10 +35,13 @@
                     {{Form::open(['method' => 'get', 'url' => 'admin/borrow/search'])}}
                         <div class="search-input">
                             <div class="form-group search-q">
-                                {{Form::text('search_query', null, ['class' => 'form-control', 'placeholder' => 'User Number'])}}
+                                @if(is_null($user))
+                                    <div id="reader" style="width:300px;height:250px; margin:auto; display:block;"></div>
+                                @endif
+                                {{Form::text('search_query', null, ['class' => 'form-control', 'placeholder' => 'User ID', 'id' => "user_id"])}}
                             </div>
                             <div class="btn-container">
-                                {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
+                                {{Form::submit('Search', ['class' => 'btn btn-primary btn-search', 'id' => 'submit-btn'])}}
                             </div>
                         </div>
                     {{Form::close()}}
@@ -74,7 +77,7 @@
                                         {{Form::open(['url' => '/admin/borrow/remove/book'])}}
                                             {{Form::hidden('id', $book->id)}}
                                             {{Form::hidden('user_id', $user->id)}}
-                                            {{Form::submit('Remove')}}
+                                            {{Form::submit('x')}}
                                         {{Form::close()}}
                                     </td>
                                 </tr>
@@ -86,10 +89,57 @@
                         @endif
                     </tbody>
                 </table>
-                @if(count($books) > 0)
+                @if (count($histories))
+                    <h3 class="title add">
+                        <span>Unpaid Penalties</span> 
+                    </h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Access Number</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Penalty </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($histories as $history)
+                                @foreach($history->books as $book)
+                                    @if ($book->pivot->penalty != 0)
+                                    <tr>
+                                        <td>
+                                            {{str_pad($book->id, 5, '0', STR_PAD_LEFT)}}
+                                        </td>
+                                        <td>{{$book->name}}</td>
+                                        <td>{{$book->category()->first()->name}}</td>
+                                        <td>{{number_format($book->pivot->penalty, 2)}} </td>
+                                        <td>
+                                    </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+                @if (count($books) > 0)
                     <p><a href="/admin/borrow/{{ $user->id }}/borrow" class="btn btn-success btn-borrow">Borrow</a></p>
                 @endif
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    @if(is_null($user))
+        <script>
+            $('#reader').html5_qrcode(function(data){
+                var student_number = data.split("\n")[1];
+                $('#user_id').val(student_number);
+                $('#submit-btn').click();
+            }, function(error){
+                console.log(error);
+            }, function(videoError){
+                console.log('Cannot be oppened')
+            });
+        </script>
+    @endif
 @endsection

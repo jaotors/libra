@@ -37,18 +37,6 @@
                                     <h4>Book Publisher</h4>
                                     <p class="book-publisher">Book Publisher</p>
                                 </section>
-                                <section>
-                                    <h4>Book Edition</h4>
-                                    <p class="book-edition num">14th</p>
-                                </section>
-                                <section>
-                                    <h4>Location</h4>
-                                    <p class="location">Location location</p>
-                                </section>
-                                <section>
-                                    <h4>Book Quantity</h4>
-                                    <p class="num book-quantity">14</p>
-                                </section>
                             </div>
                             <div class="col-md-6">
                                 <section>
@@ -60,26 +48,20 @@
                                     <p class="status"></p>
                                 </section>
                                 <section>
-                                    <h4>Purchase Price</h4>
-                                    <p class="num purchase-price">3141.5</p>
+                                    <h4>Material</h4>
+                                    <p class="material"></p>
                                 </section>
                                 <section>
-                                    <h4>Purchase Date</h4>
-                                    <p class="num purchase-date">2016-03-14</p>
-                                </section>
-                                <section>
-                                    <h4>Pages</h4>
-                                    <p class="num pages">314</p>
-                                </section>
-                                <section>
-                                    <h4>Call Number</h4>
-                                    <p class="num call-number">09314152417</p>
+                                    <h4>Location</h4>
+                                    <p class="location">Location location</p>
                                 </section>
                             </div>
                         </div>
                         <ul class="links">
                             <li><a data-dismiss="modal" aria-label="Close" class="btn btn-danger">Back</a></li>
-                            <li><a class="for-avail btn btn-primary" href="">Reserve</a></li>
+                            @if(Auth::check())
+                                <li><a class="for-avail btn btn-primary" href="">Reserve</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -90,8 +72,11 @@
         <div class="box-container">
             <ul class="title-tab">
                 <li class="active"><a href="#book" role="tab" data-toggle="tab" aria-controls="book" aria-expanded="true">Book List</a></li>
-                <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
-                <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true">Borrowed List</a></li>
+                @if (Auth::check()) 
+                    <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
+                    <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true"> Current Books </a> </li>
+                    <li><a href="#borrowed" role="tab" data-toggle="tab" aria-controls="borrowed" aria-expanded="true">Borrow History</a></li>
+                @endif
             </ul>
             <div class="tab-content">
                 <div class="box-content tab-pane fade active in" id="book" aria-labelledby="book-tab">
@@ -104,8 +89,23 @@
                                 <div class="form-group search-select">
                                     {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'isbn' => 'ISBN'], null, ['class' => 'form-control'])}}
                                 </div>
+
                                 <div class="btn-container">
                                     {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
+                                </div>
+                            </div>
+                            <div class="search-input">
+                                <div class="form-group search-select">
+                                    {{Form::label('material','Material', ['class' => 'control-label'])}}
+                                    {{Form::select('material', ['-1' => 'Choose One','Textbook' => 'Textbook', 'Manuscripts' => 'Manuscripts', 'Periodicals' => 'Periodicals', 'Others' => 'Others'], null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group search-select">
+                                    {{Form::label('category','Category', ['class' => 'control-label'])}}
+                                    {{Form::select('category', $categories, null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group search-select">
+                                    {{Form::label('status','Status', ['class' => 'control-label'])}}
+                                    {{Form::select('status', ['-1' => 'Choose One', 'Available' => 'Available', 'Reserved' => 'Reserved', 'Borrowed' => 'Borrowed'], null, ['class' => 'form-control'])}}
                                 </div>
                             </div>
                         {{Form::close()}}
@@ -121,6 +121,9 @@
                                 <th>Category</th>
                                 <th>Author</th>
                                 <th>Status</th>
+                                <th>Publisher</th>
+                                <th>Location </th>
+                                <th>Material Type</th>
                                 <th>More Info</th>
                             </tr>
                         </thead>
@@ -140,6 +143,9 @@
                                     <td>{{$book->category()->first()->name}}</td>
                                     <td>{{$book->author}}</td>
                                     <td>{{$book->status}}</td>
+                                    <td>{{$book->publisher}}</td>
+                                    <td>{{$book->location}}</td>
+                                    <td>{{$book->material}}</td>
                                     <td><a class="view-book" href="#" data-link="/opac/book/{{$book->id}}/view" data-toggle="modal" data-target=".modal-view"><span class="glyphicon glyphicon-eye-open"></a></td>
                                 </tr>
                             @endforeach
@@ -153,6 +159,9 @@
                 </div>
                 <div class="box-content tab-pane fade" id="reservation" aria-labelledby="reservation-tab">
                     @include('opac/reservation')
+                </div>
+                <div class="box-content tab-pane fade" id="borrowed" aria-labelledby="reservation-tab">
+                    @include('opac/borrowed')
                 </div>
                 <div class="box-content tab-pane fade" id="borrow" aria-labelledby="reservation-tab">
                     @include('opac/borrow')

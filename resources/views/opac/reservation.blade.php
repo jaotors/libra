@@ -24,7 +24,7 @@
                 <td>{{$reservation->category()->first()->name}}</td>
                 <td>{{$reservation->author}}</td>
                 <td>{{$reservation->created_at->format('Y-m-d h:i:s A')}}</td>
-                <td>Test</td>
+                <td>{{$reservation->return_date}}</td>
                 <td><a class="delete" href="/opac/book/{{$reservation->id}}/remove"><span class="glyphicon glyphicon-trash"></span></a></td>
             </tr>
         @endforeach

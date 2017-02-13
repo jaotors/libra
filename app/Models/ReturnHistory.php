@@ -22,7 +22,7 @@ class ReturnHistory extends Model
      */
     public function books()
     {
-        return $this->belongsToMany(Book::class, 'book_return', 'return_id', 'book_id');
+        return $this->belongsToMany(Book::class, 'book_return', 'return_id', 'book_id')->withPivot('penalty');
     }
 
     /**
@@ -33,5 +33,15 @@ class ReturnHistory extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Returns the collection containing payment associated with the returns
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

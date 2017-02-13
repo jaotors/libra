@@ -14,7 +14,7 @@ class CreateBookUserTable extends Migration
     public function up()
     {
         Schema::create('book_user', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('book_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->date('return_date');

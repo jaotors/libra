@@ -21,8 +21,9 @@
             <div class="btn-container">
                 {!! Form::submit('Login', ['class' => 'btn btn-primary btn-login']) !!}
             </div>
-
+            <div class="btn-container">
+                <a href="/opac" class="btn btn-primary btn-login">Go to Opac</a>
+            </div>
         {!! Form::close() !!}
     </div>
-
 @stop

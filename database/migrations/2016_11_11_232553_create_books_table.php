@@ -14,7 +14,7 @@ class CreateBooksTable extends Migration
     public function up()
     {
         Schema::create('books', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->string('name');
             $table->string('year');
             $table->string('isbn');

@@ -48,13 +48,13 @@ class LoginController extends Controller
             $user_id = $request->get('user_id');
             $password = $request->get('password');
 
-            if (Auth::attempt(['user_id' => $user_id, 'password' => $password])) {
+            if (Auth::attempt(['user_id' => $user_id, 'password' => $password, 'active' => true, 'delinquent' => false])) {
                 $this->logs('login');
                 $user = Auth::user();
                 if (Auth::user()->role()->first()->name == "Librarian") {
                     #return var_dump(Auth::user()->role()->first()->name);
                     Session::flash('info_message', "Welcome " . $user->last_name . "," . $user->first_name);
-                    return redirect()->intended('/admin/users');
+                    return redirect()->intended('/admin/');
                 } else if (Auth::user()->role()->first()->name == "Student") {
                     return redirect()->intended('/opac');
                 }
@@ -92,12 +92,12 @@ class LoginController extends Controller
      *
      * @param $action
      */
-    private function logs($action) {
+    private function logs($action)
+    {
         $logs = new Log();
         $logs->user_id = Auth::user()->id;
         $logs->role_id = Auth::user()->role_id;
         $logs->action = $action;
         $logs->save();
     }
-
 }

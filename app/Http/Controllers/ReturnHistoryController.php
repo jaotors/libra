@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Book;
-use App\Models\Borrow;
 use App\Models\ReturnHistory;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
+use App\Models\Payment;
 use Validator;
 use Session;
 use PDF;
@@ -23,7 +19,7 @@ class ReturnHistoryController extends Controller
     /**
      * Displays the return history page
      *
-     * @return \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -35,7 +31,7 @@ class ReturnHistoryController extends Controller
     /**
      * Displays the return history page
      *
-     * @return \Illuminate\Http\Response $response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -58,6 +54,6 @@ class ReturnHistoryController extends Controller
         $books = $return->books()->withPivot('penalty', 'borrowed_date')->get();
         $user = $return->user()->first();
         $pdf = PDF::loadView('admin.return-history.receipt', compact('books', 'user', 'return'));
-        return $pdf->stream();
+        return @$pdf->stream();
     }
 }

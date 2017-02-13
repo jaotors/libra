@@ -11,14 +11,16 @@
                     <thead>
                         <tr>
                             <th>Reports</th>
-                            <th>Type</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            {{Form::open(['url' => 'admin/reports/user', 'target' => '_blank'])}}
+                            {{Form::open(['url' => 'admin/reports/user', 'target' => '_blank', 'method' => 'GET'])}}
                             <td>Users</td>
+                            <td>&nbsp;</td>
                             <td>
                                 {{Form::select('type', ['All', 'Student', 'Librarian', 'Employee'], null, ['class' => 'form-control'])}}
                             </td>
@@ -28,8 +30,9 @@
                             {{Form::close()}}
                         </tr>
                         <tr>
-                            {{Form::open(['url' => 'admin/reports/book', 'target' => '_blank'])}}
+                            {{Form::open(['url' => 'admin/reports/book', 'target' => '_blank', 'method' => 'GET'])}}
                             <td>Books</td>
+                            <td>&nbsp;</td>
                             <td>
                                 {{Form::select('type', ['All', 'Available', 'Unavailable'], null, ['class' => 'form-control'])}}
                             </td>
@@ -41,7 +44,41 @@
                         <tr>
                             <td> Generate Student Barcode </td>
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td>
                             <td><a href="/admin/reports/barcode" class="print-btn" target="_blank"><span class="glyphicon glyphicon-print"></span></a></td>
+                        </tr>
+                        <tr>
+                            {{Form::open(['url' => 'admin/reports/returns', 'target' => '_blank', 'method' => 'GET'])}}
+                            <td> Returns </td>
+                            <td>
+                                {{Form::label('from','From')}}
+                                {{Form::date('from')}}
+                            </td>
+                            <td>
+                                {{Form::label('to','To')}}
+                                {{Form::date('to')}}
+                            </td>
+                            <td>
+                                <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>
+                            </td>
+                            {{Form::close()}}
+                        </tr>
+                        <tr>
+                            {{Form::open(['url' => 'admin/reports/payments', 'target' => '_blank', 'method' => 'GET'])}}
+                            <td> Payments </td>
+                            <td>
+                                {{Form::label('from','From')}}
+                                {{Form::date('from')}}
+                            </td>
+                            <td>
+                                {{Form::label('to','To')}}
+                                {{Form::date('to')}}
+                            </td>
+                            <td>
+                                <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>
+                            </td>
+                            {{Form::close()}}
+                        </tr>
                     </tbody>
                 </table>
             </div>

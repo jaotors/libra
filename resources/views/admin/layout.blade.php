@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Libra</title>
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Inclusion of additional styles -->
     @yield('styles')
@@ -14,7 +14,7 @@
 <body>
 <div class="container-fluid">
     <div class="sidenav">
-        <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
+        <h1 class="logo"><a href="/"><img src="{{ secure_asset('/images/logo.png') }}" alt="LCCT"></a></h1>
         <p class="school-name">La Consolacion College Tanauan</p>
         <p class="address">Tanauan City, Batangas 4232</p>
         <ul class="contact-list">
@@ -23,6 +23,7 @@
             <li>E-mail: <a href="mailto:OLFA_Community@yahoo.com">OLFA_Community@yahoo.com</a></li>
         </ul>
         <ul class="nav">
+            <li class="{{ $active_state == 'homepage' ? 'active' : '' }}"><a href="/admin/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
             <li class="dropdown {{ $active_state == 'users'? 'down' : '' }} {{ $active_state == 'departments'? 'down' : '' }}">
                 <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>User Management</a>
                 <ul>
@@ -49,10 +50,13 @@
             <li class="{{ $active_state == 'holidays' ? 'active' : '' }}"><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
             <li class="{{ $active_state == 'reports' ? 'active' : '' }}"><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
             <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Logs</a></li>
-            <li class="dropdown {{ $active_state == 'account'? 'down' : '' }}">
+            <li class="{{ $active_state == 'payment' ? 'active' : '' }}"><a href="/admin/payment"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Payments</a></li>
+            <li class="{{ $active_state == 'attendance' ? 'active' : '' }}"><a href="/admin/attendance"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Attendance</a></li>
+            <li class="dropdown {{ $active_state == 'account'? 'down' : '' }} {{ $active_state == 'settings' ? 'down' : '' }}">
                 <a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Account</a>
                 <ul>
                     <li><a href="#" data-toggle="modal" data-target=".modal-change-pass"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Change Password</a></li>
+                    <li class="{{ $active_state == 'settings' ? 'active' : '' }}"><a href="/admin/settings"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Settings</a></li>
                     <li><a href="/logout"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Logout</a></li>
                 </ul>
             </li>
@@ -65,11 +69,11 @@
 </div>
 
 <!-- Inclusion of scripts -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/config.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('js/scripts.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('js/config.js') }}"></script>
+<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ secure_asset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ secure_asset('js/scripts.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

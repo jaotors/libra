@@ -56,16 +56,21 @@ class UserController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            User::create([
+            $user = User::create([
                 'first_name'  => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
                 'role_id' => $request->get('role'),
                 'department_id' => $request->get('department'),
                 'email' => $request->get('email'),
                 'user_id' => $request->get('user_id'),
-                'password' => bcrypt($request->get('password')),
+                'password' => Hash::make($request->get('user_id')),
+                'delinquent' => false,
+                'active' => '1',
             ]);
-            
+
+            $user->password = bcrypt($request->get('user_id'));
+            $user->save();
+
             Session::flash('info_message', 'User Successfuly Created');
             return redirect()->back();
         }
@@ -111,6 +116,7 @@ class UserController extends Controller
             ],
             'first_name' => 'required',
             'last_name' => 'required',
+            'active' => 'required',
         ]);
         
         if ($validator->fails()) {
@@ -125,6 +131,8 @@ class UserController extends Controller
             $user->department_id = $request->get('department');
             $user->user_id = $request->get('user_id');
             $user->email = $request->get('email');
+            $user->active = $request->get('active');
+            $user->delinquent = $request->get('delinquent');
             $user->save();
 
             Session::flash('info_message', 'User Successfuly Updated');
@@ -133,7 +141,7 @@ class UserController extends Controller
     }
 
     /**
-     * change password of user
+     * Change password of user
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -160,7 +168,7 @@ class UserController extends Controller
                 ->withInput();
         } else {
             $user = Auth::user();
-            if(Hash::check($request->old_password, $user->password)) {
+            if (Hash::check($request->old_password, $user->password)) {
                 $user->password = Hash::make($request->new_password);
                 $user->save();
 
@@ -172,5 +180,47 @@ class UserController extends Controller
                 return redirect()->back();
             }
         }
+    }
+
+    /**
+     * Show forgot password form
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function showForgotPassword($id)
+    {
+        $user = User::findOrFail($id);
+        $active_state = 'user';
+        return view('admin.user.forgot-password', compact('user', 'active_state'));
+    }
+
+    /**
+     * Show forgot password form
+     *
+     * @param $\Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|confirmed',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::findOrFail($request->get('id'));
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
+        Session::flash('info_message', 'Change password success');
+        return redirect()->to('/admin/users');
     }
 }

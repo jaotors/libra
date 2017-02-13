@@ -11,10 +11,14 @@
                     {{Form::open(['method' => 'get', 'url' => 'admin/return/search'])}}
                     <div class="search-input">
                         <div class="form-group search-q">
-                            {{Form::text('search_query', null, ['class' => 'form-control', 'placeholder' => 'User Number'])}}
+                            @if(is_null($user))
+                                <div id="reader" style="width:300px;height:250px; margin:auto; display:block;"></div>
+                            @endif
+                            {{Form::text('search_query', null, ['class' => 'form-control', 'placeholder' => 'User ID', 'id' => "user_id"])}}
                         </div>
                         <div class="btn-container">
-                            {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}} </div>
+                            {{Form::submit('Search', ['class' => 'btn btn-primary btn-search', 'id' => 'submit-btn'])}}
+                        </div>
                     </div>
                     {{Form::close()}}
                 </div>
@@ -72,4 +76,19 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    @if(is_null($user))
+        <script>
+            $('#reader').html5_qrcode(function(data){
+                var student_number = data.split("\n")[1];
+                $('#user_id').val(student_number);
+                $('#submit-btn').click();
+            }, function(error){
+                console.log(error);
+            }, function(videoError){
+                console.log('Cannot be oppened')
+            });
+        </script>
+    @endif
 @endsection

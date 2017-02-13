@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Book;
 use App\Models\Reservation;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -27,10 +28,20 @@ class OpacController extends Controller
     {
         $books = Book::paginate(15);
         $categories = Category::pluck('name', 'id');
+        $categories->prepend("Choose One", -1);
         $user = Auth::user();
-        $reservations = $user->reservations()->get();
+
+        $reservations = [];
+        $histories = [];
+        $booksBorrowed = [];
         
-        return view('opac.index', compact('books', 'categories', 'reservations'));
+        if (Auth::check()) {
+            $reservations = $user->reservations()->get();
+            $histories = $user->history()->orderBy('created_at', 'DESC')->with('books')->get();
+            $booksBorrowed = $user->borrowed()->get();
+        }
+
+        return view('opac.index', compact('books', 'categories', 'reservations', 'histories', 'booksBorrowed'));
     }
 
     /**
@@ -44,10 +55,42 @@ class OpacController extends Controller
     {
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
-        $books = Book::where($searchSelect, 'like', "%$searchQuery%")->paginate(15);
+        $books = Book::where($searchSelect, 'like', "%$searchQuery%");
+        $material = $request->get('material');
+        $status = $request->get('status');
+        $category = $request->get('category');
+
+        if (isset($material) && $material != -1) {
+            $books = $books->where('material', $material);
+        }
+
+        if (isset($category) && $category != -1) {
+            $category = Category::findOrFail($category);
+            $books = $books->where('category_id', $category->id);
+        }
+
+        if (isset($status) && $status != -1) {
+            $book = $books->where('status', $status);
+        }
+
+        $books = $books->paginate(15);
+        $categories = Category::pluck('name', 'id');
+        $categories->prepend("Choose One", -1);
         $user = Auth::user();
-        $reservations = $user->reservations()->get();
-        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations'));
+
+        $reservations = [];
+        $histories = [];
+        $booksBorrowed = [];
+        
+        if (Auth::check()) {
+            $reservations = $user->reservations()->get();
+            $histories = $user->history()->orderBy('created_at', 'DESC')->get();
+            $booksBorrowed = $user->borrowed()->get();
+        }
+
+        $request->flash();
+
+        return view('opac.index', compact('books', 'categories', 'searchQuery', 'searchSelect', 'reservations', 'histories', 'booksBorrowed'));
     }
 
     /**
@@ -57,13 +100,17 @@ class OpacController extends Controller
      */
     public function reservation()
     {
+        $reservations = [];
+        $histories = [];
+        $booksBorrowed = [];
+
         if (!Auth::check()) {
             return redirect()->to('/login');
         } else {
             $user = Auth::user();
             $books = $user->reservations()->get();
 
-            return view('opac.reservation', compact('books'));
+            return view('opac.reservation', compact('books', 'reservation', 'histories', 'booksBorrowed'));
         }
     }
 
@@ -94,7 +141,9 @@ class OpacController extends Controller
         $book = Book::findOrFail($id);
         $userId = Auth::user()->id;
         $count = Reservation::where('user_id', $userId)->count() + Auth::user()->books()->count();
-        $limit = Auth::user()->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $employeeBooks = Setting::where('title', 'Employee Books')->first();
+        $limit = Auth::user()->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 
         if ($count < $limit) {
             $reservation = new Reservation();
@@ -107,7 +156,7 @@ class OpacController extends Controller
                 $reservation->book_id = $id;
                 $reservation->save();
 
-
+                Session::flash('info_message', 'Book reservation successful');
                 return redirect()->to('/opac');
             } else {
                 Session::flash('info_message', 'Book has already been reserved');

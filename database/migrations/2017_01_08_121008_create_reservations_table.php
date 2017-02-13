@@ -14,7 +14,7 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->integer('book_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

@@ -2,8 +2,6 @@ const elixir = require('laravel-elixir');
 
 process.env.DISABLE_NOTIFIER = true;
 
-require('laravel-elixir-vue-2');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management

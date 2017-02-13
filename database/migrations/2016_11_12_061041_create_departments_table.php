@@ -14,7 +14,7 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('departments', function ($table) {
-            $table->increments('id');
+            $table->increments('id', 1);
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

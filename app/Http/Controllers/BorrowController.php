@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Borrow;
 use App\Models\Reservation;
+use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Validator;
 use Session;
 use Auth;
@@ -28,10 +27,11 @@ class BorrowController extends Controller
     public function index()
     {
         $books = [];
+        $histories = [];
         $user = null;
 
         $active_state = 'borrow';
-        return view('admin.borrow.index', compact('books', 'user', 'active_state'));
+        return view('admin.borrow.index', compact('books', 'user', 'active_state', 'histories'));
     }
 
     /**
@@ -44,7 +44,7 @@ class BorrowController extends Controller
     public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'search_query' => 'required|numeric',
+            'search_query' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -62,15 +62,16 @@ class BorrowController extends Controller
                 return redirect()->back();
             }
 
+            $histories = $user->history()->where('is_paid', false)->with('books')->get();
             $books = $user->reservations()->get();
 
             $active_state = 'borrow';
-            return view('admin.borrow.index', compact('books', 'user', 'active_state'));
+            return view('admin.borrow.index', compact('books', 'user', 'active_state', 'histories'));
         }
     }
 
     /**
-     * borrow the book resource
+     * Borrows the book resource
      *
      * @param $id
      *
@@ -82,9 +83,14 @@ class BorrowController extends Controller
         $user = User::findOrFail($id);
         $books = $user->reservations()->get();
 
+        $studentNumberOfBooks = Setting::where('title', 'Student Books')->first()->value;
+        $employeeNumberOfBooks = Setting::where('title', 'Employee Books')->first()->value;
+        $studentBorrowPeriod = Setting::where('title', 'Student Duration')->first()->value;
+        $employeeBorrowPeriod = Setting::where('title', 'Employee Duration')->first()->value;
+        
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
-        $period = $user->type == 1 ? config('app.student_borrow_period') : config('app.employee_borrow_period');
+        $limit = $user->role_id == 1 ? $studentNumberOfBooks : $employeeNumberOfBooks;
+        $period = $user->role_id == 1 ? $studentBorrowPeriod : $employeeBorrowPeriod;
 
         if ($count > $limit) {
             Session::flash('info_message', 'Maximum limit of borrowed book reached');
@@ -121,14 +127,23 @@ class BorrowController extends Controller
     public function reserve(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'isbn' => 'required|numeric',
+            'isbn' => 'required|exists:books',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $user = User::findOrFail($request->get('user_id'));
         $isbn = $request->get('isbn');
         $book = Book::where('isbn', "$isbn")->first();
         $count = Reservation::where('user_id', $user->id)->count() + $user->books()->count();
-        $limit = $user->type == 1 ? config('app.student_number_of_books') : config('app.employee_number_of_books');
+        $studentNumber = Setting::where('title', 'Student Books')->first();
+        $employeeBooks = Setting::where('title', 'Employee Books')->first();
+        $limit = $user->role_id == 1 ? $studentBooks->value : $employeeBooks->value;
 
         if ($count < $limit) {
             $reservation = new Reservation();
