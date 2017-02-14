@@ -53,7 +53,7 @@
                     </ul>
                 @endif
                 <h3 class="title add">
-                    <span>Borrowed Books</span> 
+                    <span>Reserved Books</span> 
                     @if(!is_null($user))
                         <a href="#" data-toggle="modal" data-target=".modal-add"><span class="glyphicon glyphicon-plus"></span></a>
                     @endif
