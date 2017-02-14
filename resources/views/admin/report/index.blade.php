@@ -42,7 +42,7 @@
                             {{Form::close()}}
                         </tr>
                         <tr>
-                            <td> Generate Student Barcode </td>
+                            <td> Generate Book Barcode </td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td><a href="/admin/reports/barcode" class="print-btn" target="_blank"><span class="glyphicon glyphicon-print"></span></a></td>

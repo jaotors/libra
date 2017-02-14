@@ -19,7 +19,14 @@
                         @foreach($settings as $setting)
                             <tr>
                                 <td>{{$setting->title}}</td>
-                                <td>{{$setting->value}}</td>
+                                <td>
+                                    {{$setting->value}} 
+                                    @if($setting->id == 3 || $setting->id == 4)
+                                        Days
+                                    @elseif($setting->id == 5 || $setting->id == 6)
+                                        Pesos
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="edit" href="/admin/settings/{{$setting->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>

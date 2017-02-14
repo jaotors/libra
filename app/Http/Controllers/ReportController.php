@@ -43,6 +43,7 @@ class ReportController extends Controller
         switch ($request->type) {
             case 1:
                 $users = Role::where('name', 'Student')->first()->user;
+                $title = 'Student List';
                 break;
             case 2:
                 $users = Role::where('name', 'Librarian')->first()->user;

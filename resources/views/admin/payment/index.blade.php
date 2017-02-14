@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             <th>Payment ID</th>
-                            <th>Name</th>
+                            <th>Borrower Name</th>
                             <th>Amount</th>
                             <th>OR Number</th>
                             <th>Date Paid</th>

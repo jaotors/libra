@@ -45,9 +45,8 @@
                 <table class="table data-table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Holiday Name</th>
                             <th>Date</th>
-                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -56,7 +55,6 @@
                             <tr>
                                 <td>{{ $holiday->name }}</td>
                                 <td>{{ $holiday->date }}</td>
-                                <td>{{ $holiday->type }}</td>
                                 <td>
                                     <a class="edit" href="/admin/holiday/{{ $holiday->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>

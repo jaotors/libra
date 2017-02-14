@@ -71,7 +71,7 @@
     <div class="flex-container">
         <div class="box-container">
             <ul class="title-tab">
-                <li class="active"><a href="#book" role="tab" data-toggle="tab" aria-controls="book" aria-expanded="true">Book List</a></li>
+                <li class="active"><a href="#book" role="tab" data-toggle="tab" aria-controls="book" aria-expanded="true">OPAC</a></li>
                 @if (Auth::check()) 
                     <li><a href="#reservation" role="tab" data-toggle="tab" aria-controls="reservation" aria-expanded="true">Reserved List</a></li>
                     <li><a href="#borrow" role="tab" data-toggle="tab" aria-controls="borrow" aria-expanded="true"> Current Books </a> </li>
@@ -82,18 +82,6 @@
                 <div class="box-content tab-pane fade active in" id="book" aria-labelledby="book-tab">
                     <div class="searchQuery">
                         {{Form::open(['method' => 'get', 'url' => '/opac/search'])}}
-                            <div class="search-input">
-                                <div class="form-group search-q">
-                                    {{Form::text('search_query', null, ['class' => 'form-control'])}}
-                                </div>
-                                <div class="form-group search-select">
-                                    {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'isbn' => 'ISBN'], null, ['class' => 'form-control'])}}
-                                </div>
-
-                                <div class="btn-container">
-                                    {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
-                                </div>
-                            </div>
                             <div class="search-input">
                                 <div class="form-group search-select">
                                     {{Form::label('material','Material', ['class' => 'control-label'])}}
@@ -108,22 +96,34 @@
                                     {{Form::select('status', ['-1' => 'Choose One', 'Available' => 'Available', 'Reserved' => 'Reserved', 'Borrowed' => 'Borrowed'], null, ['class' => 'form-control'])}}
                                 </div>
                             </div>
+                            <div class="search-input">
+                                <div class="form-group search-q">
+                                    {{Form::text('search_query', null, ['class' => 'form-control'])}}
+                                </div>
+                                <div class="form-group search-select">
+                                    {{Form::select('search_select', ['name' => 'Title', 'author' => 'Author', 'isbn' => 'ISBN'], null, ['class' => 'form-control'])}}
+                                </div>
+
+                                <div class="btn-container">
+                                    {{Form::submit('Search', ['class' => 'btn btn-primary btn-search'])}}
+                                </div>
+                            </div>
                         {{Form::close()}}
                     </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Access Number </th>
-                                <th>Name</th>
-                                <th>Year</th>
+                                <th>Book Title</th>
+                                <th>Copyright</th>
                                 <th>ISBN</th>
                                 <th>Call Number</th>
                                 <th>Category</th>
                                 <th>Author</th>
-                                <th>Status</th>
                                 <th>Publisher</th>
                                 <th>Location </th>
                                 <th>Material Type</th>
+                                <th>Status</th>
                                 <th>More Info</th>
                             </tr>
                         </thead>
@@ -142,9 +142,9 @@
                                     <td>{{$book->call_number}}</td>
                                     <td>{{$book->category()->first()->name}}</td>
                                     <td>{{$book->author}}</td>
-                                    <td>{{$book->status}}</td>
                                     <td>{{$book->publisher}}</td>
                                     <td>{{$book->location}}</td>
+                                    <td>{{$book->status}}</td>
                                     <td>{{$book->material}}</td>
                                     <td><a class="view-book" href="#" data-link="/opac/book/{{$book->id}}/view" data-toggle="modal" data-target=".modal-view"><span class="glyphicon glyphicon-eye-open"></a></td>
                                 </tr>
@@ -154,7 +154,9 @@
                     @if (isset($searchQuery))
                         {{$books->appends(['search_query' => $searchQuery, 'search_select' => $searchSelect])->links()}}
                     @else
-                        {{$books->links()}}
+                        @if(count($books) > 0)
+                            {{$books->links()}}
+                        @endif
                     @endif
                 </div>
                 <div class="box-content tab-pane fade" id="reservation" aria-labelledby="reservation-tab">

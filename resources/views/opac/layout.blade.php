@@ -8,7 +8,7 @@
     <title>Libra</title>
 
     <!-- Fonts -->
-    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
 </head>
@@ -16,9 +16,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="topnav">
-                <h1 class="logo"><a href="/"><img src="{{ secure_asset('/images/logo.png') }}" alt="LCCT"></a></h1>
+                <h1 class="logo"><a href="/"><img src="{{ asset('/images/logo.png') }}" alt="LCCT"></a></h1>
                 <div class="content">
-                    <p>La Consolacion College – Tanauan</p>
+                    <p>Online Library System for La Consolacion College - Tanauan</p>
                     <ul class="nav">
                         <li><a href="/opac">Home</a></li>
                         <li class="drop">
@@ -57,9 +57,9 @@
     </footer>
 </body>
 <!-- Inclusion of scripts -->
-<script src="{{ secure_asset('js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('js/config.js') }}"></script>
-<script src="{{ secure_asset('js/jquery.dataTables.js') }}"></script>
-<script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_asset('js/scripts.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/config.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
 </html>

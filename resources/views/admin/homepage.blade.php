@@ -5,7 +5,7 @@
     @include('info')
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title add">Welcome! {{Auth::user()->first_name . ' ' . Auth::user()->last_name}}</h2>
+            <h2 class="title add">Welcome {{Auth::user()->role()->first()->name}}!</h2>
             <div class="box-content">
                 <div class="row homepage">
                     <div class="col-md-4">
