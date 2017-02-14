@@ -39,14 +39,9 @@
                     <li class="{{ $active_state == 'weeds' ? 'active' : '' }}"><a href="/admin/weeds"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Weeding</a></li>
                 </ul>
             </li>
-            <li class="dropdown {{ $active_state == 'borrow'? 'down' : '' }} {{ $active_state == 'return'? 'down' : '' }} {{ $active_state == 'return-history'? 'down' : '' }}">
-                <a href="#"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>Basic Transaction</a>
-                <ul>
-                    <li class="{{ $active_state == 'borrow' ? 'active' : '' }}"><a href="/admin/borrow"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Borrow</a></li>
-                    <li class="{{ $active_state == 'return' ? 'active' : '' }}"><a href="/admin/return"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Return</a></li>
-                    <li class="{{ $active_state == 'return-history' ? 'active' : '' }}"><a href="/admin/return-history"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Return History</a></li>
-                </ul>
-            </li>
+            <li class="{{ $active_state == 'borrow' ? 'active' : '' }}"><a href="/admin/borrow"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>Borrow</a></li>
+            <li class="{{ $active_state == 'return' ? 'active' : '' }}"><a href="/admin/return"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>Return</a></li>
+            <li class="{{ $active_state == 'return-history' ? 'active' : '' }}"><a href="/admin/return-history"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Return History</a></li>
             <li class="{{ $active_state == 'holidays' ? 'active' : '' }}"><a href="/admin/holidays"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Holidays</a></li>
             <li class="{{ $active_state == 'reports' ? 'active' : '' }}"><a href="/admin/reports"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>Reports</a></li>
             <li class="{{ $active_state == 'logs' ? 'active' : '' }}"><a href="/admin/logs"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span>Transaction History</a></li>

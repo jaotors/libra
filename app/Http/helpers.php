@@ -75,3 +75,16 @@ function computeForPenalty(App\Models\Book $book)
 
     return ($diff - $notCountedDays) * $multiplier;
 }
+
+
+/**
+ * Get number of copies
+ *
+ * @param App\Models\Book
+ *
+ * @return int
+ */
+function noOfCopies(App\Models\Book$book)
+{
+    return App\Models\Book::where('name', $book->name)->count();
+}

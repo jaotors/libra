@@ -116,7 +116,7 @@ class BorrowController extends Controller
 
             $borrow = new Borrow();
             $book->status = 'Borrowed';
-            #$book->save();
+            $book->save();
 
             $borrow->user_id = $user->id;
             $borrow->book_id = $book->id;

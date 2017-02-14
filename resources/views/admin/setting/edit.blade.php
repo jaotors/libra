@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         {{Form::label('value','Value', ['class' => 'control-label'])}}
-                        {{Form::text('value', null, ['class' => 'form-control'])}}
+                        {{Form::text('value', null, ['class' => 'form-control', 'min' => '1'])}}
                     </div>
                 </div>
                 <p class="btn-container two-buttons">

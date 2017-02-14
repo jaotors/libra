@@ -44,19 +44,40 @@ class ReportController extends Controller
             case 1:
                 $users = Role::where('name', 'Student')->first()->user;
                 $title = 'Student List';
+                $pdf = PDF::loadView('admin.report.user', compact('users', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 2:
                 $users = Role::where('name', 'Librarian')->first()->user;
+                $title = 'Librarian List';
+                $pdf = PDF::loadView('admin.report.user', compact('users', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 3:
                 $users = Role::where('name', 'Employee')->first()->user;
+                $title = 'Employee List';
+                $pdf = PDF::loadView('admin.report.user', compact('users', 'auth', 'title'));
+                return @$pdf->stream();
+                break;
+            case 4:
+                $users = User::where('active', true)->get();
+                $title = 'Active Users';
+                $pdf = PDF::loadView('admin.report.active', compact('users', 'auth', 'title'));
+                return @$pdf->stream();
+                break;
+            case 5:
+                $users = User::where('active', false)->get();
+                $title = 'Inactive Users';
+                $pdf = PDF::loadView('admin.report.active', compact('users', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             default:
                 $users = User::all();
+                $title = 'All Users';
                 break;
         }
 
-        $pdf = PDF::loadView('admin.report.userreport', compact('users', 'auth'));
+        $pdf = PDF::loadView('admin.report.userreport', compact('users', 'auth', 'title'));
         return @$pdf->stream();
     }
 
@@ -75,6 +96,9 @@ class ReportController extends Controller
                 break;
             case 2:
                 $books = Book::onlyTrashed()->get();
+                break;
+            case 3:
+                $books = Book::where('status', 'Borrowed')->get();
                 break;
             default:
                 $books = Book::withTrashed()->get();

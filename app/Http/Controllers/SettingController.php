@@ -52,7 +52,7 @@ class SettingController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'value' => 'required',
+            'value' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -61,6 +61,12 @@ class SettingController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
+            if ($request->get('value') == 0) {
+                Session::flash('info_message', 'Invalid value');
+                Session::flash('alert-class', 'alert-danger');
+                return redirect()->back();
+            }
+
             $id = $request->get('id');
 
             $setting = Setting::find($id);

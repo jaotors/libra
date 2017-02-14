@@ -53,7 +53,6 @@
                         <th>User Number</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Role</th>
                         <th>Course / Department</th>
                         <th>Status</th>
                     </tr>
@@ -64,7 +63,6 @@
                             <td>{{$user->user_id}}</td>
                             <td>{{$user->first_name}}</td>
                             <td>{{$user->last_name}}</td>
-                            <td>{{$user->role()->first()->name}}</td>
                             <td>{{$user->department()->first()->name}}</td>
                             <td>
                                 @if($user->active)

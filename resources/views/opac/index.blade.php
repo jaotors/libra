@@ -123,6 +123,7 @@
                                 <th>Publisher</th>
                                 <th>Location </th>
                                 <th>Material Type</th>
+                                <th>No. of Copies</th>
                                 <th>Status</th>
                                 <th>More Info</th>
                             </tr>
@@ -144,8 +145,9 @@
                                     <td>{{$book->author}}</td>
                                     <td>{{$book->publisher}}</td>
                                     <td>{{$book->location}}</td>
-                                    <td>{{$book->status}}</td>
                                     <td>{{$book->material}}</td>
+                                    <td>{{noOfCopies($book)}}</td>
+                                    <td>{{$book->status}}</td>
                                     <td><a class="view-book" href="#" data-link="/opac/book/{{$book->id}}/view" data-toggle="modal" data-target=".modal-view"><span class="glyphicon glyphicon-eye-open"></a></td>
                                 </tr>
                             @endforeach

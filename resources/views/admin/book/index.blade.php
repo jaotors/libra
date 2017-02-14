@@ -103,7 +103,6 @@
                                     @if ($book->status == 'Borrowed')
                                         {{$book->borrower()->first()->last_name . ' ' . $book->borrower()->first()->first_name}}
                                     @elseif ($book->status == 'Reserved')
-                                        {{$book->reservation()->first()->last_name . ' ' . $book->reservation()->first()->first_name}}
                                     @endif
                                 </td>
                                 <td>

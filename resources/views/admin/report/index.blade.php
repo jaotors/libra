@@ -22,7 +22,7 @@
                             <td>Users</td>
                             <td>&nbsp;</td>
                             <td>
-                                {{Form::select('type', ['All', 'Student', 'Librarian', 'Employee'], null, ['class' => 'form-control'])}}
+                                {{Form::select('type', ['All', 'Student', 'Librarian', 'Employee', 'Active', 'Inactive'], null, ['class' => 'form-control'])}}
                             </td>
                             <td>
                                 <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>
@@ -34,7 +34,7 @@
                             <td>Books</td>
                             <td>&nbsp;</td>
                             <td>
-                                {{Form::select('type', ['All', 'Available', 'Unavailable'], null, ['class' => 'form-control'])}}
+                                {{Form::select('type', ['All', 'Available', 'Unavailable', 'Unreturned'], null, ['class' => 'form-control'])}}
                             </td>
                             <td>
                                 <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>
