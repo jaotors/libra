@@ -58,7 +58,7 @@
                 <table class="table data-table table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>User Number</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Role</th>

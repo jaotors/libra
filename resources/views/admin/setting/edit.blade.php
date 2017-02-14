@@ -11,7 +11,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         {{Form::label('title','Title', ['class' => 'control-label'])}}
-                        {{Form::text('title', null, ['class' => 'form-control'])}}
+                        {{Form::text('title', null, ['class' => 'form-control', 'readonly' => 'true'])}}
                     </div>
                     <div class="form-group">
                         {{Form::label('value','Value', ['class' => 'control-label'])}}

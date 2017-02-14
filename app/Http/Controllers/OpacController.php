@@ -26,7 +26,7 @@ class OpacController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(15);
+        $books = [];
         $categories = Category::pluck('name', 'id');
         $categories->prepend("Choose One", -1);
         $user = Auth::user();

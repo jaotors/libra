@@ -5,7 +5,7 @@
     @include('info')
     <div class="flex-container">
         <div class="box-container user-list">
-            <h2 class="title add">Edit User</h2>
+            <h2 class="title add">Edit Holiday</h2>
             {{ Form::model($holiday, ['url' => '/admin/holidays', 'method' => 'PUT']) }}
                 <div class="box-content">
                     <div class="row">
@@ -20,10 +20,6 @@
                                 {{ Form::label('date','Date', ['class' => 'control-label']) }}
                                 {{ Form::date('date', null, ['class' => 'form-control']) }}
                             </div>
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('type','Type', ['class' => 'control-label']) }}
-                            {{ Form::select('type', $types, $holiday->type, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <p class="btn-container two-buttons">

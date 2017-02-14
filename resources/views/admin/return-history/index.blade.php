@@ -15,7 +15,7 @@
                             <th>Last Name</th>
                             <th>Returned Date</th>
                             <th>Penalties</th>
-                            <th>Is Paid?</th>
+                            <th>Status</th>
                             <th>View Books</th>
                         </tr>
                     </thead>
@@ -29,9 +29,9 @@
                                 <td>{{number_format($return->books()->sum('penalty'), 2)}}</td>
                                 <td>
                                     @if($return->is_paid)
-                                        Yes
+                                        N/A
                                     @else
-                                        No 
+                                        UNPAID
                                     @endif
                                 </td>
                                 <td>

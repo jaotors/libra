@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Libra</title>
-    <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Inclusion of additional styles -->
     @yield('styles')
 </head>
 <body class="login">
-    <img class="background-img" src="{{ secure_asset('/images/bg-login.jpg') }}" alt="">
+    <img class="background-img" src="{{ asset('/images/bg-login.jpg') }}" alt="">
     <div class="container-fluid">
         @yield('content')
     </div>
     
-    <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
-    <script src="{{ secure_asset('js/config.js') }}"></script>
-    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ secure_asset('js/jquery.dataTables.js') }}"></script>
-    <script src="{{ secure_asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     @yield('scripts')
 </body>
 
