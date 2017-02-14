@@ -55,7 +55,11 @@ class OpacController extends Controller
     {
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
-        $books = Book::where($searchSelect, 'ilike', "%$searchQuery%");
+        if (config('database.default') == "pgsql") {
+            $books = Book::where($searchSelect, 'ilike', "%$searchQuery%");
+        } else {
+            $books = Book::where($searchSelect, 'like', "%$searchQuery%");
+        }
         $material = $request->get('material');
         $status = $request->get('status');
         $category = $request->get('category');
