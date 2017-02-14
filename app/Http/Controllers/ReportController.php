@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\Payment;
 use App\Models\ReturnHistory;
 use App\Models\Log;
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -173,6 +174,24 @@ class ReportController extends Controller
 
         $logs = Log::whereBetween('created_at', [$from, $to])->get();
         $pdf = PDF::loadView('admin.report.log', compact('logs', 'auth', 'from', 'to'));
+        return @$pdf->stream();
+    }
+
+    /**
+     * Displays the attendance report
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     **/
+    public function attendanceReport(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $auth = Auth::user();
+
+        $attendances = Attendance::whereBetween('created_at', [$from, $to])->get();
+        $pdf = PDF::loadView('admin.report.attendance', compact('attendances', 'auth', 'from', 'to'));
         return @$pdf->stream();
     }
 }

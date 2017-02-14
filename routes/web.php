@@ -82,6 +82,7 @@
         Route::get('reports/returns', 'ReportController@returnsReport');
         Route::get('reports/payments', 'ReportController@paymentsReport');
         Route::get('reports/logs', 'ReportController@logsReport');
+        Route::get('reports/attendance', 'ReportController@attendanceReport');
 
         Route::post('changepassword', 'UserController@changePassword');
 

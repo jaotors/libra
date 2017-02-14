@@ -95,6 +95,22 @@
                             </td>
                             {{Form::close()}}
                         </tr>
+                        <tr>
+                            {{Form::open(['url' => 'admin/reports/attendance', 'target' => '_blank', 'method' => 'GET'])}}
+                            <td> Attendance </td>
+                            <td>
+                                {{Form::label('from','From')}}
+                                {{Form::date('from')}}
+                            </td>
+                            <td>
+                                {{Form::label('to','To')}}
+                                {{Form::date('to')}}
+                            </td>
+                            <td>
+                                <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>
+                            </td>
+                            {{Form::close()}}
+                        </tr>
                     </tbody>
                 </table>
             </div>
