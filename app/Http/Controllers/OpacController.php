@@ -55,7 +55,7 @@ class OpacController extends Controller
     {
         $searchQuery = $request->get('search_query');
         $searchSelect = $request->get('search_select');
-        $books = Book::where($searchSelect, 'like', "%$searchQuery%");
+        $books = Book::where($searchSelect, 'ilike', "%$searchQuery%");
         $material = $request->get('material');
         $status = $request->get('status');
         $category = $request->get('category');

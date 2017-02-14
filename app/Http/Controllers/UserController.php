@@ -253,4 +253,15 @@ class UserController extends Controller
         $active_state = 'user';
         return view('admin.user.book', compact('books', 'user', 'active_state'));
     }
+
+    /**
+     * Shows info about the user
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function clearance($id)
+    {
+
+    }
 }
