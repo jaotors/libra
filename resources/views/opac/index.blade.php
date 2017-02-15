@@ -147,7 +147,14 @@
                                     <td>{{$book->location}}</td>
                                     <td>{{$book->material}}</td>
                                     <td>{{noOfCopies($book)}}</td>
-                                    <td>{{$book->status}}</td>
+                                    <td>
+                                        @if ($book->status == 'Available')
+                                            <span class=" glyphicon glyphicon-ok-sign"> </span>
+                                        @else
+                                            <span class="glyphicon glyphicon-remove-sign"> </span>
+
+                                        @endif
+                                    </td>
                                     <td><a class="view-book" href="#" data-link="/opac/book/{{$book->id}}/view" data-toggle="modal" data-target=".modal-view"><span class="glyphicon glyphicon-eye-open"></a></td>
                                 </tr>
                             @endforeach

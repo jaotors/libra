@@ -124,6 +124,7 @@
                 @if (count($books) > 0)
                     <p><a href="/admin/borrow/{{ $user->id }}/borrow" class="btn btn-success btn-borrow">Borrow</a></p>
                 @endif
+                <p><a href="/admin/return/" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-download"></span> Return Module</a></p>
             </div>
         </div>
     </div>

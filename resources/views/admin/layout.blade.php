@@ -43,7 +43,6 @@
                         <a href="#"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>Basic Transaction</a>
                         <ul>
                             <li class="{{ $active_state == 'borrow' ? 'active' : '' }}"><a href="/admin/borrow"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Borrow</a></li>
-                            <li class="{{ $active_state == 'return' ? 'active' : '' }}"><a href="/admin/return"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Return</a></li>
                             <li class="{{ $active_state == 'return-history' ? 'active' : '' }}"><a href="/admin/return-history"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Return History</a></li>
                         </ul>
                     </li>

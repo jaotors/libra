@@ -75,6 +75,7 @@
                 @endif
                 </p>
                 {{ Form::close() }}
+                <p><a href="/admin/borrow/" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-upload"></span> Borrow Module</a></p>
             </div>
         </div>
     </div>
