@@ -94,28 +94,53 @@ class ReportController extends Controller
         switch ($request->type) {
             case 1:
                 $books = Book::all();
+                $title = "All Books";
                 break;
             case 2:
-                $books = Book::onlyTrashed()->get();
+                $books = Book::where('status', 'Available')->get();
+                $title = "Available Books";
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 3:
-                $books = Book::where('status', 'Borrowed')->get();
+                $books = Book::where('status', 'Reserved')->get();
+                $title = "Unavailable Books";
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 4:
                 $books = Book::where('status', 'Borrowed')->get();
+                $title = "Unreturned Books";
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 5:
-                $books = Book::where('status', 'Borrowed')->get();
+                $books = Book::where('remarks', 'Damaged')->get();
+                $title = "Damaged Books";
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             case 6:
-                $books = Book::where('status', 'Borrowed')->get();
+                $books = Book::where('remarks', 'Lost Book')->get();
+                $title = 'Lost Book';
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
+                break;
+            case 7:
+                $books = Book::where('remarks', 'Lost Material')->get();
+                $title = 'Lost Material';
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
             default:
                 $books = Book::withTrashed()->get();
+                $title = 'Weeded Books';
+                $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
                 break;
         }
 
-        $pdf = PDF::loadView('admin.report.bookreport', compact('books', 'auth'));
+        $pdf = PDF::loadView('admin.report.bookreport', compact('books', 'auth', 'title'));
         return @$pdf->stream();
     }
 

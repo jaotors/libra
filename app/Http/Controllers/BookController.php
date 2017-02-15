@@ -99,7 +99,8 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response $response
      */
-    public function remove(Request $request) {
+    public function remove(Request $request)
+    {
 
         $book = Book::find($request->get('id'));
         if ($book->status == 'Reserved' || $book->status == 'Borrowed') {

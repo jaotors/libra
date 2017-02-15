@@ -56,7 +56,6 @@
                         <th>ISBN</th>
                         <th>Category</th>
                         <th>Author</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,13 +67,6 @@
                             <td>{{$book->isbn}}</td>
                             <td>{{$book->category()->first()->name}}</td>
                             <td>{{$book->author}}</td>
-                            <td>
-                                @if($book->deleted_at == null)
-                                    {{$book->status}}
-                                @else
-                                    Unavailable
-                                @endif
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
