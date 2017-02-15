@@ -84,6 +84,7 @@ Route::group(array('middleware' => 'forceSSL'), function () {
         Route::get('reports/payments', 'ReportController@paymentsReport');
         Route::get('reports/logs', 'ReportController@logsReport');
         Route::get('reports/attendance', 'ReportController@attendanceReport');
+        Route::get('reports/borrow', 'ReportController@borrowReport');
 
         Route::post('changepassword', 'UserController@changePassword');
 

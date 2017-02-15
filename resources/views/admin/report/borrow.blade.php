@@ -40,45 +40,38 @@
     </head>
     <body>
         <div class="content">
+            <p class="datetoday">{{ date('F d, Y') }}</p>
             <h1 class="logo"><a href="/"><img src="./images/logo.png" alt="LCCT"></a></h1>
             <h1 style="margin-bottom: 10px;">La Consolacion College Tanauan</h1>
             Tanauan City, Batangas 4232 <br>
             Telephone: (043) 778-1020 <br>
-            Fax: (043) 778-8850
-            <p class="report-title">{{$title}}</p>
-            <p class="datetoday">{{ date('F d, Y') }}</p>
+            Fax: (043) 778-8850 <br>
+            <p class="report-title">Borrows Report <br>from: {{$from}} <br>to: {{$to}}<br> <br></p>
             <table>
-                <thead>
-                    <tr>
-                        <th>Access Number</th>
-                        <th>Name</th>
-                        <th>Year</th>
-                        <th>ISBN</th>
-                        <th>Return Date</th>
-                        <th>Borrowed Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($books as $book)
+                    <thead>
                         <tr>
-                            <td>{{str_pad($book->id, 5, '0', STR_PAD_LEFT)}}</td>
-                            <td>{{$book->name}}</td>
-                            <td>{{$book->year}}</td>
-                            <td>{{$book->isbn}}</td>
-                            <td>{{$book->category()->first()->name}}</td>
-                            <td>{{$book->author}}</td>
-                            <td>
-                                @if($book->deleted_at == null)
-                                    {{$book->status}}
-                                @else
-                                    Unavailable
-                                @endif
-                            </td>
+                            <th>ISBN</th>
+                            <th>Name</th>
+                            <th>User</th>
+                            <th>Penalty</th>
+                            <th>Return Date </th>
+                            <th>Borrowed Date</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($books) }}</strong></p>
+                    </thead>
+                    <tbody>
+                        @foreach($borrows as $borrow)
+                            <tr>
+                                <td>{{$borrow->book->isbn}}</td>
+                                <td>{{$borrow->book->name}}</td>
+                                <td>{{$borrow->user->first_name . ' ' . $borrow->user->last_name}}</td>
+                                <td>{{number_format(computeForPenalty($borrow->book), 2)}}</td>
+                                <td>{{date('Y-m-d', strtotime($borrow->return_date))}}</td>
+                                <td>{{date('Y-m-d', strtotime($borrow->created_at))}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            <p style="text-align: right; line-height: 1;"><strong>Number of records: {{ count($borrows) }}</strong></p>
             <p style="text-align: right; padding: 0; margin: 0;"><strong>Printed By: {{ $auth->last_name }}, {{ $auth->first_name }}</strong></p>
             <p style="text-align: right; padding: 0; margin: 0;"><strong>{{$auth->role()->first()->name}}</strong></p>
         </div>

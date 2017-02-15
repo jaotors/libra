@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\ReturnHistory;
 use App\Models\Log;
 use App\Models\Attendance;
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -226,6 +227,24 @@ class ReportController extends Controller
 
         $attendances = Attendance::whereBetween('created_at', [$from, $to])->get();
         $pdf = PDF::loadView('admin.report.attendance', compact('attendances', 'auth', 'from', 'to'));
+        return @$pdf->stream();
+    }
+
+    /**
+     * Displays the borrow report
+     *
+     * @param \Illuminate\Http\Request
+     *
+     * @return \Illuminate\Http\Response
+     **/
+    public function borrowReport(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $auth = Auth::user();
+
+        $borrows = Borrow::whereBetween('created_at', [$from, $to])->get();
+        $pdf = PDF::loadView('admin.report.borrow', compact('borrows', 'auth', 'from', 'to'));
         return @$pdf->stream();
     }
 }
