@@ -2,6 +2,7 @@
     <head>
     <title>LCCT - Library System Report - Books</title>
         <style>
+
             * {
                 text-align: center;
             }

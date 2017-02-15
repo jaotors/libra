@@ -5,10 +5,10 @@
             * {
                 text-align: center;
             }
-            .logo {
+            .attendanceo {
                 margin: 0;
             }
-            .logo img {
+            .attendanceo img {
                 width: 20%;
             }
             .datetoday {
@@ -23,6 +23,12 @@
             table {
                 width: 100%;
             }
+            .report-title {
+                margin: 40px 0 20px;
+                font-size: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
         </style>
     </head>
     <body>
@@ -33,7 +39,7 @@
             Tanauan City, Batangas 4232 <br>
             Telephone: (043) 778-1020 <br>
             Fax: (043) 778-8850 <br>
-            Transaction History Report from: <br>{{$from}} to: {{$to}}<br> <br>
+            <p class="report-title">Transaction History Report <br>from: {{$from}} <br>to: {{$to}}<br> <br></p>
             <table class="logs-table table data-table table-hover">
                     <thead>
                         <tr>
