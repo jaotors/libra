@@ -34,7 +34,7 @@
                             <td>Books</td>
                             <td>&nbsp;</td>
                             <td>
-                                {{Form::select('type', ['All', 'Available', 'Unavailable', 'Unreturned'], null, ['class' => 'form-control'])}}
+                                {{Form::select('type', ['All', 'Available', 'Unavailable', 'Unreturned','Damaged','Lost Book', 'Lost Material'], null, ['class' => 'form-control'])}}
                             </td>
                             <td>
                                 <button class="print-btn"><span class="glyphicon glyphicon-print"></span></button>

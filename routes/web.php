@@ -56,9 +56,10 @@
         Route::put('books', 'BookController@update');
         Route::put('categories', 'CategoryController@update');
         Route::put('departments', 'DepartmentController@update');
-
         Route::get('weeds', 'BookController@trashIndex');
         Route::get('weed/{id}', 'BookController@trashRestore');
+        Route::post('book/remove', 'BookController@remove');
+
 
         Route::get('borrow', 'BorrowController@index');
         Route::get('borrow/search', 'BorrowController@search');
