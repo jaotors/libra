@@ -5,7 +5,7 @@
     @include('info')
     <div class="login-container" style="text-align:center">
         <div class="logo-container">
-            <img src="{!! asset('images/logo.png') !!}" alt="LCCT">
+            <img src="{!! secure_asset('images/logo.png') !!}" alt="LCCT">
         </div>
         <h2> Attendance Module </h2>
         <div id="reader" style="width:300px;height:250px; margin:auto; display:block;"></div>

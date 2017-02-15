@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
     </head>
@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="sidenav">
-                    <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
+                    <h1 class="logo"><a href="/"><img src="{{ secure_asset('images/logo.png') }}" alt="LCCT"></a></h1>
                     <ul class="nav">
                         <li><a href="#"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>Dashboard</a></li>
                         <li class="active"><a href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>Books</a></li>
@@ -276,6 +276,6 @@
             </div>
         </div>
     </body>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
 </html>

@@ -8,7 +8,7 @@
         <title>Libra</title>
 
         <!-- Fonts -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
     </head>
@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="topnav">
-                    <h1 class="logo"><a href="/"><img src="{{ asset('images/logo.png') }}" alt="LCCT"></a></h1>
+                    <h1 class="logo"><a href="/"><img src="{{ secure_asset('images/logo.png') }}" alt="LCCT"></a></h1>
                     <ul class="nav">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Books</a></li>
@@ -120,6 +120,6 @@
             </div>
         </div>
     </body>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
+    <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
 </html>
