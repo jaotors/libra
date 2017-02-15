@@ -12,10 +12,12 @@ use App\Models\Attendance;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Carbon\Carbon;
 use Validator;
 use Session;
 use PDF;
 use Auth;
+use DB;
 
 class ReportController extends Controller
 {
@@ -93,44 +95,55 @@ class ReportController extends Controller
         $auth = Auth::user();
 
         switch ($request->type) {
-            case 1:
+            case 0:
                 $books = Book::all();
                 $title = "All Books";
                 break;
-            case 2:
+            case 1:
                 $books = Book::where('status', 'Available')->get();
                 $title = "Available Books";
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
-            case 3:
+            case 2:
                 $books = Book::where('status', 'Reserved')->get();
                 $title = "Unavailable Books";
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
-            case 4:
+            case 3:
                 $books = Book::where('status', 'Borrowed')->get();
                 $title = "Unreturned Books";
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
-            case 5:
+            case 4:
                 $books = Book::where('remarks', 'Damaged')->get();
                 $title = "Damaged Books";
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
-            case 6:
+            case 5:
                 $books = Book::where('remarks', 'Lost Book')->get();
                 $title = 'Lost Book';
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
-            case 7:
+            case 6:
                 $books = Book::where('remarks', 'Lost Material')->get();
                 $title = 'Lost Material';
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
+                break;
+            case 7:
+                $books = Book::where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+                $title = 'Newly Acquired Books';
+                $pdf = PDF::loadView('admin.report.acquired', compact('books', 'auth', 'title'));
+                return @$pdf->stream();
+                break;
+            case 8:
+                $borrows = Borrow::where('return_date', '<=', Carbon::now())->get();
+                $pdf = PDF::loadView('admin.report.overdue', compact('borrows', 'auth', 'from', 'to'));
                 return @$pdf->stream();
                 break;
             default:
