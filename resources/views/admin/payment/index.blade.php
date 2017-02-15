@@ -12,20 +12,20 @@
                         <tr>
                             <th>Payment ID</th>
                             <th>Borrower Name</th>
-                            <th>Amount</th>
                             <th>OR Number</th>
                             <th>Date Paid</th>
                             <th>View Transaction</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $paymentTotal = 0 ?>
                         @foreach($payments as $payment)
                             <tr>
                                 <td>{{str_pad($payment->id, 5, '0', STR_PAD_LEFT)}}</td>
                                 <td>{{ $payment->user()->first()->first_name . ' ' . $payment->user()->first()->last_name }}</td>
-                                <td>{{ number_format($payment->amount, 2) }} </td>
                                 <td>{{ $payment->or_number}}</td>
                                 <td>{{ $payment->payment_date }}</td>
+                                <?php $paymentTotal += $payment->amount ?>
                                 <td>
                                     <a class="view" href="/admin/return-history/{{ $payment->return_history_id }}"><span class="glyphicon glyphicon-eye"></span> View</a>
                                 </td>
@@ -33,6 +33,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                Total Payments: {{$paymentTotal}}
             </div>
         </div>
     </div>
