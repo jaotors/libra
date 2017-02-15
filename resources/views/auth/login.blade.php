@@ -5,7 +5,7 @@
     @include('info')
     <div class="login-container">
         <div class="logo-container">
-            <img src="{!! secure_secure_secure_asset('images/logo.png') !!}" alt="LCCT">
+            <img src="{!! secure_asset('images/logo.png') !!}" alt="LCCT">
         </div>
         {!! Form::open(['url' => '/login']) !!}
             <div class="form-group">
