@@ -17,7 +17,7 @@
                             <th>Call Number</th>
                             <th>Category</th>
                             <th>Author</th>
-                            <th>Status</th>
+                            <th>Remarks</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -31,7 +31,7 @@
                                 <td>{{$book->call_number}}</td>
                                 <td>{{$book->category()->first()->name}}</td>
                                 <td>{{$book->author}}</td>
-                                <td>{{$book->status}}</td>
+                                <td>{{$book->remarks}}</td>
                                 <td>
                                     <a class="edit" href="/admin/weed/{{$book->id}}"><span class="glyphicon glyphicon-repeat"></span></a>
                                 </td>

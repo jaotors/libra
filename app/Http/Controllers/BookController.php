@@ -74,7 +74,7 @@ class BookController extends Controller
     }
 
     /**
-     * Deletes the book resource
+     * Displays the delete page of the book
      *
      * @param $id
      *
@@ -83,14 +83,35 @@ class BookController extends Controller
     public function delete($id)
     {
         $book = Book::find($id);
+        $remarks = [
+            'Damaged' => 'Damaged',
+            'Lost Book' => 'Lost Book',
+            'Lost Material' => 'Lost Material'
+        ];
+        $active_state = 'books';
+        return view('admin.book.delete', compact('book', 'remarks', 'active_state'));
+    }
+
+    /**
+     * Deletes the book resource
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response $response
+     */
+    public function remove(Request $request) {
+
+        $book = Book::find($request->get('id'));
         if ($book->status == 'Reserved' || $book->status == 'Borrowed') {
             Session::flash('info_message', 'Book is currently Reserved or Borrowed');
             Session::flash('alert-class', 'alert-danger');
             return redirect()->back();
         } else {
+            $book->remarks = $request->get('remarks');
+            $book->save();
             $book->delete();
             Session::flash('info_message', 'Book Sucessfuly Deleted');
-            return redirect()->back();
+            return redirect()->to('/admin/books');
         }
     }
 
@@ -172,7 +193,11 @@ class BookController extends Controller
 
     public function trashRestore($id)
     {
-        $book = Book::onlyTrashed()->where('id', $id)->restore();
+
+        $book = Book::onlyTrashed()->where('id', $id)->first();
+        $book->remarks = '';
+        $book->save();
+        $book->restore();
 
         Session::flash('info_message', 'Book Sucessfuly Restored');
         return redirect()->to('/admin/weeds');

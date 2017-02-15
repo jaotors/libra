@@ -101,6 +101,15 @@ class ReportController extends Controller
             case 3:
                 $books = Book::where('status', 'Borrowed')->get();
                 break;
+            case 4:
+                $books = Book::where('status', 'Borrowed')->get();
+                break;
+            case 5:
+                $books = Book::where('status', 'Borrowed')->get();
+                break;
+            case 6:
+                $books = Book::where('status', 'Borrowed')->get();
+                break;
             default:
                 $books = Book::withTrashed()->get();
                 break;
