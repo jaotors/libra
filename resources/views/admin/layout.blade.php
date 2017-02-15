@@ -29,7 +29,6 @@
                         <ul>
                             <li class="{{ $active_state == 'users'? 'active' : '' }}"><a href="/admin/users"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Users</a></li>
                             <li class="{{ $active_state == 'departments'? 'active' : '' }}"><a href="/admin/departments"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Academic Programs</a></li>
-                            <li class="{{ $active_state == 'clearance'? 'active' : '' }}"><a href="/admin/users/clearance"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Clearance</a></li>
                         </ul>
                     </li>
                     <li class="dropdown {{ $active_state == 'categories'? 'down' : '' }} {{ $active_state == 'books'? 'down' : '' }} {{ $active_state == 'weeds'? 'down' : ''}}">

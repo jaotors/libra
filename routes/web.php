@@ -102,6 +102,7 @@
         Route::get('import', 'ImportController@index');
         Route::post('import', 'ImportController@upload');
         Route::get('user/{id}/book', 'UserController@books');
+        Route::get('user/{id}/clearance', 'UserController@clearance');
         Route::get('borrow/{id}/print', 'BorrowController@printReceipt');
     });
 

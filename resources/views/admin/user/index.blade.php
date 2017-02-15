@@ -65,6 +65,7 @@
                         <th>Course / Department</th>
                         <th>Status</th>
                         <th>Action</th>
+                        <th>View Clearance</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,6 +87,9 @@
                                 <a class="edit" href="/admin/user/{{$user->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a href="/admin/user/{{$user->id}}/forgot"><span class="glyphicon glyphicon-question-sign"></span></a>
                                 <a href="/admin/user/{{$user->id}}/book"><span class="glyphicon glyphicon-book"></span></a>
+                            </td>
+                            <td>
+                                <a href="/admin/user/{{$user->id}}/clearance">View</a>
                             </td>
                         </tr>
                     @endforeach

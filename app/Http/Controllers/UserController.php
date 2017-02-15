@@ -255,13 +255,18 @@ class UserController extends Controller
     }
 
     /**
-     * Shows info about the user
+     * Shows clearance info about the user
      *
      * @param $id
      * @return \Illuminate\Http\Response
      */
     public function clearance($id)
     {
+        $user = User::findOrFail($id);
+        $histories = $user->history()->get();
+        $books = $user->books()->get();
+        $active_state = 'usersk';
 
+        return view('admin.user.clearance', compact('books', 'user', 'active_state', 'histories', 'active_state'));
     }
 }
