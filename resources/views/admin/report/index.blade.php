@@ -113,7 +113,7 @@
                         </tr>
                         <tr>
                             {{Form::open(['url' => 'admin/reports/borrow', 'target' => '_blank', 'method' => 'GET'])}}
-                            <td> Borrows </td>
+                            <td> Borrow Statistics </td>
                             <td>
                                 {{Form::label('from','From')}}
                                 {{Form::date('from')}}
