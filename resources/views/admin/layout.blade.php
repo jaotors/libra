@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Library System</title>
-        <link href="{{ secure_asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
 
         <!-- Inclusion of additional styles -->
         @yield('styles')
@@ -14,7 +14,7 @@
     <body>
         <div class="container-fluid">
             <div class="sidenav">
-                <h1 class="logo"><a href="/"><img src="{{ secure_asset('/images/logo.png') }}" alt="LCCT"></a></h1>
+                <h1 class="logo"><a href="/"><img src="{{ asset('/images/logo.png') }}" alt="LCCT"></a></h1>
                 <p class="school-name">La Consolacion College Tanauan</p>
                 <p class="address">Tanauan City, Batangas 4232</p>
                 <ul class="contact-list">
@@ -70,11 +70,11 @@
         </div>
 
         <!-- Inclusion of scripts -->
-        <script src="{{ secure_asset('js/jquery.min.js') }}"></script>
-        <script src="{{ secure_asset('js/config.js') }}"></script>
-        <script src="{{ secure_asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ secure_asset('js/jquery.dataTables.js') }}"></script>
-        <script src="{{ secure_asset('js/scripts.js') }}"></script>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/config.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
         @yield('scripts')
     </body>
 </html>
