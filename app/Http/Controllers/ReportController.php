@@ -118,19 +118,19 @@ class ReportController extends Controller
                 return @$pdf->stream();
                 break;
             case 4:
-                $books = Book::where('remarks', 'Damaged')->get();
+                $books = Book::withTrashed()->where('remarks', 'Damaged')->get();
                 $title = "Damaged Books";
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
             case 5:
-                $books = Book::where('remarks', 'Lost Book')->get();
+                $books = Book::withTrashed()->where('remarks', 'Lost Book')->get();
                 $title = 'Lost Book';
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
                 break;
             case 6:
-                $books = Book::where('remarks', 'Lost Material')->get();
+                $books = Book::withTrashed()->where('remarks', 'Lost Material')->get();
                 $title = 'Lost Material';
                 $pdf = PDF::loadView('admin.report.available', compact('books', 'auth', 'title'));
                 return @$pdf->stream();
