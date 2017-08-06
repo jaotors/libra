@@ -11,7 +11,7 @@
 |
  */
 Route::group(array('middleware' => 'forceSSL'), function () {
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomePageController@index');
     Route::get('login', 'Auth\LoginController@showLogin');
     Route::post('login', 'Auth\LoginController@authenticate');
 
