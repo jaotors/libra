@@ -15,20 +15,19 @@ class AnnouncementController extends Controller
     }
 
     /**
-     * Display's the holiday list
+     * Display's the announcement list
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $announcements = Announcement::all();
-
         $active_state = 'announcements';
         return view('admin.announcement.index', compact('announcements', 'active_state'));
     }
 
     /**
-     * Creates a new holiday resource
+     * Creates a new announcement resource
      *
      * @param  \Illuminate\Http\Request $request
      *
@@ -40,7 +39,6 @@ class AnnouncementController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'context' => 'required',
-            'date' => 'required|date',
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +50,6 @@ class AnnouncementController extends Controller
             Announcement::create([
                 'title' => $request->get('title'),
                 'context' => $request->get('context'),
-                'announce_date' => $request->get('announce_date'),
             ]);
 
             Session::flash('info_message', 'Announcement Successfuly Created');
@@ -61,7 +58,7 @@ class AnnouncementController extends Controller
     }
 
     /**
-     * Deletes the holiday resource
+     * Deletes the announcement resource
      *
      * @param $id
      *
@@ -88,11 +85,11 @@ class AnnouncementController extends Controller
         $announcement = Announcement::findOrFail($id);
 
         $active_state = 'announcements';
-        return view('admin.holiday.edit', compact('announcement', 'active_state'));
+        return view('admin.announcement.edit', compact('announcement', 'active_state'));
     }
 
     /**
-     * Updates holiday resources
+     * Updates announcement resources
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -113,13 +110,13 @@ class AnnouncementController extends Controller
         } else {
             $id = $request->get('id');
 
-            $announcement = Holiday::find($id);
-            $announcement->string = $request->get('title');
-            $announcement->text = $request->get('context');
+            $announcement = Announcement::find($id);
+            $announcement->title = $request->get('title');
+            $announcement->context = $request->get('context');
             $announcement->save();
 
             Session::flash('info_message', 'Announcement Successfuly Updated');
-            return redirect()->to('/admin/holidays');
+            return redirect()->to('/admin/announcements');
         }
     }
 }

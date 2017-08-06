@@ -27,36 +27,40 @@ Route::group(array('middleware' => 'forceSSL'), function () {
 
     Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
         Route::get('/', 'HomeController@homepage');
-        Route::get('/announcements', 'AnnouncementController@index');
         Route::get('users', 'UserController@index');
         Route::get('departments', 'DepartmentController@index');
         Route::get('categories', 'CategoryController@index');
         Route::get('books', 'BookController@index');
         Route::get('holidays', 'HolidayController@index');
         Route::get('logs', 'LogController@index');
+        Route::get('announcements', 'AnnouncementController@index');
 
         Route::get('department/{id}/delete', 'DepartmentController@delete');
         Route::get('category/{id}/delete', 'CategoryController@delete');
         Route::get('book/{id}/delete', 'BookController@delete');
         Route::get('holiday/{id}/delete', 'HolidayController@delete');
+        Route::get('announcement/{id}/delete', 'AnnouncementController@delete');
 
         Route::post('users', 'UserController@store');
         Route::post('departments', 'DepartmentController@store');
         Route::post('categories', 'CategoryController@store');
         Route::post('holidays', 'HolidayController@store');
         Route::post('books', 'BookController@store');
+        Route::post('announcements', 'AnnouncementController@store');
 
         Route::get('user/{id}', 'UserController@edit');
         Route::get('holiday/{id}', 'HolidayController@edit');
         Route::get('book/{id}', 'BookController@edit');
         Route::get('category/{id}', 'CategoryController@edit');
         Route::get('department/{id}', 'DepartmentController@edit');
+        Route::get('announcement/{id}', 'AnnouncementController@edit');
 
         Route::put('users', 'UserController@update');
         Route::put('holidays', 'HolidayController@update');
         Route::put('books', 'BookController@update');
         Route::put('categories', 'CategoryController@update');
         Route::put('departments', 'DepartmentController@update');
+        Route::put('announcements', 'AnnouncementController@update');
         Route::get('weeds', 'BookController@trashIndex');
         Route::get('weed/{id}', 'BookController@trashRestore');
         Route::post('book/remove', 'BookController@remove');

@@ -527,6 +527,22 @@ body {
       }
     }
 
+    &.announcements {
+      .dataTable {
+        thead {
+          th {
+            &:first-child {
+              width: 17%;
+            }
+
+            &:nth-child(2) {
+              width: 17%;
+            }
+          }
+        }
+      }
+    }
+
     .box-content {
       padding: 20px;
       max-height: 520px;

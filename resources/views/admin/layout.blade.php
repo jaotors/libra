@@ -26,7 +26,7 @@
                     <li class="dropdown {{ $active_state == 'announcements'? 'down' : '' }} {{ $active_state == 'homepage'? 'down' : '' }}">
                         <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Home</a>
                         <ul>
-                            <li class="{{ $active_state == 'homepage'? 'active' : '' }}"><a href="/admin/users"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Dashboard</a></li>
+                            <li class="{{ $active_state == 'homepage'? 'active' : '' }}"><a href="/admin/"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Dashboard</a></li>
                             <li class="{{ $active_state == 'announcements'? 'active' : '' }}"><a href="/admin/announcements"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Announcements</a></li>
                         </ul>
                     </li>
