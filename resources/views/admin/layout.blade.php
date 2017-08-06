@@ -23,7 +23,13 @@
                     <li>E-mail: <a href="mailto:OLFA_Community@yahoo.com">OLFA_Community@yahoo.com</a></li>
                 </ul>
                 <ul class="nav">
-                    <li class="{{ $active_state == 'homepage' ? 'active' : '' }}"><a href="/admin/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                    <li class="dropdown {{ $active_state == 'announcements'? 'down' : '' }} {{ $active_state == 'homepage'? 'down' : '' }}">
+                        <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Home</a>
+                        <ul>
+                            <li class="{{ $active_state == 'homepage'? 'active' : '' }}"><a href="/admin/"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Dashboard</a></li>
+                            <li class="{{ $active_state == 'announcements'? 'active' : '' }}"><a href="/admin/announcements"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>Announcements</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown {{ $active_state == 'users'? 'down' : '' }} {{ $active_state == 'departments'? 'down' : '' }}">
                         <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>User Management</a>
                         <ul>

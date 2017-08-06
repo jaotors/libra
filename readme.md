@@ -21,3 +21,23 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 ### Sysad
 - Maintenance of users
 - Maintenance of books
+
+#### Revision
+- List of Damaged Books
+- List of Lost Materials
+- List of Weeded Books
+- System must accomodate repeating copies for one title
+  - Note: If a titile has several copies, book information should contain only the number of copies instead of listing the books several times.
+- A book title, entered twice has same ISBN, Author but different place of publication
+- "TITLE" should be in all module when referring to "BOOK TITLE"
+- USER LIST MODULE - # should be ID#
+- Have separate module for reserve and borrow
+- BOOK CLASSIFICATION: Adding of Books still not working
+- Reasons for weeding are hard coded : Lost Materials, Lost Books, Damaged books
+- Faculty module/account should reflect if book is already returned or overdue for his clearance for that sem
+
+#### WANTS TO ADD
+- notification for overdue books and penalties
+- Graphs for important reports
+- Homepage
+- Announcements
