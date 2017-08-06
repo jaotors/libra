@@ -27,6 +27,7 @@ Route::group(array('middleware' => 'forceSSL'), function () {
 
     Route::group(['prefix' => 'admin', 'as' => 'admin::'], function () {
         Route::get('/', 'HomeController@homepage');
+        Route::get('/announcements', 'AnnouncementController@index');
         Route::get('users', 'UserController@index');
         Route::get('departments', 'DepartmentController@index');
         Route::get('categories', 'CategoryController@index');
